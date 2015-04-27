@@ -12,4 +12,9 @@ public class TrainingController {
 	public String index(Principal principal) {
 		return "training/trainingHome";
 	}
+
+	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)
+	public String show(Principal principal) {
+		return "training/details";
+	}
 }
