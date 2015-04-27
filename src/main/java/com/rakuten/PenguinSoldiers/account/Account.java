@@ -38,7 +38,7 @@ public class Account implements java.io.Serializable {
 		return id;
 	}
 
-    public String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
