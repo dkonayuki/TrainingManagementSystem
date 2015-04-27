@@ -17,4 +17,10 @@ public class TrainingController {
 	public String show(Principal principal) {
 		return "training/details";
 	}
+	
+	@RequestMapping(value = "trainingList", method = RequestMethod.GET)
+	public String trainingList(Principal principal) {
+		return "training/trainingList";
+	}
+
 }
