@@ -28,7 +28,11 @@ public class Account implements java.io.Serializable {
 
 	}
 	
-	public Account(String email, String password, String role) {
+	public void setId(Long id) {
+      this.id = id;
+    }
+
+  public Account(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
 		this.role = role;
