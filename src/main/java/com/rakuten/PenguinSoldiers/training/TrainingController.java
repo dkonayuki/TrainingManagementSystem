@@ -19,11 +19,21 @@ public class TrainingController {
 		model.addAttribute("test", "");
 		return "training/trainingHome";
 	}
-	
 
 	/*@RequestMapping(value = "message", method = RequestMethod.GET)
 	public String messages(Model model) {
 	    model.addAttribute("messages", messageRepository.findAll());
 	    return "message/list";
 	}*/
+
+	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)
+	public String show(Principal principal) {
+		return "training/details";
+	}
+	
+	@RequestMapping(value = "trainingList", method = RequestMethod.GET)
+	public String trainingList(Principal principal) {
+		return "training/trainingList";
+	}
+
 }
