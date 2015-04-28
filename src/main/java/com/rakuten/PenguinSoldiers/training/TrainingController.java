@@ -31,9 +31,4 @@ public class TrainingController {
 		return "training/details";
 	}
 	
-	@RequestMapping(value = "trainingList", method = RequestMethod.GET)
-	public String trainingList(Principal principal) {
-		return "training/trainingList";
-	}
-
 }
