@@ -10,4 +10,10 @@ public class SigninController {
 	public String signin() {
         return "signin/signin";
     }
+	
+	//@RequestMapping(value = "forgetPassword")
+	//public String forgetPassword()
+	//{
+	//	return "signin/forgetPassword";
+	//}
 }
