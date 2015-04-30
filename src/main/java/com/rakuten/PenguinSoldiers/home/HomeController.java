@@ -14,7 +14,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Principal principal) {
 		
-		logger.info("Entry made");
+		logger.info("Entry made to HomeController");
 		return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
 	}
 }
