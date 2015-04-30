@@ -14,35 +14,35 @@
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
 	<div class="container">
+				<p th:text="aa"></p>
+	
 	<h2>List of all trainings</h2>
 	<table class="table traininglist">
-	<tr>
-	<th>Training Name</th>
-	<th>Details</th>
-	<th>Date</th>
-	<th>Status</th>
-	</tr>
-	<tr>
-	<td><a href="./trainings/12">Learn Keigo Training</a></td>
-	<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae rhoncus est. Suspendisse mollis odio et lacinia commodo.</td>
-	<td>2015 May 14</td>
-	<td>Open</td>
-	</tr>
-	<tr>
-	<td><a href="./trainings/11">Learn Business English Training</a></td>
-	<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae rhoncus est. Suspendisse mollis odio et lacinia commodo.</td>
-	<td>2014 June 19</td>
-	<td>Closed</td>
-	</tr>
-	<tr>
-	<td><a href="./trainings/12">Java Training</a></td>
-	<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae rhoncus est. Suspendisse mollis odio et lacinia commodo.</td>
-	<td>2015 May 04</td>
-	<td>Almost Full</td>
-	</tr>
+		<tr>
+		<th>Training Name</th>
+		<th>Details</th>
+		<th>Date</th>
+		<th>Status</th>
+		</tr>
+		<tr>
+		<td><a href="./trainings/12">Learn Keigo Training</a></td>
+		<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae rhoncus est. Suspendisse mollis odio et lacinia commodo.</td>
+		<td>2015 May 14</td>
+		<td>Open</td>
+		</tr>
+		<tr>
+		<td><a href="./trainings/11">Learn Business English Training</a></td>
+		<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae rhoncus est. Suspendisse mollis odio et lacinia commodo.</td>
+		<td>2014 June 19</td>
+		<td>Closed</td>
+		</tr>
+		<tr>
+		<td><a href="./trainings/12">Java Training</a></td>
+		<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae rhoncus est. Suspendisse mollis odio et lacinia commodo.</td>
+		<td>2015 May 04</td>
+		<td>Almost Full</td>
+		</tr>
 	</table>
-			<p th:text="${test}">Welcome to our grocery store!</p>
-	
 	</div>
 </body>
 </html>

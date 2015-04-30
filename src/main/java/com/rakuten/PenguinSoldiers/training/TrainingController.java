@@ -16,7 +16,8 @@ public class TrainingController {
 	public String index(Principal principal, Model model) {
     // Here we are returning a collection of Training objects
 		//List<Training> trainings = new ArrayList();
-		model.addAttribute("test", "");
+		model.addAttribute("test", "aa");
+		//model.addAttribute("messages", accountRepository.findAll());
 		return "training/trainingHome";
 	}
 
@@ -29,11 +30,6 @@ public class TrainingController {
 	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)
 	public String show(Principal principal) {
 		return "training/details";
-	}
-	
-	@RequestMapping(value = "trainingList", method = RequestMethod.GET)
-	public String trainingList(Principal principal) {
-		return "training/trainingList";
 	}
 	
 }
