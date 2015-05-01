@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.training;
+package com.rakuten.PenguinSoldiers.controllers.training;
 
 import java.security.Principal;
 import java.util.ArrayList;

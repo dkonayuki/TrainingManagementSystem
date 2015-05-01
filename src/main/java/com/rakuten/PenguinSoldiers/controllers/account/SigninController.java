@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.signin;
+package com.rakuten.PenguinSoldiers.controllers.account;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +8,6 @@ public class SigninController {
 
 	@RequestMapping(value = "signin")
 	public String signin() {
-		return "signin/signin";
+		return "account/signin";
 	}
 }

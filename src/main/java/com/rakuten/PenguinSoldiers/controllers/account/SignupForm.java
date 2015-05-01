@@ -1,8 +1,8 @@
-package com.rakuten.PenguinSoldiers.signup;
+package com.rakuten.PenguinSoldiers.controllers.account;
 
 import org.hibernate.validator.constraints.*;
 
-import com.rakuten.PenguinSoldiers.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.Account;
 
 public class SignupForm {
 
