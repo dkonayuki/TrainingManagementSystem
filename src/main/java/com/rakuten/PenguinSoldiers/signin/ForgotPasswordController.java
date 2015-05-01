@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ForgotPasswordController {
 
-	@RequestMapping(value = "forgotPass", method = RequestMethod.GET)
+	@RequestMapping(value = "forgotPassword", method = RequestMethod.GET)
 	public String forgotPass(Principal principal) {
-		return "signin/forgotPass";
+		return "signin/forgotPassword";
 	}
 
 }
