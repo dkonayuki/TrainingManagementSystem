@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.signin;
+package com.rakuten.PenguinSoldiers.controllers.account;
 
 import java.security.Principal;
 
@@ -11,7 +11,7 @@ public class ForgotPasswordController {
 
 	@RequestMapping(value = "forgotPass", method = RequestMethod.GET)
 	public String forgotPass(Principal principal) {
-		return "signin/forgotPass";
+		return "account/forgotPass";
 	}
 
 }

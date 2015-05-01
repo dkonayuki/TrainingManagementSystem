@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.training;
+package com.rakuten.PenguinSoldiers.models.training;
 
 import javax.persistence.*;
 

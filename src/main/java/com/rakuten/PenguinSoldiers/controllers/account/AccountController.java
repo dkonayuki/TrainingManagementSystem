@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.account;
+package com.rakuten.PenguinSoldiers.controllers.account;
 
 import java.security.Principal;
 
@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
+import com.rakuten.PenguinSoldiers.models.account.Account;
 
 @Controller
 @Secured("ROLE_USER")
