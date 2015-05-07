@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.account;
+package com.rakuten.PenguinSoldiers.models.account;
 
 import javax.persistence.*;
 
@@ -24,8 +24,7 @@ public class Account implements java.io.Serializable {
 
 	private String role = "ROLE_USER";
 
-    protected Account() {
-
+	protected Account() {
 	}
 	
 	public Account(String email, String password, String role) {
