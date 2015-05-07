@@ -78,10 +78,21 @@ public class UserInfoRepository {
   }
   
   public Collection<UserInfo> getManagers(UserInfo u){
-    Session session = entityManager.unwrap(Session.class);
     try {
-      List<UserInfo> managers=entityManager.createQuery("select u from UserInfo u,  where u.manager = :manager", UserInfo.class)
-      .setParameter("manager", u).getResultList();
+      List<UserInfo> managers=entityManager.createQuery("select u from UserInfo u, Hierarchy h  where u.id= :id and h.low=u", UserInfo.class)
+      .setParameter("id", u.getId()).getResultList();
+      Set<UserInfo> ret = new HashSet<UserInfo>(managers);
+      return ret;
+    } catch (PersistenceException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+  
+  public Collection<UserInfo> getMembers(UserInfo u){
+    try {
+      List<UserInfo> managers=entityManager.createQuery("select u from UserInfo u, Hierarchy h  where u.id= :id and h.high=u", UserInfo.class)
+      .setParameter("id", u.getId()).getResultList();
       Set<UserInfo> ret = new HashSet<UserInfo>(managers);
       return ret;
     } catch (PersistenceException e) {
