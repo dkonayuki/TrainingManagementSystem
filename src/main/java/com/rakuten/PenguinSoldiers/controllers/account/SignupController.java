@@ -13,6 +13,7 @@ import com.rakuten.PenguinSoldiers.support.web.*;
 
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.UserService;
 
 @Controller
 public class SignupController {
