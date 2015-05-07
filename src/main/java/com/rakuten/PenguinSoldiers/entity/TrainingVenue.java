@@ -4,7 +4,9 @@ public class TrainingVenue {
   
   private Long id;
   private Training training;
-  private String venue;
+  private String city;
+  private String name;
+  private String address;
   
   
   public Long getId() {
@@ -19,12 +21,25 @@ public class TrainingVenue {
   public void setTraining(Training training) {
     this.training = training;
   }
-  public String getVenue() {
-    return venue;
+  public String getCity() {
+    return city;
   }
-  public void setVenue(String venue) {
-    this.venue = venue;
+  public void setCity(String city) {
+    this.city = city;
   }
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  public String getAddress() {
+    return address;
+  }
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
   
   
 }

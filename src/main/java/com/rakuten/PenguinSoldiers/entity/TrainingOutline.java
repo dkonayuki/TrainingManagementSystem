@@ -1,10 +1,14 @@
 package com.rakuten.PenguinSoldiers.entity;
 
-public class TrainingCondition {
+import java.sql.Date;
+import java.sql.Timestamp;
+
+public class TrainingOutline {
   
   private Long id;
   private Training training;
-  private String condition;
+  private String content;
+  private Date date;
   
   
   public Long getId() {
@@ -19,11 +23,17 @@ public class TrainingCondition {
   public void setTraining(Training training) {
     this.training = training;
   }
-  public String getCondition() {
-    return condition;
+  public String getContent() {
+    return content;
   }
-  public void setCondition(String condition) {
-    this.condition = condition;
+  public void setContent(String content) {
+    this.content = content;
+  }
+  public Date getDate() {
+    return date;
+  }
+  public void setDate(Date date) {
+    this.date = date;
   }
   
   

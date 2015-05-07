@@ -1,6 +1,7 @@
 package com.rakuten.PenguinSoldiers.entity;
 
-public class TrainingGoal {
+public class TrainingPremise {
+  
   private Long id;
   private Training training;
   private String content;
@@ -21,10 +22,9 @@ public class TrainingGoal {
   public String getContent() {
     return content;
   }
-  public void setContent(String goal) {
-    this.content = goal;
+  public void setContent(String content) {
+    this.content = content;
   }
-  
   
   
 }

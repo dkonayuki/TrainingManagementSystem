@@ -1,5 +1,6 @@
 package com.rakuten.PenguinSoldiers.repository;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
@@ -8,24 +9,23 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rakuten.PenguinSoldiers.entity.Training;
-import com.rakuten.PenguinSoldiers.entity.TrainingPremise;
+import com.rakuten.PenguinSoldiers.entity.TrainingTarget;
 import com.rakuten.PenguinSoldiers.util.Util;
 
 
 @Repository
 @Transactional(readOnly = false)
-public class TrainingRespository {
+public class TrainingTargetRepository {
   
   @PersistenceContext
   private EntityManager entityManager;
   
   
-  public Training save(Training training){
+  public TrainingTarget save(TrainingTarget trainingTarget){
     Session session = entityManager.unwrap(Session.class);
     try {
-      if(training.getId()==null)training.setCreatedBy(Util.getNow());
-      session.saveOrUpdate(training);
+//      if(trainingTarget.getId()==null)trainingTarget.setCreatedBy(Util.getNow());
+      session.saveOrUpdate(trainingTarget);
       session.flush();
     }
     catch (Exception e) {
@@ -34,13 +34,13 @@ public class TrainingRespository {
     finally {
       
     }
-    return training;
+    return trainingTarget;
   }
 
   
-  public Training getTrainingById(Long id){
+  public TrainingTarget getTrainingTargetById(Long id){
     try {
-      return entityManager.createQuery("select t from Training t where t.id = :id", Training.class)
+      return entityManager.createQuery("select tt from TrainingTarget tt where tt.id = :id", TrainingTarget.class)
           .setParameter("id", id)
           .getSingleResult();
     } catch (PersistenceException e) {
@@ -49,5 +49,6 @@ public class TrainingRespository {
       return null;
     }
   }
+
 
 }

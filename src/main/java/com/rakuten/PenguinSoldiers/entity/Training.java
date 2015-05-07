@@ -1,5 +1,6 @@
 package com.rakuten.PenguinSoldiers.entity;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 
 public class Training {
@@ -13,6 +14,12 @@ public class Training {
   private String status;
   private String otherInfo;
   private String content;
+  
+  private Collection<TrainingPremise> premises;
+  private Collection<TrainingOutline> outlines;
+  private Collection<TrainingGoal> goals;
+  private Collection<TrainingTarget> targets;
+  private Collection<TrainingVenue> venues;
   
   private Timestamp createdBy;
   
@@ -76,6 +83,37 @@ public class Training {
   }
   public void setCreatedBy(Timestamp createdBy) {
     this.createdBy = createdBy;
+  }
+  
+  public Collection<TrainingPremise> getPremises() {
+    return premises;
+  }
+  public void setPremises(Collection<TrainingPremise> premises) {
+    this.premises = premises;
+  }
+  public Collection<TrainingOutline> getOutlines() {
+    return outlines;
+  }
+  public void setOutlines(Collection<TrainingOutline> outlines) {
+    this.outlines = outlines;
+  }
+  public Collection<TrainingGoal> getGoals() {
+    return goals;
+  }
+  public void setGoals(Collection<TrainingGoal> goals) {
+    this.goals = goals;
+  }
+  public Collection<TrainingTarget> getTargets() {
+    return targets;
+  }
+  public void setTargets(Collection<TrainingTarget> targets) {
+    this.targets = targets;
+  }
+  public Collection<TrainingVenue> getVenues() {
+    return venues;
+  }
+  public void setVenues(Collection<TrainingVenue> venues) {
+    this.venues = venues;
   }
   
   

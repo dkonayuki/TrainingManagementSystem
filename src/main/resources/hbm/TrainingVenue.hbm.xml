@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.rakuten.PenguinSoldiers.entity">
+
+    <class name="TrainingVenue" table="training_venue">
+        <id name="id" column="training_venue_id">
+            <generator class="increment"/>
+        </id>
+        <many-to-one name="training" class="Training" column="training_id" lazy="false" />
+        <property name="city" column="city" type="text"/>
+        <property name="name" column="name" type="text"/>
+        <property name="address" column="address" type="text"/>
+    </class>
+
+</hibernate-mapping>
