@@ -52,7 +52,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .loginPage("/signin")
+                .loginPage("/signin")	// Specifies the URL to send users to if login is required.
                 .permitAll()
                 .failureUrl("/signin?error=1")
                 .loginProcessingUrl("/authenticate")
