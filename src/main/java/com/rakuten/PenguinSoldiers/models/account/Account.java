@@ -6,8 +6,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "user")
-@NamedQuery(name = Account.FIND_BY_EMAIL, query = "select a from user a where a.email = :email")
+@Table(name = "account")
+@NamedQuery(name = Account.FIND_BY_EMAIL, query = "select a from Account a where a.email = :email")
 public class Account implements java.io.Serializable {
 
 	public static final String FIND_BY_EMAIL = "Account.findByEmail";
