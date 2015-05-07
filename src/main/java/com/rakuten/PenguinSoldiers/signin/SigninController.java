@@ -8,12 +8,7 @@ public class SigninController {
 
 	@RequestMapping(value = "signin")
 	public String signin() {
-        return "signin/signin";
-    }
-	
-	//@RequestMapping(value = "forgetPassword")
-	//public String forgetPassword()
-	//{
-	//	return "signin/forgetPassword";
-	//}
+		return "signin/signin";
+	}
+
 }
