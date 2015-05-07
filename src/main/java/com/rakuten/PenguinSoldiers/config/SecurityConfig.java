@@ -49,20 +49,20 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/", "/favicon.ico", "/resources/**", "/signup", "/forgotPassword").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().authenticated() // All remaining URLs require that the user be successfully authenticated
                 .and()
-            .formLogin()
-                .loginPage("/signin")	// Specifies the URL to send users to if login is required.
-                .permitAll()
+            .formLogin() //Setup form based authentication using the Java configuration defaults. Authentication is performed when a POST is submitted to the URL “/login” with the parameters “username” and “password”.
+                .loginPage("/signin")	// Explicitly state the login page
+                .permitAll() // allow access to any URL that formLogin() uses
                 .failureUrl("/signin?error=1")
-                .loginProcessingUrl("/authenticate")
+                .loginProcessingUrl("/authenticate") // Specifies the URL to validate the credentials.
                 .and()
             .logout()
                 .logoutUrl("/logout")
-                .permitAll()
+                .permitAll() // allow access to any URL that formLogin() uses
                 .logoutSuccessUrl("/signin?logout")
                 .and()
-            .rememberMe()
+            .rememberMe() // input with value _spring_security_remember_me
                 .rememberMeServices(rememberMeServices())
                 .key("remember-me-key");
     }
