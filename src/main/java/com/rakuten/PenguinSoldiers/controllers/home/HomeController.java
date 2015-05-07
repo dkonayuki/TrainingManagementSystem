@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.home;
+package com.rakuten.PenguinSoldiers.controllers.home;
 
 import java.security.Principal;
 
