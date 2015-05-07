@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
-import com.rakuten.PenguinSoldiers.controllers.account.UserService;
+import com.rakuten.PenguinSoldiers.models.account.UserService;
 
 @Configuration
 @EnableWebMvcSecurity
