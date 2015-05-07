@@ -4,7 +4,7 @@ public class TrainingTarget {
   
   private Long id;
   private Training training;
-  private String target;
+  private String content;
   
   
   public Long getId() {
@@ -19,11 +19,11 @@ public class TrainingTarget {
   public void setTraining(Training training) {
     this.training = training;
   }
-  public String getTarget() {
-    return target;
+  public String getContent() {
+    return content;
   }
-  public void setTarget(String target) {
-    this.target = target;
+  public void setContent(String target) {
+    this.content = target;
   }
   
   
