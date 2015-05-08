@@ -1,5 +1,8 @@
 package com.rakuten.PenguinSoldiers.controllers.training;
 
+import javax.persistence.Lob;
+import java.sql.Blob;
+import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 
 
+import java.lang.String;
 
 @Controller
 public class AdminController {
@@ -23,14 +27,17 @@ public class AdminController {
 		return "admin/addTrainingPrograms";
 	}
 
+	@Lob
+	private String overview;
 	@RequestMapping(value = "addAction", method = RequestMethod.GET)
-	public String addAction(@RequestParam("name") String Name, ModelMap model)
+	public String addAction(@RequestParam("name") String Name, @RequestParam("overview") String overview, @RequestParam("goal") String goal, @RequestParam("date") String date, @RequestParam("target") String target, @RequestParam("participantNum") int participantNum, @RequestParam("duedate") String duedate, @RequestParam("venue") String venue, ModelMap model)
 	{
-		System.out.println(Name);
-		Training tr = new Training(Name);
+		Training tr = new Training();
+		tr.setName(Name);
+		tr.setOverview(overview);
+		tr.setMax_participants(participantNum);
+		//tr.setDue_date(duedate);
 		trainingService.save(tr);
 		return "home/homeSignedIn";
 	}
 }
-
-
