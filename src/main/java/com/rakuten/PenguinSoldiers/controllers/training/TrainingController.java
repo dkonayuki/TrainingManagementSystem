@@ -24,7 +24,7 @@ public class TrainingController {
 		
 		model.addAttribute("trainings", trainings);
     //System.out.println("training controller");
-		return "training/trainingHome";
+		return "training/index";
 	}
 
 	/*@RequestMapping(value = "message", method = RequestMethod.GET)
@@ -32,17 +32,20 @@ public class TrainingController {
 	    model.addAttribute("messages", messageRepository.findAll());
 	    return "message/list";
 	}*/
+	
+	/*Training a = this.trainingService.findById(3);
+	a.setName("new");
+	trainingService.update(a);*/
+	//Training a = new Training("up");
+  //trainingService.save(a);
+	//trainingService.delete(5);
 
 	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)
-	public String show(Principal principal) {
-		/*Training a = this.trainingService.findById(3);
-		a.setName("new");
-		trainingService.update(a);*/
-		//Training a = new Training("up");
-    //trainingService.save(a);
-		//trainingService.delete(5);
+	public String show(Principal principal, Model model, @PathVariable Integer id) {
+		Training training = this.trainingService.findById(id);
+		model.addAttribute(training);
 
-		return "training/details";
+		return "training/show";
 	}
 
 	
