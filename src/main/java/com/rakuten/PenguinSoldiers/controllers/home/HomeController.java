@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.home;
+package com.rakuten.PenguinSoldiers.controllers.home;
 
 import java.security.Principal;
 
@@ -11,5 +11,6 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Principal principal) {
 		return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
+		//return "home/homeSignedIn";
 	}
 }

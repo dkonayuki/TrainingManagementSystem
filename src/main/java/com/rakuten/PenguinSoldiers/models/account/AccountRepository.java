@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.account;
+package com.rakuten.PenguinSoldiers.models.account;
 
 import javax.persistence.*;
 import javax.inject.Inject;
@@ -10,20 +10,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Repository
 @Transactional(readOnly = true)
 public class AccountRepository {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Inject
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Transactional
 	public Account save(Account account) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		entityManager.persist(account);
 		return account;
 	}
-	
+
 	public Account findByEmail(String email) {
 		try {
 			return entityManager.createNamedQuery(Account.FIND_BY_EMAIL, Account.class)
@@ -34,5 +34,5 @@ public class AccountRepository {
 		}
 	}
 
-	
+
 }

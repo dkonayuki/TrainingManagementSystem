@@ -17,6 +17,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.rakuten.PenguinSoldiers.models.account.UserService;
+import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
+
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
@@ -32,7 +36,7 @@ public class UserServiceTest {
 	@Test
 	public void shouldInitializeWithTwoDemoUsers() {
 		// act
-		userService.initialize();
+		//userService.initialize();
 		// assert
 		verify(accountRepositoryMock, times(2)).save(any(Account.class));
 	}

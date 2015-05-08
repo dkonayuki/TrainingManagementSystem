@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.signup;
+package com.rakuten.PenguinSoldiers.controllers.account;
 
 import javax.validation.Valid;
 
@@ -9,13 +9,16 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.rakuten.PenguinSoldiers.account.*;
 import com.rakuten.PenguinSoldiers.support.web.*;
+
+import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
+import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.UserService;
 
 @Controller
 public class SignupController {
 
-    private static final String SIGNUP_VIEW_NAME = "signup/signup";
+    private static final String SIGNUP_VIEW_NAME = "account/signup";
 
 	@Autowired
 	private AccountRepository accountRepository;
