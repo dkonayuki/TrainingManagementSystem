@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+	<div class="container">
+
+	<h2>List of all trainings</h2>
+	<table class="table traininglist">
+		<tr>
+		<th>Training Name</th>
+		<th>Details</th>
+		<th>Date</th>
+		<th>Status</th>
+		</tr>
+		<tr th:each="training : ${trainings}">
+	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
+	    <td th:text="${training.overview}">1</td>
+	    <td th:text="${training.due_date}">1</td>
+	    <td th:text="${training.status}">1</td>
+		</tr>
+	</table>
+	</div>
+	
+
+</body>
+</html>

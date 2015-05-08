@@ -19,7 +19,7 @@ public class Training implements java.io.Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	private String name;
 	//@Column(length=1023)
     @Lob
@@ -29,7 +29,13 @@ public class Training implements java.io.Serializable {
     private Timestamp start_date;
     private String status;
 	
-	public Training() {
+
+	protected Training() {
+	}
+
+	public Training(String name) {
+		this.name = name;
+
 	}
 
 	public int getId() {
@@ -49,11 +55,13 @@ public class Training implements java.io.Serializable {
 	}
 
 
+
 	public String getOverview() {
 		return overview;
 	}
 
 	public void setOverview(String overview) {
+
 		this.overview = overview;
 	}
 
@@ -89,6 +97,8 @@ public class Training implements java.io.Serializable {
 		this.status = status;
 	}
 	
+
+
 
 
 }

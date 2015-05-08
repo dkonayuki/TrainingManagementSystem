@@ -32,8 +32,7 @@ public class AdminController {
 	@RequestMapping(value = "addAction", method = RequestMethod.GET)
 	public String addAction(@RequestParam("name") String Name, @RequestParam("overview") String overview, @RequestParam("goal") String goal, @RequestParam("date") String date, @RequestParam("target") String target, @RequestParam("participantNum") int participantNum, @RequestParam("duedate") String duedate, @RequestParam("venue") String venue, ModelMap model)
 	{
-		Training tr = new Training();
-		tr.setName(Name);
+		Training tr = new Training(Name);
 		tr.setOverview(overview);
 		tr.setMax_participants(participantNum);
 		//tr.setDue_date(duedate);

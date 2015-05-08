@@ -6,18 +6,11 @@
 	<div th:replace="fragments/header :: header">Header</div>
 	<div class="container text-center">
 		<div class="details">
-		<h2>Learn Keigo Training</h2>
+		<h2 th:text="${training.name}">Learn Keigo Training</h2>
 		</div>
 		<div class="details">
 		<h3><small>Overview</small></h3> 
-		<p>Lorem ipsum dolor sit amet,
-		 consectetur adipiscing elit. Vestibulum vitae rhoncus est. 
-		 Suspendisse mollis odio et lacinia commodo. Integer vestibulum 
-		 sagittis ante in consectetur. In felis felis, dictum eget est eget, 
-		 eleifend pretium sem. Suspendisse interdum lobortis ante, nec 
-		 elementum mi posuere quis. Nunc ut laoreet turpis. Morbi a nisi sed elit 
-		 semper pellentesque. Ut odio sem, volutpat in luctus vitae, tempor eget odio.
-		  Aliquam tempus lacus a imperdiet gravida. Nam et leo eu dolor aliquet accumsan.</p>
+		<p th:text="${training.overview}"></p>
 		</div>
 		<div class="details">
 		<h3><small>Training Goal</small></h3>
@@ -49,19 +42,6 @@
 		<div class="details">
 		<h3><small>Deadline</small></h3>
 		<h3>2015 April 28</h3>
-		</div>
-		<div class="details">
-		<h3><small>Notes</small></h3>
-		<p>
-		 Fusce vehicula laoreet laoreet. 
-		 Sed mattis, neque at rhoncus dictum, dui velit eleifend ipsum, vitae euismod elit nulla id tellus. 
-		 Phasellus nibh odio, imperdiet ut pretium in, vulputate vitae quam. 
-		 Fusce suscipit tincidunt leo, quis consequat nunc accumsan at. 
-		 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-		 Praesent pharetra dui eu sapien gravida aliquet. 
-		 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eu risus mauris. 
-		 Suspendisse eget arcu finibus, molestie ante ac, rutrum lorem. Etiam venenatis risus at pharetra mattis.		
-		</p>
 		</div>
 		
 	</div>
