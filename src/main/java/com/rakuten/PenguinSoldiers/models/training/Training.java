@@ -13,15 +13,18 @@ public class Training implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int id;
 	
 	private String name;
 
 	protected Training() {
-
 	}
 	
-	public Long getId() {
+	public Training(String name) {
+		this.name = name;
+	}
+	
+	public int getId() {
 		return id;
 	}
 

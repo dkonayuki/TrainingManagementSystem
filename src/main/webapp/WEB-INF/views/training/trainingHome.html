@@ -32,7 +32,12 @@
 		<td>Almost Full</td>
 		</tr>
 	</table>
-			<p th:text="${test.email}">Welcome to our grocery store!</p>
+<table>
+	<tr th:each="training : ${trainings}">
+    <td th:text="${training.id}">1</td>
+    <td th:text="${training.name}">Text ...</td>
+	</tr>
+</table>
 	</div>
 </body>
 </html>

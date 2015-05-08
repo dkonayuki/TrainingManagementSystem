@@ -1,12 +1,14 @@
 package com.rakuten.PenguinSoldiers.models.training;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional
 public class TrainingRepository {
 
 	@PersistenceContext
@@ -27,6 +29,17 @@ public class TrainingRepository {
 			return null;
 		}
 	}
+	
+	public void update(Training training) {
+		entityManager.merge(training);
+	}
 
+	public void delete(Training training) {
+    entityManager.remove(entityManager.contains(training) ? training : entityManager.merge(training));
+	}
+
+	public List<Training> findAll() {
+		return entityManager.createQuery("from Training", Training.class).getResultList();
+	}
 
 }
