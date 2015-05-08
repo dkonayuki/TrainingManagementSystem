@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rakuten.PenguinSoldiers.support.web.*;
-
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.SignupForm;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
 
 @Controller
@@ -37,6 +37,12 @@ public class SignupController {
 		if (errors.hasErrors()) {
 			return SIGNUP_VIEW_NAME;
 		}
+		
+		/*
+		 * Validate the user here (with json API)
+		 * 
+		 * */
+		
 		Account account = accountRepository.save(signupForm.createAccount());
 		userService.signin(account);
         // see /WEB-INF/i18n/messages.properties and /WEB-INF/views/homeSignedIn.html
