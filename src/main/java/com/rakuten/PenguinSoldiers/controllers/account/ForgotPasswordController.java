@@ -1,5 +1,6 @@
 package com.rakuten.PenguinSoldiers.controllers.account;
 
+
 import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
@@ -13,5 +14,4 @@ public class ForgotPasswordController {
 	public String forgotPass(Principal principal) {
 		return "account/forgotPass";
 	}
-
 }
