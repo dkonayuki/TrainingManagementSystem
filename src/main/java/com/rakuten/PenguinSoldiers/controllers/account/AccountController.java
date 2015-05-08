@@ -33,4 +33,5 @@ class AccountController {
     Assert.notNull(principal);
     return accountRepository.findByEmail(principal.getName());
   }
+
 }
