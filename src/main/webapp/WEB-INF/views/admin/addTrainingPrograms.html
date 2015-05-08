@@ -7,7 +7,7 @@
     <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
 </head>
 <body>
-<form method="post" action = "/TrainingManagementSystem/addAction">
+<form th:action = "@{/addAction}">
 
     <fieldset>
         <legend>Add Training Programs Here</legend>
@@ -17,6 +17,28 @@
                 <input type="text" class="form-control" id="Name" placeholder="Name" name="name" />
             </div>
         </div>
+        
+        <div class="form-group">
+            <label for="Overview" class="col-lg-2 control-label">Training Overview</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="Overview" placeholder="Overivew" name="overview" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Goal" class="col-lg-2 control-label">Training Goals</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="Goals" placeholder="Goals" name="goals" />
+            </div>
+        </div>
+        
+       <div class="form-group">
+            <label for="Date" class="col-lg-2 control-label">Training Date</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="Date" placeholder="Date" name="date" />
+            </div>
+        </div>
+        
         <div class="form-group">
             <label for="Target" class="col-lg-2 control-label">Training Targets</label>
             <div class="col-lg-10">
