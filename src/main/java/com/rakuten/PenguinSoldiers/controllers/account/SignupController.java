@@ -41,7 +41,12 @@ public class SignupController {
 		/*
 		 * Validate the user here (with json API)
 		 * 
+		 * 
 		 * */
+		
+		
+		
+		/* Validation end */
 		
 		Account account = accountRepository.save(signupForm.createAccount());
 		userService.signin(account);
