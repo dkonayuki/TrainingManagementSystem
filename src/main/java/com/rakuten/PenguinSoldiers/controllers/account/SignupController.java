@@ -19,7 +19,7 @@ import com.rakuten.PenguinSoldiers.models.account.UserService;
 public class SignupController {
 
   private static final String SIGNUP_VIEW_NAME = "account/signup";
-  
+
 	@Autowired
 	private AccountRepository accountRepository;
 	

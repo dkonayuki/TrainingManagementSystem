@@ -9,41 +9,41 @@ import javax.persistence.*;
 
 public class Goal implements java.io.Serializable {
 
-  @Id
-  @GeneratedValue
-  private Long id;
-  private Long training_id;
-  
-  @Lob
-  private String content;
-  
+	@Id
+	@GeneratedValue
+	private Long id;
+	private Long training_id;
+	
+	@Lob
+	private String content;
+	
     protected Goal() {
 
-  }
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public Long getTraining_id() {
-    return training_id;
-  }
+	public Long getTraining_id() {
+		return training_id;
+	}
 
-  public void setTraining_id(Long training_id) {
-    this.training_id = training_id;
-  }
+	public void setTraining_id(Long training_id) {
+		this.training_id = training_id;
+	}
 
-  public String getContent() {
-    return content;
-  }
+	public String getContent() {
+		return content;
+	}
 
-  public void setContent(String content) {
-    this.content = content;
-  }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
 
 }
