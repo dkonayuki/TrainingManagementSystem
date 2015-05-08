@@ -12,36 +12,38 @@ import org.hibernate.type.TextType;
 
 public class Premise implements java.io.Serializable {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	private Long training_id;
-	private TextType content;
-	
+  @Id
+  @GeneratedValue
+  private Long id;
+  private Long training_id;
+  
+  @Lob
+  private String content;
+  
     protected Premise() {
 
-	}
+  }
 
-	public Long getId() {
-		return id;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	public Long getTrainingID()
-	{
-		return training_id;
-	}
-	
-	public void setTrainingID(Long training_id)
-	{
-		this.training_id = training_id;
-	}
-	
-	public TextType getContent() {
-		return content;
-	}
+  public Long getTrainingID()
+  {
+    return training_id;
+  }
+  
+  public void setTrainingID(Long training_id)
+  {
+    this.training_id = training_id;
+  }
+  
+  public String getContent() {
+    return content;
+  }
 
-	public void setContent(TextType content) {
-		this.content = content;
-	}
+  public void setContent(String content) {
+    this.content = content;
+  }
 
 }

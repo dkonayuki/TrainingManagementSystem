@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+	<div class="container text-center">
+		<div class="details">
+		<h2 th:text="${training.name}">Learn Keigo Training</h2>
+		</div>
+		<div class="details">
+		<h3><small>Overview</small></h3> 
+		<p th:text="${training.overview}"></p>
+		</div>
+		<div class="details">
+		<h3><small>Training Goal</small></h3>
+		<ul class="details">
+		<li>Nulla sit amet lorem eu mi aliquam dictum bibendum id dui.</li>
+		<li>Curabitur ante ipsum, congue sit amet ornare nec, pharetra fringilla metus. </li>
+		<li>Nulla facilisi. Suspendisse potenti. Vestibulum ut pellentesque urna. </li>
+		 </ul>
+		</div>
+		<div class="details">
+		<h3><small>Target People</small></h3>
+		<ul class="details">
+		<li>Fusce mi quam, placerat in accumsan in, mattis sit amet arcu.</li>
+		<li>Vestibulum at efficitur lorem, nec porta dui.</li>
+		 </ul>
+		</div>
+		<div class="details">
+		<h3><small>Training Date </small></h3>
+		<h3>2015 May 04</h3>
+		</div>
+		<div class="details">
+		<h3><small>Number of participants</small></h3>
+		<h3> 64</h3>
+		</div>
+		<div >
+		<h3><small>Training Venue</small></h3>
+		<h3>The Bridge</h3>
+		</div>
+		<div class="details">
+		<h3><small>Deadline</small></h3>
+		<h3>2015 April 28</h3>
+		</div>
+		
+	</div>
+</body>
+</html>
