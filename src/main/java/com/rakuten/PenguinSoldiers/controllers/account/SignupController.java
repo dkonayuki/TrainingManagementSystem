@@ -18,7 +18,7 @@ import com.rakuten.PenguinSoldiers.models.account.UserService;
 @Controller
 public class SignupController {
 
-    private static final String SIGNUP_VIEW_NAME = "account/signup";
+  private static final String SIGNUP_VIEW_NAME = "account/signup";
 
 	@Autowired
 	private AccountRepository accountRepository;

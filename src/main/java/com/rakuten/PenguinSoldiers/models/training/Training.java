@@ -20,7 +20,8 @@ public class Training implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int id;
+	
 	private String name;
     private TextType overview;
 	private int max_participants;
@@ -29,10 +30,13 @@ public class Training implements java.io.Serializable {
     private String status;
 	
 	protected Training() {
-
 	}
 	
-	public Long getId() {
+	public Training(String name) {
+		this.name = name;
+	}
+	
+	public int getId() {
 		return id;
 	}
 

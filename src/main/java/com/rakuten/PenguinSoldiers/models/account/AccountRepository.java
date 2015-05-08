@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional
 public class AccountRepository {
 
 	@PersistenceContext
