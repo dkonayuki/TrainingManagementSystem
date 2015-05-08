@@ -21,10 +21,14 @@ public class Account implements java.io.Serializable {
 	
 	@JsonIgnore
 	private String password;
+	
+	private String username;
+	private String name;
+	private String employeeNo;
 
 	private String role = "ROLE_USER";
 
-	protected Account() {
+	public Account() {
 	}
 	
 	public Account(String email, String password, String role) {
@@ -60,6 +64,38 @@ public class Account implements java.io.Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getEmployeeNo() {
+    return employeeNo;
+  }
+
+  public void setEmployeeNo(String employeeNo) {
+    this.employeeNo = employeeNo;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+	
+	
+	
+	
 }
 /*
 package com.rakuten.PenguinSoldiers.models.account;
