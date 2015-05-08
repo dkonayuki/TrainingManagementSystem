@@ -24,7 +24,7 @@ public class Account implements java.io.Serializable {
 
 	private String role = "ROLE_USER";
 
-	protected Account() {
+	public Account() {
 	}
 	
 	public Account(String email, String password, String role) {
@@ -52,7 +52,7 @@ public class Account implements java.io.Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String getRole() {
 		return role;
 	}
@@ -60,6 +60,9 @@ public class Account implements java.io.Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	
+	
 }
 /*
 package com.rakuten.PenguinSoldiers.models.account;
