@@ -21,6 +21,9 @@ public class Account implements java.io.Serializable {
 	
 	@JsonIgnore
 	private String password;
+	
+	//@OneToMany(mappedBy = "account")  
+	//public List<marksdetails> marksDetails;  
 
 	private String role = "ROLE_USER";
 
