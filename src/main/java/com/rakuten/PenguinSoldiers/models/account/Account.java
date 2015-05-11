@@ -7,10 +7,18 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "account")
-@NamedQuery(name = Account.FIND_BY_EMAIL, query = "select a from Account a where a.email = :email")
+@NamedQueries({
+@NamedQuery(name = Account.FIND_BY_EMAIL, query = "select a from Account a where a.email = :email"),
+@NamedQuery(name = Account.FIND_BY_USERNAME, query = "select a from Account a where a.username = :username"),
+@NamedQuery(name = Account.FIND_EMPLOYEE, query = "select a from Account a, Hierarchy h where a.username = :username and h.managerId=a.id"),
+@NamedQuery(name = Account.FIND_MANAGER, query = "select a from Account a, Hierarchy h where a.username = :username and h.employeeId=a.id")
+})
 public class Account implements java.io.Serializable {
 
 	public static final String FIND_BY_EMAIL = "Account.findByEmail";
+	public static final String FIND_BY_USERNAME= "Account.findByUsername";
+	public static final String FIND_EMPLOYEE= "Account.findEmployee";
+	public static final String FIND_MANAGER= "Account.findManager";
 
 	@Id
 	@GeneratedValue
@@ -25,11 +33,15 @@ public class Account implements java.io.Serializable {
 	private String role = "ROLE_USER";
 
 	private String name;
+	
+	@Column(unique = true)
 	private String username;
+	
+	@Column(unique = true)
 	private String employeeNo;
 
 	public Account() {
-
+	  this.password="";
 	}
 
 	public Account(String email, String password, String role) {
@@ -88,6 +100,11 @@ public class Account implements java.io.Serializable {
 
 	public void setEmployeeNo(String employeeNo) {
 		this.employeeNo = employeeNo;
+	}
+	
+	public boolean isSame(Account a){
+	  if(a.getId()==null||this.getId()==null)return false;
+	  return a.getId().equals(this.getId());
 	}
 
 }

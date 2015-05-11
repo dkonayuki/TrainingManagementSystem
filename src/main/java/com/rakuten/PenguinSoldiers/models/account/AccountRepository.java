@@ -1,5 +1,7 @@
 package com.rakuten.PenguinSoldiers.models.account;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.inject.Inject;
 
@@ -19,7 +21,8 @@ public class AccountRepository {
 
 	@Transactional
 	public Account save(Account account) {
-		account.setPassword(passwordEncoder.encode(account.getPassword()));
+//		account.setPassword(passwordEncoder.encode(account.getPassword()));
+	  account.setPassword(passwordEncoder.encode("raku10"));
 		entityManager.persist(account);
 		return account;
 	}
@@ -33,6 +36,40 @@ public class AccountRepository {
 			return null;
 		}
 	}
-
+	
+	public Account findByUsername(String username) {
+    try {
+      return entityManager.createNamedQuery(Account.FIND_BY_USERNAME, Account.class)
+          .setParameter("username", username)
+          .getSingleResult();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+	
+	
+	public List<Account> findEmployee(String username){
+	  try {
+	    return entityManager.createNamedQuery(Account.FIND_EMPLOYEE, Account.class)
+      .setParameter("username", username).getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+	}
+	
+	public Account findManagerOne(String username){
+	  List<Account> l=findManager(username);
+	  if(l==null)return null;
+	  else return l.get(0);
+	}
+	
+	public List<Account> findManager(String username){
+    try {
+      return entityManager.createNamedQuery(Account.FIND_MANAGER, Account.class)
+      .setParameter("username", username).getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
 
 }
