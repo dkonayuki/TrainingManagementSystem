@@ -3,48 +3,54 @@ package com.rakuten.PenguinSoldiers.models.training;
 
 import javax.persistence.*;
 
-import org.hibernate.type.TextType;
-
-
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "goal")
-
+@NamedQuery(name = Goal.FIND_BY_ID, query = "select a from Goal a where a.training_id = :id")
 public class Goal implements java.io.Serializable {
 
+	
+	public static final String FIND_BY_ID = "Goal.findById";
 	@Id
 	@GeneratedValue
 	private Long id;
 	private Long training_id;
-	private TextType content;
+	
+	@Lob
+	private String content;
 	
     protected Goal() {
 
 	}
+	public Goal(String content) {
+		this.content = content;
+
+	}
+
 
 	public Long getId() {
 		return id;
 	}
 
-	public Long getTrainingID()
-	{
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getTraining_id() {
 		return training_id;
 	}
-	
-	public void setTrainingID(Long training_id)
-	{
+
+	public void setTraining_id(Long training_id) {
 		this.training_id = training_id;
 	}
-	
-	public TextType getContent() {
+
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(TextType content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 
+
 }
-
-
-

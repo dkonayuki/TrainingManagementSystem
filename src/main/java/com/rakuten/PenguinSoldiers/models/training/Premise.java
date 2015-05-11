@@ -9,38 +9,47 @@ import org.hibernate.type.TextType;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "premise")
+@NamedQuery(name = Premise.FIND_BY_ID, query = "select a from Premise a where a.training_id = :id")
 
 public class Premise implements java.io.Serializable {
 
+	public static final String FIND_BY_ID = "Premise.findById";
 	@Id
 	@GeneratedValue
 	private Long id;
 	private Long training_id;
-	private TextType content;
+	
+	@Lob
+	private String content;
 	
     protected Premise() {
 
 	}
+    
+    public Premise(String content)
+    {
+    	this.content = content;
+    }
 
 	public Long getId() {
 		return id;
 	}
 
-	public Long getTrainingID()
-	{
+
+	
+	public Long getTraining_id() {
 		return training_id;
 	}
-	
-	public void setTrainingID(Long training_id)
-	{
+
+	public void setTraining_id(Long training_id) {
 		this.training_id = training_id;
 	}
-	
-	public TextType getContent() {
+
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(TextType content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 
