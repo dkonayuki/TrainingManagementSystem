@@ -86,10 +86,6 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-mongodb</artifactId>
-        </dependency>
         <!-- Validation -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -168,7 +164,37 @@
             <version>5.1.35</version>
         </dependency>
     </dependencies>
+	<profiles>
+		<profile>
+			<id>develop</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<!-- This profile will automatically be active for all builds unless another profile in the same POM is activated -->
+			</activation>
+			<properties>
+				<db.username>leal</db.username>
+				<db.password>leal</db.password>
+				<db.connectionURL>jdbc:mysql://localhost</db.connectionURL>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<!-- Activate by passing "-P production" to maven at build time -->
+			<properties>
+				<db.username>leal</db.username>
+				<db.password>leal</db.password>
+				<db.connectionURL>jdbc:mysql://10.0.4.7:3301</db.connectionURL>
+			</properties>
+		</profile>
+	</profiles>
     <build>
+		<resources>
+			<resource>
+				<!-- Allows for properties replacement in the presistance.xml file -->
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
