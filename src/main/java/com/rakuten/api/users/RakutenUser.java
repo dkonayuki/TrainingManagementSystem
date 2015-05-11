@@ -7,7 +7,7 @@ public class RakutenUser {
   private String employmentType;
   private String employeeNo;
   private String email;
-  public String getName() {
+  public String getName()  {
     return name;
   }
   public void setName(String name) {

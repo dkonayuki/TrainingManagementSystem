@@ -25,7 +25,7 @@ public class JsonUserParser {
   private String fullAccountLabel="full_account";
   private String nameLabel="name";
   private String employeeNoLabel="employee_no";
-  private String emailLabel="email";
+  private String emailLabel="email" ;
   private String organizationsLabel="organizations";
   
   

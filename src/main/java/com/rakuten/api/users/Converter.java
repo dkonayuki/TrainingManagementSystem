@@ -10,7 +10,7 @@ public class Converter {
     a.setEmail(ru.getEmail());
     a.setName(ru.getName());
     a.setUsername(ru.getFullAccount());
-    a.setEmployeeNo(ru.getEmployeeNo());
+    a.setEmployeeNo(ru.getEmployeeNo()) ;
     return a;
   }
 }
