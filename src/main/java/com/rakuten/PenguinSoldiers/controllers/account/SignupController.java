@@ -63,13 +63,16 @@ public class SignupController {
 		} finally {
 			System.out.println("User exists adding");
 		}
-
+		System.out.println("User exists adding2");
 		// Save to repository
 		Account account = accountRepository.save(signupForm.createAccount());
+		System.out.println("User exists adding3");
 		userService.signin(account);
+		System.out.println("User exists adding4");
 		// see /WEB-INF/i18n/messages.properties and
 		// /WEB-INF/views/homeSignedIn.html
 		MessageHelper.addSuccessAttribute(ra, "signup.success");
+		System.out.println("User exists adding5");
 		return "redirect:/";
 	}
 }
