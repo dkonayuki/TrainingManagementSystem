@@ -3,6 +3,8 @@ package com.rakuten.PenguinSoldiers.models.training;
 //import java.security.Timestamp;
 
 import javax.persistence.*;
+
+
 import java.sql.Timestamp;
 import java.lang.String;
 
@@ -18,7 +20,7 @@ public class Training implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Long id;
 
 	private String name;
 	//@Column(length=1023)
@@ -38,11 +40,11 @@ public class Training implements java.io.Serializable {
 
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -97,8 +99,6 @@ public class Training implements java.io.Serializable {
 		this.status = status;
 	}
 	
-
-
 
 
 }

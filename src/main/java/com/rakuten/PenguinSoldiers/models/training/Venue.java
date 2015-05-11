@@ -7,8 +7,11 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "venue")
+@NamedQuery(name = Venue.FIND_BY_ID, query = "select a from Venue a where a.training_id = :id")
+
 public class Venue implements java.io.Serializable {
 
+	public static final String FIND_BY_ID = "Venue.findById";
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -20,6 +23,10 @@ public class Venue implements java.io.Serializable {
 	
 	protected Venue() {
 
+	}
+	public Venue(String name)
+	{
+		this.name = name;
 	}
 	
 	public Long getId() {
@@ -33,14 +40,15 @@ public class Venue implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Long getTrainingID()
-	{
+
+	public Long getTraining_id() {
 		return training_id;
 	}
-	public void setTrainingID(Long training_id)
-	{
+
+	public void setTraining_id(Long training_id) {
 		this.training_id = training_id;
 	}
+
 	public String getCity()
 	{
 		return city;

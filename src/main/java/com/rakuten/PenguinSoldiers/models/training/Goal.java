@@ -6,9 +6,11 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "goal")
-
+@NamedQuery(name = Goal.FIND_BY_ID, query = "select a from Goal a where a.training_id = :id")
 public class Goal implements java.io.Serializable {
 
+	
+	public static final String FIND_BY_ID = "Goal.findById";
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -20,6 +22,11 @@ public class Goal implements java.io.Serializable {
     protected Goal() {
 
 	}
+	public Goal(String content) {
+		this.content = content;
+
+	}
+
 
 	public Long getId() {
 		return id;
@@ -47,6 +54,3 @@ public class Goal implements java.io.Serializable {
 
 
 }
-
-
-

@@ -7,21 +7,21 @@
     <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
 </head>
 <body>
-<form th:action = "@{/addAction}">
+<form th:action = "@{/addAction}" >
 
     <fieldset>
         <legend>Add Training Programs Here</legend>
         <div class="form-group">
             <label for="Name" class="col-lg-2 control-label">Name</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="Name" placeholder="Name" name="name" />
+                <input type="text" class="form-control" id="Name" placeholder="Name" name="name"  />
             </div>
         </div>
         
         <div class="form-group">
             <label for="Overview" class="col-lg-2 control-label">Overview</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="Overview" placeholder="Overivew" name="overview" />
+                <input type="text" class="form-control" id="Overview" placeholder="Overivew" name="overview"  />
             </div>
         </div>
         
@@ -29,6 +29,20 @@
             <label for="Goal" class="col-lg-2 control-label">Goal</label>
             <div class="col-lg-10">
                 <input type="text" class="form-control" id="Goal" placeholder="Goal" name="goal" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Outline" class="col-lg-2 control-label">Outline</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="Outline" placeholder="Outline" name="outline" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Premise" class="col-lg-2 control-label">Premise</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="Premise" placeholder="Premise" name="premise" />
             </div>
         </div>
         
@@ -40,7 +54,7 @@
         </div>
         
         <div class="form-group">
-            <label for="Target" class="col-lg-2 control-label">Targets</label>
+            <label for="Target" class="col-lg-2 control-label">Target people</label>
             <div class="col-lg-10">
                 <input type="text" class="form-control" id="Target" placeholder="Target" name="target" />
             </div>
