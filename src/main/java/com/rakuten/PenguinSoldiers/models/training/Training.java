@@ -4,7 +4,7 @@ package com.rakuten.PenguinSoldiers.models.training;
 
 import javax.persistence.*;
 
-
+import com.rakuten.PenguinSoldiers.models.account.Account;
 import java.sql.Timestamp;
 import java.lang.String;
 
@@ -22,22 +22,25 @@ public class Training implements java.io.Serializable {
 	@GeneratedValue
 	private Long id;
 
+	
+	@ManyToOne
+	@JoinColumn(name = "account_id")
+  private Account user;
 	private String name;
 	//@Column(length=1023)
-    @Lob
+	@Lob
 	private String overview;
 	private int max_participants;
-    private Timestamp due_date;
-    private Timestamp start_date;
-    private String status;
-	
+	private Timestamp due_date;
+	private Timestamp start_date;
+	private String status;
+
 
 	protected Training() {
 	}
 
 	public Training(String name) {
 		this.name = name;
-
 	}
 
 	public Long getId() {
@@ -46,6 +49,14 @@ public class Training implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Account getUser() {
+		return user;
+	}
+
+	public void setUser(Account user) {
+		this.user = user;
 	}
 
 	public String getName() {
@@ -98,7 +109,7 @@ public class Training implements java.io.Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 
 
 }

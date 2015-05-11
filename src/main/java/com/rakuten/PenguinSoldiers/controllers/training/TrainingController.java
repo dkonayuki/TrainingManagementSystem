@@ -4,10 +4,16 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 
@@ -17,13 +23,15 @@ public class TrainingController {
 	@Autowired
   private TrainingService trainingService;
 	
+	@Autowired
+	private AccountRepository accountRepository;
+	
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
     // Here we are returning a collection of Training objects
 		List<Training> trainings = trainingService.findAll();
-		
+
 		model.addAttribute("trainings", trainings);
-    //System.out.println("training controller");
 		return "training/index";
 	}
 
