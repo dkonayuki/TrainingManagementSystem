@@ -13,4 +13,6 @@ public class Converter {
     a.setEmployeeNo(ru.getEmployeeNo());
     return a;
   }
+  
+//  public static LinkedList<Account> RakutenUserToAccount(LinkedList<Account> account)
 }
