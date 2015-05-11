@@ -1,8 +1,6 @@
 package com.rakuten.PenguinSoldiers.models.training;
 
 import javax.persistence.*;
-
-import org.hibernate.type.TextType;
 import java.sql.Timestamp;
 
 
@@ -16,7 +14,8 @@ public class Outline implements java.io.Serializable {
 	@GeneratedValue
 	private Long id;
 	private Long training_id;
-	private TextType content;
+	@Lob
+	private String content;
 	private Timestamp date;
 	
     protected Outline() {
@@ -37,11 +36,11 @@ public class Outline implements java.io.Serializable {
 		this.training_id = training_id;
 	}
 	
-	public TextType getContent() {
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(TextType content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 	public Timestamp getDate()

@@ -3,10 +3,8 @@ package com.rakuten.PenguinSoldiers.models.training;
 //import java.security.Timestamp;
 
 import javax.persistence.*;
-
-
-import org.hibernate.type.TextType;
 import java.sql.Timestamp;
+import java.lang.String;
 
 
 
@@ -23,17 +21,21 @@ public class Training implements java.io.Serializable {
 	private int id;
 
 	private String name;
-	private TextType overview;
+	//@Column(length=1023)
+    @Lob
+	private String overview;
 	private int max_participants;
-	private Timestamp due_date;
-	private Timestamp start_date;
-	private String status;
+    private Timestamp due_date;
+    private Timestamp start_date;
+    private String status;
+	
 
 	protected Training() {
 	}
 
 	public Training(String name) {
 		this.name = name;
+
 	}
 
 	public int getId() {
@@ -52,11 +54,14 @@ public class Training implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public TextType getOverview() {
+
+
+	public String getOverview() {
 		return overview;
 	}
 
-	public void setOverview(TextType overview) {
+	public void setOverview(String overview) {
+
 		this.overview = overview;
 	}
 
@@ -91,6 +96,8 @@ public class Training implements java.io.Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+
 
 
 
