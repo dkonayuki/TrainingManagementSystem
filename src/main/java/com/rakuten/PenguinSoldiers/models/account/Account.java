@@ -23,6 +23,11 @@ public class Account implements java.io.Serializable {
 	private String password;
 
 	private String role = "ROLE_USER";
+	
+	private String name;
+	private String username;
+	private String employeeNo;
+	
 
 	public Account() {
 	}
@@ -60,6 +65,32 @@ public class Account implements java.io.Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getEmployeeNo() {
+    return employeeNo;
+  }
+
+  public void setEmployeeNo(String employeeNo) {
+    this.employeeNo = employeeNo;
+  }
+	
+	
 
 	
 	
