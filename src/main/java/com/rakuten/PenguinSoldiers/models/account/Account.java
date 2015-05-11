@@ -1,8 +1,12 @@
 package com.rakuten.PenguinSoldiers.models.account;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+
+import com.rakuten.PenguinSoldiers.models.training.Training;
 
 @SuppressWarnings("serial")
 @Entity
@@ -32,8 +36,8 @@ public class Account implements java.io.Serializable {
 	@JsonIgnore
 	private String password;
 	
-	//@OneToMany(mappedBy = "account")  
-	//public List<marksdetails> marksDetails;  
+	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
+	public List<Training> trainings;
 
 	private String role = "ROLE_USER";
 
@@ -57,6 +61,14 @@ public class Account implements java.io.Serializable {
 
 	public Long getId() {
 		return id;
+	}
+
+	public List<Training> getTrainings() {
+		return trainings;
+	}
+
+	public void setTrainings(List<Training> trainings) {
+		this.trainings = trainings;
 	}
 
 	public String getEmail() {
