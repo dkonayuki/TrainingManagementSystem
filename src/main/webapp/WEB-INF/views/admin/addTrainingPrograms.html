@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Add Training Programs - admin</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+<head th:replace="fragments/head :: head">
 </head>
 <body>
+	<div th:replace="fragments/header :: header">Header</div>
+
+<div class="container text-center">
+</div>
+
+<div class="container text-center add-training">
 <form th:action = "@{/addAction}" >
 
     <fieldset>
@@ -90,5 +92,6 @@
 
     </fieldset>
 </form>
+</div>
 </body>
 </html>
