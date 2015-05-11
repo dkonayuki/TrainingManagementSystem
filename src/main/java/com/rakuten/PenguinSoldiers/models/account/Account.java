@@ -10,6 +10,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
 @NamedQuery(name = Account.FIND_BY_EMAIL, query = "select a from Account a where a.email = :email"),
 @NamedQuery(name = Account.FIND_BY_USERNAME, query = "select a from Account a where a.username = :username"),
+@NamedQuery(name = Account.FIND_BY_ID, query = "select a from Account a where a.id = :id"),
 @NamedQuery(name = Account.FIND_EMPLOYEE, query = "select a from Account a, Hierarchy h where a.username = :username and h.managerId=a.id"),
 @NamedQuery(name = Account.FIND_MANAGER, query = "select a from Account a, Hierarchy h where a.username = :username and h.employeeId=a.id")
 })
@@ -17,6 +18,7 @@ public class Account implements java.io.Serializable {
 
 	public static final String FIND_BY_EMAIL = "Account.findByEmail";
 	public static final String FIND_BY_USERNAME= "Account.findByUsername";
+	public static final String FIND_BY_ID= "Account.findById";
 	public static final String FIND_EMPLOYEE= "Account.findEmployee";
 	public static final String FIND_MANAGER= "Account.findManager";
 
