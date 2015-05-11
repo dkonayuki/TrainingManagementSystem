@@ -1,9 +1,8 @@
 package com.rakuten.PenguinSoldiers.config;
 
-import java.util.regex.Pattern;
+import javax.sql.DataSource;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -33,6 +32,9 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new StandardPasswordEncoder();
 	}
+    
+    @Autowired
+    DataSource dataSource;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -46,21 +48,21 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/favicon.ico", "/resources/**", "/signup").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/", "/favicon.ico", "/resources/**", "/signup", "/forgotPassword").permitAll()
+                .anyRequest().authenticated() // All remaining URLs require that the user be successfully authenticated
                 .and()
-            .formLogin()
-                .loginPage("/signin")
-                .permitAll()
+            .formLogin() //Setup form based authentication using the Java configuration defaults. Authentication is performed when a POST is submitted to the URL “/login” with the parameters “username” and “password”.
+                .loginPage("/signin")	// Explicitly state the login page
+                .permitAll() // allow access to any URL that formLogin() uses
                 .failureUrl("/signin?error=1")
-                .loginProcessingUrl("/authenticate")
+                .loginProcessingUrl("/authenticate") // Specifies the URL to validate the credentials.
                 .and()
             .logout()
                 .logoutUrl("/logout")
-                .permitAll()
+                .permitAll() // allow access to any URL that formLogin() uses
                 .logoutSuccessUrl("/signin?logout")
                 .and()
-            .rememberMe()
+            .rememberMe() // input with value _spring_security_remember_me
                 .rememberMeServices(rememberMeServices())
                 .key("remember-me-key");
     }
