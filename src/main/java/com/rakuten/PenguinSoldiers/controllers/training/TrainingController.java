@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 
@@ -22,13 +23,15 @@ public class TrainingController {
 	@Autowired
   private TrainingService trainingService;
 	
+	@Autowired
+	private AccountRepository accountRepository;
+	
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
     // Here we are returning a collection of Training objects
 		List<Training> trainings = trainingService.findAll();
-		
+
 		model.addAttribute("trainings", trainings);
-		
 		return "training/index";
 	}
 

@@ -34,7 +34,7 @@ public class Account implements java.io.Serializable {
 	@JsonIgnore
 	private String password;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
 	public List<Training> trainings;
 
 	private String role = "ROLE_USER";

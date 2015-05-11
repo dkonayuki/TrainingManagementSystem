@@ -18,14 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
-import com.rakuten.PenguinSoldiers.models.account.UserService;
 import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
-
-
-
-
-
 
 
 import java.lang.String;
@@ -50,15 +44,12 @@ public class AdminController {
 	public String addAction(Principal principal, @RequestParam("name") String Name, @RequestParam("overview") String overview, @RequestParam("goal") String goal, @RequestParam("date") String date, @RequestParam("target") String target, @RequestParam("participantNum") int participantNum, @RequestParam("duedate") String duedate, @RequestParam("venue") String venue, ModelMap model)
 	{
 		Training tr = new Training(Name);
-		//tr.setOverview(overview);
-		//tr.setMax_participants(participantNum);
-		//tr.setDue_date(duedate);
-		//tr.setUser(user);
-		//UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//System.out.println(userDetails.getUsername());
+		tr.setOverview(overview);
+		tr.setMax_participants(participantNum);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		//Account user = accountRepository.findByEmail(userDetails.getUsername());
-		//tr.setUser(user);
+		Account user = accountRepository.findByEmail(userDetails.getUsername());
+		tr.setUser(user);
 		trainingService.save(tr);
 
 		return "home/homeSignedIn";
