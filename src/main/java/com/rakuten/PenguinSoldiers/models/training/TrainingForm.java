@@ -1,18 +1,34 @@
 package com.rakuten.PenguinSoldiers.models.training;
 
+import org.hibernate.validator.constraints.*;
 import java.util.Date;
 
 public class TrainingForm {
 
+	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
+	private static final String INVALID_DATE_MESSAGE = "{invalidDate.message}";
+	private static final String INVALID_INTEGER_MESSAGE = "{invalidInteger.message}";
+
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String name;
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String overview;
-	private String goal;
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private String[] goal;
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String outline;
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String premise;
+	/* @DateTimeFormat(style="S-",message=TrainingForm.INVALID_DATE_MESSAGE) */
 	private Date date;
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String targetPeople;
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	/* @RegExp("[0-9]+",message=TrainingForm.INVALID_INTEGER_MESSAGE) */
 	private Integer participantNumber;
+	/* @DateTimeFormat(style="S-",message=TrainingForm.INVALID_DATE_MESSAGE) */
 	private Date dueDate;
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String venue;
 
     public String getName() {
@@ -31,11 +47,11 @@ public class TrainingForm {
 		this.overview = overview;
 	}
 
-    public String getGoal() {
+    public String[] getGoal() {
 		return this.goal;
 	}
 
-	public void setGoal(String goal) {
+	public void setGoal(String[] goal) {
 		this.goal = goal;
 	}
 
