@@ -5,6 +5,8 @@ import javax.persistence.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rakuten.PenguinSoldiers.models.account.Account;
+
 @Repository
 @Transactional
 public class AdminRepository {
@@ -37,4 +39,6 @@ public class AdminRepository {
       return null;
     }
   }
+  
+  
 }
