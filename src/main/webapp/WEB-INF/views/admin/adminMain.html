@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+
+<div class="container text-center">
+<a href="/admin/addAdmin" th:href="@{admin/addAdminPage}" >Add Admin Member</a>
+<a href="/trainings/new" th:href="@{trainings/new}" >Add training programs</a>
+</div>
+
+<div class="container text-center add-training">
+</div>
+</body>
+</html>

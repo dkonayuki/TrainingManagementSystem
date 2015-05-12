@@ -53,6 +53,3 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
-
-# ignore db setting file
-persistence.properties
