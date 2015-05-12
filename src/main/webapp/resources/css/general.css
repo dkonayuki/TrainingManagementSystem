@@ -1,10 +1,13 @@
 .add-training {
-	width: 70%;
+	width: 60%;
 	
 }
 
 div.form-group {
-	margin-bottom: 20px;
+/*	margin-bottom: 10px; */
+	display: block; 
+/*	overflow: hidden; */
+	
 }
 
 .logo-name {

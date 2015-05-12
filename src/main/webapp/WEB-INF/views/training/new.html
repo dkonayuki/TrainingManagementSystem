@@ -8,7 +8,7 @@
 	<div class="container text-center"></div>
 
 	<div class="container text-center add-training">
-		<form th:action="@{/trainings}" method="POST">
+		<form th:action="@{/trainings}" class="form-horizontal" method="POST">
 
 			<fieldset>
 				<legend>Add Training Programs Here</legend>
@@ -24,8 +24,7 @@
 					<label for="Overview" class="col-lg-2 control-label">Overview</label>
 					<div class="col-lg-10">
 						<textarea class="form-control" id="Overview"
-							placeholder="Overview" name="overview">
-						</textarea>
+							placeholder="Overview" name="overview"></textarea>
 					</div>
 				</div>
 
@@ -55,24 +54,11 @@
 
 				<div class="form-group">
 					<label for="Date" class="col-lg-2 control-label">Date</label>
-					<div class="col-lg-10">
-						<div class="col-md-3">
-							<div class="form-group internal input-group">
-								<input class="form-control datepicker" id="id_checkin" />
-								<span class="input-group-addon"> <i
-									class="glyphicon glyphicon-calendar"></i>
-								</span>
-							</div>
-						</div>
-						<label class="control-label col-md-2" for="id_checkout">Checkout</label>
-						<div class="col-md-3">
-							<div class="form-group internal input-group">
-								<input class="form-control datepicker" id="id_checkout" />
-								<span class="input-group-addon"> <i
-									class="glyphicon glyphicon-calendar"></i>
-								</span>
-							</div>
-						</div>
+					<div class='col-lg-10 input-group date' id='id_date'>
+						<input type='text' class="form-control" name="date" /> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
 					</div>
 				</div>
 
@@ -97,9 +83,11 @@
 
 				<div class="form-group">
 					<label for="Target" class="col-lg-2 control-label">Due date</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Duedate"
-							placeholder="Duedate" name="duedate" />
+					<div class='col-lg-10 input-group date' id='id_date'>
+						<input type='text' class="form-control" name="duedate" /> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
 					</div>
 				</div>
 
@@ -121,5 +109,16 @@
 			</fieldset>
 		</form>
 	</div>
+	<script src="../../../resources/js/moment.js"
+		th:src="@{/resources/js/moment.js}"></script>
+	<script src="../../../resources/js/bootstrap-datetimepicker.js"
+		th:src="@{/resources/js/bootstrap-datetimepicker.js}"></script>
+
+	<script type="text/javascript">
+$(function () {
+	$('#id_date').datetimepicker();
+});
+</script>
+
 </body>
 </html>
