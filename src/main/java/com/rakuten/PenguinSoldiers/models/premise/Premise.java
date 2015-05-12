@@ -5,11 +5,13 @@ import javax.persistence.*;
 
 import org.hibernate.type.TextType;
 
+import com.rakuten.PenguinSoldiers.models.training.Training;
+
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "premise")
-@NamedQuery(name = Premise.FIND_BY_ID, query = "select a from Premise a where a.training_id = :id")
+@NamedQuery(name = Premise.FIND_BY_ID, query = "select a from Premise a where a.id = :id")
 
 public class Premise implements java.io.Serializable {
 
@@ -17,32 +19,26 @@ public class Premise implements java.io.Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private Long training_id;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "training_id")
+	private Training training;
+
+
 	@Lob
 	private String content;
-	
-    protected Premise() {
+
+	protected Premise() {
 
 	}
-    
-    public Premise(String content)
-    {
-    	this.content = content;
-    }
+
+	public Premise(String content)
+	{
+		this.content = content;
+	}
 
 	public Long getId() {
 		return id;
-	}
-
-
-	
-	public Long getTraining_id() {
-		return training_id;
-	}
-
-	public void setTraining_id(Long training_id) {
-		this.training_id = training_id;
 	}
 
 	public String getContent() {
@@ -51,6 +47,14 @@ public class Premise implements java.io.Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Training getTraining() {
+		return training;
+	}
+
+	public void setTraining(Training training) {
+		this.training = training;
 	}
 
 }

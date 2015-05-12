@@ -5,7 +5,14 @@ package com.rakuten.PenguinSoldiers.models.training;
 import javax.persistence.*;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.goal.Goal;
+import com.rakuten.PenguinSoldiers.models.outline.Outline;
+import com.rakuten.PenguinSoldiers.models.premise.Premise;
+import com.rakuten.PenguinSoldiers.models.target.Target;
+import com.rakuten.PenguinSoldiers.models.venue.Venue;
+
 import java.sql.Timestamp;
+import java.util.List;
 import java.lang.String;
 
 
@@ -25,6 +32,28 @@ public class Training implements java.io.Serializable {
 	@ManyToOne
 	@JoinColumn(name = "admin_id")
   private Account admin;
+	
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	private List<Target> targets;
+	
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	private List<Premise> premises;
+	
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	private List<Outline> outlines;
+	
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	private List<Goal> goals;
+	
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	private List<Venue> venues;
+	
+	/*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+  @JoinTable(name="account_training", 
+      joinColumns={@JoinColumn(name="training_id")},
+      inverseJoinColumns={@JoinColumn(name="account_id")})
+	public List<Account> participants;*/
+
 	private String name;
 	//@Column(length=1023)
 	@Lob
@@ -33,7 +62,6 @@ public class Training implements java.io.Serializable {
 	private Timestamp due_date;
 	private Timestamp start_date;
 	private String status;
-
 
 	protected Training() {
 	}
@@ -45,9 +73,45 @@ public class Training implements java.io.Serializable {
 	public Integer getId() {
 		return id;
 	}
+	
+	public List<Target> getTargets() {
+		return targets;
+	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTargets(List<Target> targets) {
+		this.targets = targets;
+	}
+	
+	public List<Premise> getPremises() {
+		return premises;
+	}
+
+	public void setPremises(List<Premise> premises) {
+		this.premises = premises;
+	}
+
+	public List<Outline> getOutlines() {
+		return outlines;
+	}
+
+	public void setOutlines(List<Outline> outlines) {
+		this.outlines = outlines;
+	}
+
+	public List<Goal> getGoals() {
+		return goals;
+	}
+
+	public void setGoals(List<Goal> goals) {
+		this.goals = goals;
+	}
+
+	public List<Venue> getVenues() {
+		return venues;
+	}
+
+	public void setVenues(List<Venue> venues) {
+		this.venues = venues;
 	}
 
 	public Account getAdmin() {
