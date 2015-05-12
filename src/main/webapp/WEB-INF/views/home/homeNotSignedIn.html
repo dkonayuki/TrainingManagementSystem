@@ -4,10 +4,16 @@
 </head>
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
+	
+    <div class = "text-center rakuten-logo">
+    <img src="./resources/images/Rakuten.jpg"  alt="Rakuten logo" style="height:90px" />
+    </div>
+	
+	
 	<div class="container text-center">
 		<div class="text-center">
-			<h1>PenguinSoldiers FTW!!!</h1>
-			<p class="lead">Welcome to fantastic world of training at RAKUTEN!!!</p>
+			<h1>Welcome to fantastic world of training at Rakuten !!!</h1>
+			
 			<p>
 				<a href="/signup" th:href="@{/signup}"
 					class="btn btn-success btn-lg">Sign up</a>
