@@ -13,9 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import com.rakuten.PenguinSoldiers.controllers.home.HeaderPageContentBuilder;
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
+import com.rakuten.PenguinSoldiers.models.admin.AdminRepository;
 import com.rakuten.PenguinSoldiers.models.goal.Goal;
 import com.rakuten.PenguinSoldiers.models.outline.Outline;
 import com.rakuten.PenguinSoldiers.models.premise.Premise;
@@ -23,6 +25,7 @@ import com.rakuten.PenguinSoldiers.models.target.Target;
 import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
+import com.rakuten.PenguinSoldiers.util.ControllerUtil;
 
 @Controller
 public class TrainingController {
@@ -34,14 +37,23 @@ public class TrainingController {
 	private AccountRepository accountRepository;
 
 	@Autowired
+  private AdminRepository adminRepository;
+	
+	@Autowired
 	private UserService userService;
 
+//	public void init(Principal principal,Model model){
+//	  model.addAttribute("pageContent",HeaderPageContentBuilder.build(accountRepository, adminRepository, principal.getName()));
+//	}
+	
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
 		List<Training> trainings = trainingService.findAll();
 
+//		init(principal,model);
 		model.addAttribute("trainings", trainings);
+		
 		return "training/index";
 	}
 
@@ -63,6 +75,7 @@ public class TrainingController {
 		Training training = this.trainingService.findById(id);
 		model.addAttribute(training);
 
+//		init(principal,model);
 		return "training/show";
 	}
 

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.rakuten.PenguinSoldiers.models.admin.Admin;
+
 @Repository
 @Transactional
 public class AccountRepository {
@@ -81,5 +83,17 @@ public class AccountRepository {
       return null;
     }
   }
+	
+	public List<Account> listAdmins(){
+    try {
+      return entityManager.createNamedQuery(Account.LIST_ADMIN, Account.class).getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+	
+	public boolean isManager(String username){
+	  return findEmployee(username)!=null;
+	}
 
 }
