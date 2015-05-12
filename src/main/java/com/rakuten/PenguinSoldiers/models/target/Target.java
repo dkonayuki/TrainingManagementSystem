@@ -1,41 +1,38 @@
-package com.rakuten.PenguinSoldiers.models.training;
+package com.rakuten.PenguinSoldiers.models.target;
 
 
 import javax.persistence.*;
 
+import org.hibernate.type.TextType;
+
+
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "goal")
-@NamedQuery(name = Goal.FIND_BY_ID, query = "select a from Goal a where a.training_id = :id")
-public class Goal implements java.io.Serializable {
+@Table(name = "target")
+@NamedQuery(name = Target.FIND_BY_ID, query = "select a from Target a where a.training_id = :id")
 
-	
-	public static final String FIND_BY_ID = "Goal.findById";
+public class Target implements java.io.Serializable {
+
+	public static final String FIND_BY_ID = "Target.findById";
 	@Id
 	@GeneratedValue
 	private Long id;
 	private Long training_id;
-	
 	@Lob
 	private String content;
 	
-    protected Goal() {
+    protected Target() {
 
 	}
-	public Goal(String content) {
-		this.content = content;
-
-	}
-
+    public Target(String content)
+    {
+    	this.content = content;
+    }
 
 	public Long getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public Long getTraining_id() {
 		return training_id;
 	}
@@ -53,4 +50,7 @@ public class Goal implements java.io.Serializable {
 	}
 
 
+
 }
+
+

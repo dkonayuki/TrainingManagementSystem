@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.models.account;
+package com.rakuten.PenguinSoldiers.models.admin;
 
 import javax.persistence.*;
 
