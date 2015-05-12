@@ -73,9 +73,9 @@ public class TrainingController {
 
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 	public String addAction(@RequestParam("name") String name, @RequestParam("overview") String overview, 
-			@RequestParam("goal") String goal, @RequestParam("date") String date, @RequestParam("target") String target, 
+			@RequestParam("goal[]") String[] goal, @RequestParam("date") String date, @RequestParam("target") String target, 
 			@RequestParam("participantNum") String participantNum, @RequestParam("duedate") String duedate, 
-			@RequestParam("venue") String venue, @RequestParam("outline") String outline,
+			@RequestParam("venue") String[] venue, @RequestParam("outline") String outline,
 			@RequestParam("premise") String premise, ModelMap model)
 	{
 		// create new training program item
