@@ -14,7 +14,7 @@ public class TrainingForm {
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String overview;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private String goal;
+	private String[] goal;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String outline;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
@@ -47,11 +47,11 @@ public class TrainingForm {
 		this.overview = overview;
 	}
 
-    public String getGoal() {
+    public String[] getGoal() {
 		return this.goal;
 	}
 
-	public void setGoal(String goal) {
+	public void setGoal(String[] goal) {
 		this.goal = goal;
 	}
 
