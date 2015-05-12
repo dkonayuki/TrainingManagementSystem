@@ -131,7 +131,7 @@ public class AdminController {
 
 	
 	@RequestMapping(value = "addAdmin", method = RequestMethod.GET)
-  public String addAdmin(@RequestParam("newAdminId") String newAdminId){
+    public String addAdmin(@RequestParam("newAdminId") String newAdminId){
     
     UserDetails userDetails =
         (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
