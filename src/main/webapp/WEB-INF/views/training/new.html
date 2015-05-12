@@ -8,10 +8,11 @@
 	<div class="container text-center"></div>
 
 	<div class="container text-center add-training">
-		<form th:action="@{/trainings}" class="form-horizontal" method="POST">
+		<form th:action="@{/trainings}" class="form-horizontal" method="POST"
+			autocomplete="off">
 
 			<fieldset>
-				<legend>Add Training Programs Here</legend>
+				<legend>Add a new training program</legend>
 				<div class="form-group">
 					<label for="Name" class="col-lg-2 control-label">Name</label>
 					<div class="col-lg-10">
@@ -28,11 +29,26 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group goal-div">
 					<label for="Goal" class="col-lg-2 control-label">Goal</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Goal"
-							placeholder="Goal" name="goal" />
+					<div class="col-lg-8">
+						<div class="entry input-group ">
+							<input class="form-control" name="goal[]" type="text"
+								placeholder="Goal" /> <span class="input-group-btn">
+								<button class="btn btn-success btn-add" type="button">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</span>
+						</div>
+					<!-- 	<div class="entry input-group ">
+							<input class="form-control" name="goal[]" type="text"
+								placeholder="Goal" /> <span class="input-group-btn">
+								<button class="btn btn-success btn-add" type="button">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</span>
+						</div>
+ 					-->
 					</div>
 				</div>
 
@@ -53,13 +69,23 @@
 				</div>
 
 				<div class="form-group">
-					<label for="Date" class="col-lg-2 control-label">Date</label>
-					<div class='col-lg-10 input-group date' id='id_date'>
-						<input type='text' class="form-control" name="date" /> <span
-							class="input-group-addon"> <span
-							class="glyphicon glyphicon-calendar"></span>
+					<label for="Date" class="col-lg-2 control-label">Beginning
+						date</label>
+					<div class='col-lg-4 input-group date' id='id_date'>
+						<input type='text' class="form-control" name="date"
+							placeholder="Starting date" /> <span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
 						</span>
 					</div>
+					<label for="Target" class="col-lg-2 control-label">Application
+						deadline</label>
+					<div class='col-lg-4 input-group date' id='id_duedate'>
+						<input type='text' class="form-control" name="duedate"
+							placeholder="Deadline" /> <span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+
 				</div>
 
 				<div class="form-group">
@@ -76,26 +102,26 @@
 						number</label>
 					<div class="col-lg-10">
 						<input type="number" min="1" step="1" class="form-control"
-							id="ParticipantNum" placeholder="ParticipantNum"
+							id="ParticipantNum" placeholder="Number of Participants"
 							name="participantNum" />
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="Target" class="col-lg-2 control-label">Due date</label>
-					<div class='col-lg-10 input-group date' id='id_date'>
-						<input type='text' class="form-control" name="duedate" /> <span
-							class="input-group-addon"> <span
-							class="glyphicon glyphicon-calendar"></span>
-						</span>
-					</div>
-				</div>
+				<div class="form-group"></div>
 
 				<div class="form-group">
 					<label for="Venue" class="col-lg-2 control-label">Venue</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Venue"
-							placeholder="Venue" name="venue" />
+						<!-- 						<input type="text" class="form-control" id="Venue"
+							placeholder="Venue" name="venue" />   -->
+						<select class="col-lg-4" id="venue" multiple="multiple">
+							<option value="13">Asakai room</option>
+							<option value="5">Outside</option>
+							<option value="6">Fitness Club</option>
+							<option value="8">East Tower</option>
+							<option value="90">RT2 3F</option>
+							<option value="32">TOEIC Room</option>
+						</select>
 					</div>
 				</div>
 
@@ -111,14 +137,62 @@
 	</div>
 	<script src="../../../resources/js/moment.js"
 		th:src="@{/resources/js/moment.js}"></script>
+
+	<link href="../../../resources/css/bootstrap-multiselect.css"
+		rel="stylesheet" media="screen"
+		th:href="@{/resources/css/bootstrap-multiselect.css}" />
+
+	<script src="../../../resources/js/bootstrap-multiselect.js"
+		th:src="@{/resources/js/bootstrap-multiselect.js}"></script>
 	<script src="../../../resources/js/bootstrap-datetimepicker.js"
 		th:src="@{/resources/js/bootstrap-datetimepicker.js}"></script>
 
 	<script type="text/javascript">
-$(function () {
-	$('#id_date').datetimepicker();
-});
-</script>
+		$(function() {
+
+			// Date time pickers
+			$('#id_date').datetimepicker();
+			$('#id_duedate').datetimepicker();
+
+			// Multiselect
+			$('#venue').multiselect({
+				buttonWidth : '400px',
+				dropRight : true
+			});
+
+			// add more button
+			$(document)
+					.on(
+							'click',
+							'.btn-add',
+							function(e) {
+								e.preventDefault();
+
+								var controlForm = $('.add-training form:first .goal-div div:first'), currentEntry = $(
+										this).parents('.entry:first'), newEntry = $(
+										currentEntry.clone()).appendTo(
+										controlForm);
+
+								console.log(controlForm);
+								console.log(currentEntry);
+								console.log(newEntry);
+								
+								newEntry.find('input').val('');
+								controlForm
+										.find('.entry:not(:last) .btn-add')
+										.removeClass('btn-add')
+										.addClass('btn-remove')
+										.removeClass('btn-success')
+										.addClass('btn-danger')
+										.html(
+												'<span class="glyphicon glyphicon-minus"></span>');
+							}).on('click', '.btn-remove', function(e) {
+						$(this).parents('.entry:first').remove();
+						e.preventDefault();
+						return false;
+					});
+		});
+	</script>
 
 </body>
 </html>

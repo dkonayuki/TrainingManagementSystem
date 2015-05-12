@@ -1,6 +1,11 @@
 .add-training {
 	width: 60%;
-	
+	margin: 100px auto;
+}
+
+.add-training legend {
+	margin: 10px 10px 40px 80px;
+	border: none;
 }
 
 div.form-group {
@@ -20,4 +25,13 @@ div.form-group {
 
 .form-row {
 	margin-bottom: 60px;
+}
+
+/* Design for add button */
+.entry:not(:first-of-type) {
+    margin-top: 10px;
+}
+
+.glyphicon {
+    font-size: 12px;
 }
