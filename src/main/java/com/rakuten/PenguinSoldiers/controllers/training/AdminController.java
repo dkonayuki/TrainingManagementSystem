@@ -131,6 +131,11 @@ public class AdminController {
 	}
 	
 
+	@RequestMapping(value = "admin/addAdminPage", method = RequestMethod.GET)
+	public String addAdminPage() {
+		return "admin/addAdminPage";
+	}
+	
 	@RequestMapping(value = "admin/addAdmin", method = RequestMethod.GET)
 	public String addAdmin(@RequestParam("newAdminId") String newAdminId) {
 
