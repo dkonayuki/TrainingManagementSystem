@@ -46,4 +46,12 @@ public class AdminController {
     
     return null;
   }
+	@RequestMapping(value = "admin/addAdminPage", method = RequestMethod.GET)
+	public String addAdminPage() {
+		return "admin/addAdminPage";
+	}
+	@RequestMapping(value = "admin", method = RequestMethod.GET)
+	public String admin() {
+		return "admin/adminMain";
+	}
 }
