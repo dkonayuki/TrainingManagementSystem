@@ -28,7 +28,7 @@ public class ForgotPasswordController {
 	}
 	
 	@RequestMapping(value = "forgotPassword", method = RequestMethod.POST)
-	public String signup(@Valid @ModelAttribute ForgotPassForm forgotPassForm,
+	public String forgotPassPost(@Valid @ModelAttribute ForgotPassForm forgotPassForm,
 			Errors errors, RedirectAttributes ra) {
 		if (errors.hasErrors()) {
 			return FPASS_VIEW_NAME;

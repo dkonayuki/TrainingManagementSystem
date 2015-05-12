@@ -23,8 +23,9 @@
 				<div class="form-group">
 					<label for="Overview" class="col-lg-2 control-label">Overview</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Overview"
-							placeholder="Overivew" name="overview" />
+						<textarea class="form-control" id="Overview"
+							placeholder="Overview" name="overview">
+						</textarea>
 					</div>
 				</div>
 
@@ -55,8 +56,23 @@
 				<div class="form-group">
 					<label for="Date" class="col-lg-2 control-label">Date</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Date"
-							placeholder="Date" name="date" />
+						<div class="col-md-3">
+							<div class="form-group internal input-group">
+								<input class="form-control datepicker" id="id_checkin" />
+								<span class="input-group-addon"> <i
+									class="glyphicon glyphicon-calendar"></i>
+								</span>
+							</div>
+						</div>
+						<label class="control-label col-md-2" for="id_checkout">Checkout</label>
+						<div class="col-md-3">
+							<div class="form-group internal input-group">
+								<input class="form-control datepicker" id="id_checkout" />
+								<span class="input-group-addon"> <i
+									class="glyphicon glyphicon-calendar"></i>
+								</span>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -73,8 +89,9 @@
 					<label for="Target" class="col-lg-2 control-label">Participant
 						number</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="ParticipantNum"
-							placeholder="ParticipantNum" name="participantNum" />
+						<input type="number" min="1" step="1" class="form-control"
+							id="ParticipantNum" placeholder="ParticipantNum"
+							name="participantNum" />
 					</div>
 				</div>
 
