@@ -9,7 +9,7 @@
 
 	<div class="container text-center add-training">
 		<form th:action="@{/trainings}" class="form-horizontal" method="POST"
-			autocomplete="off">
+			autocomplete="off" th:object="${trainingForm}">
 
 			<fieldset>
 				<legend>Add a new training program</legend>
@@ -93,7 +93,7 @@
 						people</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="Target"
-							placeholder="Target" name="target" />
+							placeholder="Target" th:field="*{targetPeople}" />
 					</div>
 				</div>
 
@@ -103,7 +103,7 @@
 					<div class="col-lg-10">
 						<input type="number" min="1" step="1" class="form-control"
 							id="ParticipantNum" placeholder="Number of Participants"
-							name="participantNum" />
+							name="participantNumber" />
 					</div>
 				</div>
 
@@ -114,7 +114,7 @@
 					<div class="col-lg-10">
 						<!-- 						<input type="text" class="form-control" id="Venue"
 							placeholder="Venue" name="venue" />   -->
-						<select class="col-lg-4" id="venue" multiple="multiple">
+						<select class="col-lg-4" name="venue[]" id="venue" multiple="multiple">
 							<option value="13">Asakai room</option>
 							<option value="5">Outside</option>
 							<option value="6">Fitness Club</option>

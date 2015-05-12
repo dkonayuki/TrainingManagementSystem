@@ -1,8 +1,15 @@
 package com.rakuten.PenguinSoldiers.models.training;
 
 import org.hibernate.validator.constraints.*;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
+
 import java.util.Date;
 
+/** Class for handling request for adding new training */
 public class TrainingForm {
 
 	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
@@ -29,9 +36,9 @@ public class TrainingForm {
 	/* @DateTimeFormat(style="S-",message=TrainingForm.INVALID_DATE_MESSAGE) */
 	private Date dueDate;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private String venue;
+	private String[] venue;
 
-    public String getName() {
+	public String getName() {
 		return this.name;
 	}
 
@@ -39,7 +46,7 @@ public class TrainingForm {
 		this.name = name;
 	}
 
-    public String getOverview() {
+	public String getOverview() {
 		return this.overview;
 	}
 
@@ -47,7 +54,7 @@ public class TrainingForm {
 		this.overview = overview;
 	}
 
-    public String[] getGoal() {
+	public String[] getGoal() {
 		return this.goal;
 	}
 
@@ -55,14 +62,15 @@ public class TrainingForm {
 		this.goal = goal;
 	}
 
-    public String getOutline() {
+	public String getOutline() {
 		return this.outline;
 	}
+
 	public void setOutline(String outline) {
 		this.outline = outline;
 	}
 
-    public String getPremise() {
+	public String getPremise() {
 		return this.premise;
 	}
 
@@ -70,7 +78,7 @@ public class TrainingForm {
 		this.premise = premise;
 	}
 
-    public Date getDate() {
+	public Date getDate() {
 		return this.date;
 	}
 
@@ -78,7 +86,7 @@ public class TrainingForm {
 		this.date = date;
 	}
 
-    public String getTargetPeople() {
+	public String getTargetPeople() {
 		return this.targetPeople;
 	}
 
@@ -86,7 +94,7 @@ public class TrainingForm {
 		this.targetPeople = targetPeople;
 	}
 
-    public Integer getParticipantNumber() {
+	public Integer getParticipantNumber() {
 		return this.participantNumber;
 	}
 
@@ -94,7 +102,7 @@ public class TrainingForm {
 		this.participantNumber = participantNumber;
 	}
 
-    public Date getDueDate() {
+	public Date getDueDate() {
 		return this.dueDate;
 	}
 
@@ -102,11 +110,32 @@ public class TrainingForm {
 		this.dueDate = dueDate;
 	}
 
-    public String getVenue() {
+	public String[] getVenue() {
 		return this.venue;
 	}
 
-	public void setVenue(String venue) {
+	public void setVenue(String[] venue) {
 		this.venue = venue;
+	}
+
+	public Training createTraining(AccountRepository accountRepository) {
+		Training tr = new Training(name);
+		tr.setOverview(overview);
+		tr.setMax_participants(participantNumber);
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+
+		Account user = accountRepository.findByEmail(userDetails.getUsername());
+		tr.setAdmin(user);
+
+		return tr;
+
+	}
+
+	public String toString() {
+		return "name:" + name + ", overview:" + overview + ", goal:" + goal
+				+ ", outline:" + outline + ", premise:" + premise + ", date:" + date 
+				+ ", targetPeople:" + targetPeople + ", participantnumber:" + participantNumber + ", duedate:" + dueDate
+				+ ", venue:" + venue.toString();
 	}
 }
