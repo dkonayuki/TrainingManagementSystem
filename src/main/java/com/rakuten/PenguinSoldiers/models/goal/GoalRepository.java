@@ -1,4 +1,4 @@
-package com.rakuten.PenguinSoldiers.models.training;
+package com.rakuten.PenguinSoldiers.models.goal;
 
 
 import java.util.List;

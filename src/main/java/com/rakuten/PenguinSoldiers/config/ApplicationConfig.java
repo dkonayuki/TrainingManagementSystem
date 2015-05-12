@@ -21,13 +21,7 @@ class ApplicationConfig {
 	@Bean
 	public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
-		Resource[] cprs=new Resource[2];
-		
-		cprs[0]=new ClassPathResource("/persistence.properties");
-		cprs[1]=new FileSystemResource("/usr/local/tomcat/persistence.properties");
-		ppc.setLocations(cprs);
-		ppc.setIgnoreResourceNotFound(true);
-		ppc.setOrder(1);
+		ppc.setLocation(new ClassPathResource("/persistence.properties"));
 		return ppc;
 	}
 	

@@ -20,12 +20,11 @@ public class Training implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Integer id;
 
-	
 	@ManyToOne
-	@JoinColumn(name = "account_id")
-  private Account user;
+	@JoinColumn(name = "admin_id")
+  private Account admin;
 	private String name;
 	//@Column(length=1023)
 	@Lob
@@ -43,20 +42,20 @@ public class Training implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Account getUser() {
-		return user;
+	public Account getAdmin() {
+		return admin;
 	}
 
-	public void setUser(Account user) {
-		this.user = user;
+	public void setAdmin(Account admin) {
+		this.admin = admin;
 	}
 
 	public String getName() {
@@ -84,6 +83,10 @@ public class Training implements java.io.Serializable {
 
 	public void setMax_participants(int max_participants) {
 		this.max_participants = max_participants;
+	}
+	
+	public void setMax_participants(String max_participants) {
+		this.max_participants = Integer.parseInt(max_participants);
 	}
 
 	public Timestamp getDue_date() {
