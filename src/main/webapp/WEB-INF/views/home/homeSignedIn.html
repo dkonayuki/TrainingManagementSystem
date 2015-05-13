@@ -15,19 +15,24 @@
 			training at RAKUTEN!!!</p>
 	</div>
 	
-	<div class = "text-center">
-	<h2>List of my trainings</h2>
-	</div>
+	
+	<div class="container">
+	<h2>List of coming training programs</h2>
 	<table class="table traininglist">
 		<tr>
 		<th>Training Name</th>
-		<th>Number of participants</th>
+		<th>Details</th>
+		<th>Date</th>
+		<th>Status</th>
 		</tr>
 		<tr th:each="training : ${trainings}">
 	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
-	    <td th:text="${training.max_participants}">1</td>
+	    <td th:text="${training.overview}">1</td>
+	    <td th:text="${training.due_date}">1</td>
+	    <td th:text="${training.status}">1</td>
 		</tr>
 	</table>
+	</div>
 
 </body>
 </html>
