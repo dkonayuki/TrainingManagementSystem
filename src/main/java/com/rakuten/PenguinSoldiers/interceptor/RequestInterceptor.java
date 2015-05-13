@@ -33,7 +33,7 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
     throws Exception {
-    modelAndView.addObject("pageContent",HeaderPageContentBuilder.build(accountRepository, adminRepository, ControllerUtil.getUserDetails().getUsername()));
+//    modelAndView.addObject("pageContent",HeaderPageContentBuilder.build(accountRepository, adminRepository, ControllerUtil.getUserDetails().getUsername()));
 //    System.out.println("---After Method Execution---postHandle()");
   }
   
