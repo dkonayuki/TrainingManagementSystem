@@ -12,6 +12,7 @@ import com.rakuten.PenguinSoldiers.models.target.Target;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
 
@@ -33,19 +34,19 @@ public class Training implements java.io.Serializable {
 	@JoinColumn(name = "admin_id")
   private Account admin;
 	
-	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Target> targets;
 	
-	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Premise> premises;
 	
-	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Outline> outlines;
 	
-	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Goal> goals;
 	
-	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Venue> venues;
 	
 	/*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
@@ -66,8 +67,15 @@ public class Training implements java.io.Serializable {
 	protected Training() {
 	}
 
-	public Training(String name) {
+	public Training(String name, String overview, String participantNum) {
 		this.name = name;
+		this.overview = overview;
+		this.max_participants = Integer.parseInt(participantNum);
+		this.goals = new ArrayList<Goal>();
+		this.outlines = new ArrayList<Outline>();
+		this.venues = new ArrayList<Venue>();
+		this.targets = new ArrayList<Target>();
+		this.premises = new ArrayList<Premise>();
 	}
 
 	public Integer getId() {
@@ -105,6 +113,10 @@ public class Training implements java.io.Serializable {
 	public void setGoals(List<Goal> goals) {
 		this.goals = goals;
 	}
+	
+	public void addGoal(Goal goal) {
+		this.goals.add(goal);
+	}
 
 	public List<Venue> getVenues() {
 		return venues;
@@ -129,8 +141,6 @@ public class Training implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 
 	public String getOverview() {
 		return overview;

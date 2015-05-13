@@ -17,6 +17,7 @@ import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
 import com.rakuten.PenguinSoldiers.models.goal.Goal;
+import com.rakuten.PenguinSoldiers.models.goal.GoalService;
 import com.rakuten.PenguinSoldiers.models.outline.Outline;
 import com.rakuten.PenguinSoldiers.models.premise.Premise;
 import com.rakuten.PenguinSoldiers.models.target.Target;
@@ -62,7 +63,6 @@ public class TrainingController {
 	public String show(Principal principal, Model model, @PathVariable Integer id) {
 		Training training = this.trainingService.findById(id);
 		model.addAttribute(training);
-
 		return "training/show";
 	}
 
@@ -73,45 +73,26 @@ public class TrainingController {
 
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 	public String addAction(@RequestParam("name") String name, @RequestParam("overview") String overview, 
-			@RequestParam("goal") String goal, @RequestParam("date") String date, @RequestParam("target") String target, 
+			@RequestParam("goals[]") String[] goals, @RequestParam("date") String date, @RequestParam("target") String target, 
 			@RequestParam("participantNum") String participantNum, @RequestParam("duedate") String duedate, 
-			@RequestParam("venue") String venue, @RequestParam("outline") String outline,
+			@RequestParam("outline") String outline,
 			@RequestParam("premise") String premise, ModelMap model)
 	{
 		// create new training program item
-		Training tr = new Training(name);
-		tr.setOverview(overview);
-		tr.setMax_participants(participantNum);
+		Training tr = new Training(name, overview, participantNum);
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		Account user = accountRepository.findByEmail(userDetails.getUsername());
 		tr.setAdmin(user);
+		
+		for (String goal : goals) {
+			Goal g = new Goal(goal);
+			tr.addGoal(g);
+			g.setTraining(tr);
+		}
+		
 		trainingService.save(tr);
-		/*
-		Long training_id = tr.getId();
 
-		// add training goal
-		Goal gl = new Goal(goal);
-		gl.setTraining_id(training_id);
-
-		// add training outline
-		Outline ol = new Outline(outline);
-		ol.setTraining_id(training_id);
-
-		// add training premise
-		Premise pr = new Premise(premise);
-		pr.setTraining_id(training_id);
-
-		// add training target people
-		Target ta = new Target(target);
-		ta.setTraining_id(training_id);
-
-		// add training venue info
-		Venue ve = new Venue(venue);
-		ve.setTraining_id(training_id);
-*/
-		//return to home
-		//return "redirect:/";
 		return "redirect:trainings/" + tr.getId();
 	}
 
