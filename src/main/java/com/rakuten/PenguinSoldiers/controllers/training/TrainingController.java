@@ -93,9 +93,11 @@ public class TrainingController {
 		tr.setAdmin(user);
 		
 		for (String goal : goals) {
-			Goal g = new Goal(goal);
-			tr.addGoal(g);
-			g.setTraining(tr);
+			if (!goal.isEmpty()) {
+				Goal g = new Goal(goal);
+				tr.addGoal(g);
+				g.setTraining(tr);				
+			}
 		}
 		
 		trainingService.save(tr);
