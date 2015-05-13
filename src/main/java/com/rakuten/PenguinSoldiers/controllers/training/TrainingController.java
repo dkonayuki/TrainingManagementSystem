@@ -42,16 +42,11 @@ public class TrainingController {
 	@Autowired
 	private UserService userService;
 
-//	public void init(Principal principal,Model model){
-//	  model.addAttribute("pageContent",HeaderPageContentBuilder.build(accountRepository, adminRepository, principal.getName()));
-//	}
-	
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
 		List<Training> trainings = trainingService.findAll();
 
-//		init(principal,model);
 		model.addAttribute("trainings", trainings);
 		
 		return "training/index";
@@ -75,7 +70,6 @@ public class TrainingController {
 		Training training = this.trainingService.findById(id);
 		model.addAttribute(training);
 
-//		init(principal,model);
 		return "training/show";
 	}
 
