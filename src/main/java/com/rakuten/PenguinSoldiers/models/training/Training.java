@@ -21,10 +21,14 @@ import java.lang.String;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "training")
+@NamedQueries({
+@NamedQuery(name = Training.FIND_ACTIVE_TRAINING, query = "select a from Training a where a.start_date >= now()"),
 @NamedQuery(name = Training.FIND_BY_ID, query = "select a from Training a where a.id = :id")
+})
 public class Training implements java.io.Serializable {
 
 	public static final String FIND_BY_ID = "Training.findById";
+	public static final String FIND_ACTIVE_TRAINING= "Training.findActiveTraining";
 
 	@Id
 	@GeneratedValue

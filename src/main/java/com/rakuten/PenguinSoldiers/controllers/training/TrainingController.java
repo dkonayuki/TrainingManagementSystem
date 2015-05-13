@@ -13,9 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import com.rakuten.PenguinSoldiers.controllers.home.HeaderPageContentBuilder;
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
+import com.rakuten.PenguinSoldiers.models.admin.AdminRepository;
 import com.rakuten.PenguinSoldiers.models.goal.Goal;
 import com.rakuten.PenguinSoldiers.models.goal.GoalService;
 import com.rakuten.PenguinSoldiers.models.outline.Outline;
@@ -24,6 +26,7 @@ import com.rakuten.PenguinSoldiers.models.target.Target;
 import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
+import com.rakuten.PenguinSoldiers.util.ControllerUtil;
 
 @Controller
 public class TrainingController {
@@ -35,6 +38,9 @@ public class TrainingController {
 	private AccountRepository accountRepository;
 
 	@Autowired
+  private AdminRepository adminRepository;
+	
+	@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
@@ -43,6 +49,7 @@ public class TrainingController {
 		List<Training> trainings = trainingService.findAll();
 
 		model.addAttribute("trainings", trainings);
+		
 		return "training/index";
 	}
 

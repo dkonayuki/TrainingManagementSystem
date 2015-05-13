@@ -49,5 +49,9 @@ public class TrainingService {
 	public void save(Training training) {
 		trainingRepository.save(training);
 	}
+	
+	public List<Training> findActiveTraining(){
+	  return trainingRepository.findActiveTraining();
+	}
 
 }
