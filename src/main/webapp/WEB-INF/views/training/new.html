@@ -34,7 +34,7 @@
 					<label for="Goal" class="col-lg-2 control-label">Goal</label>
 					<div class="col-lg-8">
 						<div th:each="goal : ${trainingForm.goals}" class="entry input-group ">
-							<input class="form-control" th:value="${goal}" type="text"
+							<input class="form-control" th:value="${goal}" name="goals" type="text"
 								placeholder="Goal" /> <span class="input-group-btn">
 								<button class="btn btn-success btn-add" type="button">
 									<span class="glyphicon glyphicon-plus"></span>
@@ -164,10 +164,6 @@
 										this).parents('.entry:first'), newEntry = $(
 										currentEntry.clone()).appendTo(
 										controlForm);
-
-								console.log(controlForm);
-								console.log(currentEntry);
-								console.log(newEntry);
 
 								newEntry.find('input').val('');
 								controlForm

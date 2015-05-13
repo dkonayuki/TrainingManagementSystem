@@ -40,7 +40,6 @@ public class TrainingForm {
 	public TrainingForm() {
 		goals = new ArrayList<String>();
 		goals.add("");
-		goals.add("test");
 	}
 	
 	public String getName() {
