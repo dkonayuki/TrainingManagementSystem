@@ -2,13 +2,15 @@ package com.rakuten.PenguinSoldiers.models.outline;
 
 import javax.persistence.*;
 
+import com.rakuten.PenguinSoldiers.models.training.Training;
+
 import java.sql.Timestamp;
 
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "outline")
-@NamedQuery(name = Outline.FIND_BY_ID, query = "select a from Outline a where a.training_id = :id")
+@NamedQuery(name = Outline.FIND_BY_ID, query = "select a from Outline a where a.id = :id")
 
 public class Outline implements java.io.Serializable {
 
@@ -16,30 +18,26 @@ public class Outline implements java.io.Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private Long training_id;
+
+	@ManyToOne
+	@JoinColumn(name = "training_id")
+	private Training training;
+
 	@Lob
 	private String content;
 	private Timestamp date;
-	
-    protected Outline() {
+
+	protected Outline() {
 
 	}
-    
-    public Outline(String content)
-    {
-    	this.content = content;
-    }
+
+	public Outline(String content)
+	{
+		this.content = content;
+	}
 
 	public Long getId() {
 		return id;
-	}
-	
-	public Long getTraining_id() {
-		return training_id;
-	}
-
-	public void setTraining_id(Long training_id) {
-		this.training_id = training_id;
 	}
 
 	public String getContent() {
@@ -56,6 +54,14 @@ public class Outline implements java.io.Serializable {
 	public void setDate(Timestamp date)
 	{
 		this.date = date;
+	}
+
+	public Training getTraining() {
+		return training;
+	}
+
+	public void setTraining(Training training) {
+		this.training = training;
 	}
 
 

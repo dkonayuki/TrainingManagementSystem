@@ -126,8 +126,7 @@ public class TrainingForm {
 
 */
 	public Training createTraining(AccountRepository accountRepository) {
-		Training tr = new Training(name);
-		tr.setOverview(overview);
+		Training tr = new Training(name, overview, "13");
 		//tr.setMax_participants(participantNumber);
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();

@@ -16,7 +16,8 @@ import com.rakuten.PenguinSoldiers.models.training.Training;
 @NamedQuery(name = Account.FIND_BY_USERNAME, query = "select a from Account a where a.username = :username"),
 @NamedQuery(name = Account.FIND_BY_ID, query = "select a from Account a where a.id = :id"),
 @NamedQuery(name = Account.FIND_EMPLOYEE, query = "select a from Account a, Hierarchy h where a.username = :username and h.managerId=a.id"),
-@NamedQuery(name = Account.FIND_MANAGER, query = "select a from Account a, Hierarchy h where a.username = :username and h.employeeId=a.id")
+@NamedQuery(name = Account.FIND_MANAGER, query = "select a from Account a, Hierarchy h where a.username = :username and h.employeeId=a.id"),
+@NamedQuery(name = Account.LIST_ADMIN, query = "select a from Account a, Admin ad where ad.userId=a.id")
 })
 public class Account implements java.io.Serializable {
 
@@ -25,6 +26,7 @@ public class Account implements java.io.Serializable {
 	public static final String FIND_BY_ID= "Account.findById";
 	public static final String FIND_EMPLOYEE= "Account.findEmployee";
 	public static final String FIND_MANAGER= "Account.findManager";
+	public static final String LIST_ADMIN= "Account.listAdmin";
 
 	@Id
 	@GeneratedValue
@@ -37,7 +39,11 @@ public class Account implements java.io.Serializable {
 	private String password;
 	
 	@OneToMany(mappedBy = "admin", fetch=FetchType.EAGER)
-	public List<Training> trainings;
+	private List<Training> trainings;
+	
+	/*
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy="participants")
+	public List<Training> registered_trainings;*/
 
 	private String role = "ROLE_USER";
 

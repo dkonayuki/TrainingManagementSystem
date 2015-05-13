@@ -17,11 +17,14 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.rakuten.PenguinSoldiers.controllers.home.HeaderPageContentBuilder;
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.SignupForm;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
+import com.rakuten.PenguinSoldiers.models.admin.AdminRepository;
 import com.rakuten.PenguinSoldiers.models.goal.Goal;
+import com.rakuten.PenguinSoldiers.models.goal.GoalService;
 import com.rakuten.PenguinSoldiers.models.outline.Outline;
 import com.rakuten.PenguinSoldiers.models.premise.Premise;
 import com.rakuten.PenguinSoldiers.models.target.Target;
@@ -29,6 +32,7 @@ import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingForm;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
+import com.rakuten.PenguinSoldiers.util.ControllerUtil;
 
 @Controller
 public class TrainingController {
@@ -40,6 +44,9 @@ public class TrainingController {
 	private AccountRepository accountRepository;
 
 	@Autowired
+  private AdminRepository adminRepository;
+	
+	@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
@@ -48,6 +55,7 @@ public class TrainingController {
 		List<Training> trainings = trainingService.findAll();
 
 		model.addAttribute("trainings", trainings);
+		
 		return "training/index";
 	}
 
@@ -70,7 +78,6 @@ public class TrainingController {
 			@PathVariable Integer id) {
 		Training training = this.trainingService.findById(id);
 		model.addAttribute(training);
-
 		return "training/show";
 	}
 
@@ -81,6 +88,7 @@ public class TrainingController {
 	}
 
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
+// <<<<<<< HEAD
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
 			Errors errors, RedirectAttributes ra) {
 		if(errors.hasErrors()) {
@@ -111,6 +119,33 @@ public class TrainingController {
 		 */
 		// return to home
 		// return "redirect:/";
+		/*
+=======
+	public String addAction(@RequestParam("name") String name, @RequestParam("overview") String overview, 
+			@RequestParam("goals[]") String[] goals, @RequestParam("date") String date, @RequestParam("target") String target, 
+			@RequestParam("participantNum") String participantNum, @RequestParam("duedate") String duedate, 
+			@RequestParam("outline") String outline,
+			@RequestParam("premise") String premise, ModelMap model)
+	{
+		// create new training program item
+		Training tr = new Training(name, overview, participantNum);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		Account user = accountRepository.findByEmail(userDetails.getUsername());
+		tr.setAdmin(user);
+		
+		for (String goal : goals) {
+			if (!goal.isEmpty()) {
+				Goal g = new Goal(goal);
+				tr.addGoal(g);
+				g.setTraining(tr);				
+			}
+		}
+		
+		trainingService.save(tr);
+
+>>>>>>> develop
+*/
 		return "redirect:trainings/" + tr.getId();
 	}
 

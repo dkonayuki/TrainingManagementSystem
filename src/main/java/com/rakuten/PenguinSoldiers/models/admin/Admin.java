@@ -9,12 +9,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "admin")
 @NamedQueries({
-@NamedQuery(name = Admin.FIND_BY_ID, query = "select ad from Admin ad where ad.userId=:id")
+  @NamedQuery(name = Admin.FIND_BY_ID, query = "select ad from Admin ad where ad.userId=:id"),
+  @NamedQuery(name = Admin.LIST, query = "select ad from Admin ad")
 })
 public class Admin implements java.io.Serializable {
   
   
   public static final String FIND_BY_ID = "Admin.findAdminById";
+  public static final String LIST = "Admin.listAdmin";
   
   @Id
   @GeneratedValue

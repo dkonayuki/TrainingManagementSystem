@@ -24,7 +24,7 @@ public class HomeController {
 			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			
 			Account user = accountRepository.findByEmail(userDetails.getUsername());
-			model.addAttribute("trainings", user.trainings);
+			model.addAttribute("trainings", user.getTrainings());
 			return "home/homeSignedIn";
 		}
 		return "home/homeNotSignedIn";

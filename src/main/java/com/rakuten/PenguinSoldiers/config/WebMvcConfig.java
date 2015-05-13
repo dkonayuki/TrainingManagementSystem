@@ -22,6 +22,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 import com.rakuten.PenguinSoldiers.Application;
+import com.rakuten.PenguinSoldiers.interceptor.RequestInterceptor;
 
 @Configuration
 @ComponentScan(basePackageClasses = Application.class, includeFilters = @Filter(Controller.class), useDefaultFilters = false)
@@ -38,9 +39,22 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         RequestMappingHandlerMapping requestMappingHandlerMapping = super.requestMappingHandlerMapping();
         requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
         requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
+        requestMappingHandlerMapping.setInterceptors(getInterceptorList());
         return requestMappingHandlerMapping;
     }
-
+    
+    @Bean
+    public Object[] getInterceptorList(){
+      return new Object[]{
+        getRequestInterceptor()  
+      };
+    }
+    
+    @Bean
+    public RequestInterceptor getRequestInterceptor(){
+       return new RequestInterceptor();
+    }
+    
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -48,7 +62,9 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         messageSource.setCacheSeconds(5);
         return messageSource;
     }
-
+    
+    
+    
     @Bean
     public TemplateResolver templateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
