@@ -8,10 +8,12 @@ public class HeaderPageContentBuilder {
   
   public static HeaderPageContent build(AccountRepository ar, AdminRepository adR, String username){
     Account a=ar.findByEmail(username);
-    
     HeaderPageContent hpc=new HeaderPageContent();
-    hpc.setAdmin(adR.isAdmin(a.getId()));
-    hpc.setManager(ar.isManager(a.getUsername()));
+    if(a!=null){
+      hpc.setAdmin(adR.isAdmin(a.getId()));
+      hpc.setManager(ar.isManager(a.getUsername()));
+    }
+    
     
     return hpc;
   }

@@ -30,6 +30,15 @@ public class TrainingRepository {
 		}
 	}
 	
+	public List<Training> findActiveTraining() {
+    try {
+      return entityManager.createNamedQuery(Training.FIND_ACTIVE_TRAINING, Training.class)
+          .getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+	
 	public void update(Training training) {
 		entityManager.merge(training);
 	}
