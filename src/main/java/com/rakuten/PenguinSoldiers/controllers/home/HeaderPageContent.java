@@ -4,7 +4,7 @@ import com.rakuten.PenguinSoldiers.models.account.Account;
 
 public class HeaderPageContent {
   
-  private boolean isAdmin,isManager;
+  private boolean isAdmin=false,isManager=false;
 
   public boolean isAdmin() {
     return isAdmin;
