@@ -1,13 +1,14 @@
 package com.rakuten.PenguinSoldiers.models.training;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.validator.constraints.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
-
-import java.util.Date;
 
 /** Class for handling request for adding new training */
 public class TrainingForm {
@@ -18,26 +19,30 @@ public class TrainingForm {
 
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String name;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String overview;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private String[] goal;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private List<String> goals;
+/*	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String outline;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String premise;
-	/* @DateTimeFormat(style="S-",message=TrainingForm.INVALID_DATE_MESSAGE) */
-	private Date date;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private String date;
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String targetPeople;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	/* @RegExp("[0-9]+",message=TrainingForm.INVALID_INTEGER_MESSAGE) */
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private Integer participantNumber;
-	/* @DateTimeFormat(style="S-",message=TrainingForm.INVALID_DATE_MESSAGE) */
-	private Date dueDate;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private String dueDate;
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String[] venue;
-
+	*/
+	
+	public TrainingForm() {
+		goals = new ArrayList<String>();
+		goals.add("");
+		goals.add("test");
+	}
+	
 	public String getName() {
 		return this.name;
 	}
@@ -54,14 +59,15 @@ public class TrainingForm {
 		this.overview = overview;
 	}
 
-	public String[] getGoal() {
-		return this.goal;
+	public List<String> getGoals() {
+		return this.goals;
 	}
 
-	public void setGoal(String[] goal) {
-		this.goal = goal;
+	public void setGoals(List<String> goals) {
+		this.goals = goals;
 	}
 
+	/*
 	public String getOutline() {
 		return this.outline;
 	}
@@ -78,11 +84,11 @@ public class TrainingForm {
 		this.premise = premise;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -102,11 +108,11 @@ public class TrainingForm {
 		this.participantNumber = participantNumber;
 	}
 
-	public Date getDueDate() {
+	public String getDueDate() {
 		return this.dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
@@ -118,10 +124,11 @@ public class TrainingForm {
 		this.venue = venue;
 	}
 
+*/
 	public Training createTraining(AccountRepository accountRepository) {
 		Training tr = new Training(name);
 		tr.setOverview(overview);
-		tr.setMax_participants(participantNumber);
+		//tr.setMax_participants(participantNumber);
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 
@@ -133,9 +140,9 @@ public class TrainingForm {
 	}
 
 	public String toString() {
-		return "name:" + name + ", overview:" + overview + ", goal:" + goal
-				+ ", outline:" + outline + ", premise:" + premise + ", date:" + date 
+		return "name:" + name + ", overview:" + overview + ", goals:" + goals.toString();
+				/* + ", outline:" + outline + ", premise:" + premise + ", date:" + date 
 				+ ", targetPeople:" + targetPeople + ", participantnumber:" + participantNumber + ", duedate:" + dueDate
-				+ ", venue:" + venue.toString();
+				+ ", venue:" + venue.toString(); */
 	}
 }

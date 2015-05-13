@@ -76,14 +76,17 @@ public class TrainingController {
 
 	@RequestMapping(value = "trainings/new", method = RequestMethod.GET)
 	public String addTrainingPrograms(Model model) {
-		model.addAttribute(new TrainingForm());
+		model.addAttribute("trainingForm", new TrainingForm());
 		return "training/new";
 	}
 
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
 			Errors errors, RedirectAttributes ra) {
-
+		if(errors.hasErrors()) {
+			return "training/new";
+		}
+		
 		System.out.println(trainingForm.toString());
 		// create new training program item
 		Training tr = trainingForm.createTraining(accountRepository);

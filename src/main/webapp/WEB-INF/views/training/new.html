@@ -9,62 +9,55 @@
 
 	<div class="container text-center add-training">
 		<form th:action="@{/trainings}" class="form-horizontal" method="POST"
-			autocomplete="off" th:object="${trainingForm}">
+			autocomplete="on" th:object="${trainingForm}">
 
 			<fieldset>
 				<legend>Add a new training program</legend>
 				<div class="form-group">
 					<label for="Name" class="col-lg-2 control-label">Name</label>
+
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Name"
-							placeholder="Name" name="name" />
+						<input type="text" class="form-control" placeholder="Name"
+							th:field="*{name}" /> <span class="help-block"
+							th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name can't be left empty</span>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<label for="Overview" class="col-lg-2 control-label">Overview</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" id="Overview"
-							placeholder="Overview" name="overview"></textarea>
+						<textarea class="form-control" placeholder="Overview"
+							th:field="*{overview}"></textarea>
 					</div>
 				</div>
 
 				<div class="form-group goal-div">
 					<label for="Goal" class="col-lg-2 control-label">Goal</label>
 					<div class="col-lg-8">
-						<div class="entry input-group ">
-							<input class="form-control" name="goal[]" type="text"
+						<div th:each="goal : ${trainingForm.goals}" class="entry input-group ">
+							<input class="form-control" th:value="${goal}" type="text"
 								placeholder="Goal" /> <span class="input-group-btn">
 								<button class="btn btn-success btn-add" type="button">
 									<span class="glyphicon glyphicon-plus"></span>
 								</button>
 							</span>
 						</div>
-					<!-- 	<div class="entry input-group ">
-							<input class="form-control" name="goal[]" type="text"
-								placeholder="Goal" /> <span class="input-group-btn">
-								<button class="btn btn-success btn-add" type="button">
-									<span class="glyphicon glyphicon-plus"></span>
-								</button>
-							</span>
-						</div>
- 					-->
 					</div>
 				</div>
 
+				<!-- 
 				<div class="form-group">
 					<label for="Outline" class="col-lg-2 control-label">Outline</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Outline"
-							placeholder="Outline" name="outline" />
+						<input type="text" class="form-control"
+							placeholder="Outline" th:field="*{outline}" />
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="Premise" class="col-lg-2 control-label">Premise</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Premise"
-							placeholder="Premise" name="premise" />
+						<input type="text" class="form-control"
+							placeholder="Premise" th:field="*{premise}" />
 					</div>
 				</div>
 
@@ -72,7 +65,7 @@
 					<label for="Date" class="col-lg-2 control-label">Beginning
 						date</label>
 					<div class='col-lg-4 input-group date' id='id_date'>
-						<input type='text' class="form-control" name="date"
+						<input type='text' class="form-control" th:field="*{date}"
 							placeholder="Starting date" /> <span class="input-group-addon">
 							<span class="glyphicon glyphicon-calendar"></span>
 						</span>
@@ -80,7 +73,7 @@
 					<label for="Target" class="col-lg-2 control-label">Application
 						deadline</label>
 					<div class='col-lg-4 input-group date' id='id_duedate'>
-						<input type='text' class="form-control" name="duedate"
+						<input type='text' class="form-control" th:field="*{dueDate}"
 							placeholder="Deadline" /> <span class="input-group-addon">
 							<span class="glyphicon glyphicon-calendar"></span>
 						</span>
@@ -92,7 +85,7 @@
 					<label for="Target" class="col-lg-2 control-label">Target
 						people</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Target"
+						<input type="text" class="form-control"
 							placeholder="Target" th:field="*{targetPeople}" />
 					</div>
 				</div>
@@ -102,8 +95,8 @@
 						number</label>
 					<div class="col-lg-10">
 						<input type="number" min="1" step="1" class="form-control"
-							id="ParticipantNum" placeholder="Number of Participants"
-							name="participantNumber" />
+							placeholder="Number of Participants"
+							th:field="*{participantNumber}" />
 					</div>
 				</div>
 
@@ -112,9 +105,8 @@
 				<div class="form-group">
 					<label for="Venue" class="col-lg-2 control-label">Venue</label>
 					<div class="col-lg-10">
-						<!-- 						<input type="text" class="form-control" id="Venue"
-							placeholder="Venue" name="venue" />   -->
-						<select class="col-lg-4" name="venue[]" id="venue" multiple="multiple">
+						<select class="col-lg-4" name="venue[]" id="venue"
+							multiple="multiple">
 							<option value="13">Asakai room</option>
 							<option value="5">Outside</option>
 							<option value="6">Fitness Club</option>
@@ -124,7 +116,7 @@
 						</select>
 					</div>
 				</div>
-
+	-->
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" class="btn btn-default">Add</button>
@@ -176,7 +168,7 @@
 								console.log(controlForm);
 								console.log(currentEntry);
 								console.log(newEntry);
-								
+
 								newEntry.find('input').val('');
 								controlForm
 										.find('.entry:not(:last) .btn-add')
