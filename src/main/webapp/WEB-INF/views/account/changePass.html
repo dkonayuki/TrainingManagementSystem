@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+<div class="container text-center">
+    <h2><span class="text-danger">Rakuten</span> Training Registration</h2>
+  </div>
+
+<form class="form-narrow form-horizontal" action="#" method="post" th:action="@{./changePassword}" th:object="${changePassForm}" >
+
+    <fieldset>
+        <legend>Change Password:</legend>
+        <div class="form-group">
+            <label for="oldPass" class="col-lg-2 control-label">Old Password</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" id="oldPass" placeholder="Old Password" th:field="*{oldPass}" />
+                <span class="help-block" th:if="${#fields.hasErrors('oldPass')}" th:errors="*{oldPass}">No such email</span>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="newPass" class="col-lg-2 control-label">New Password</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" id="newPass" placeholder="New Password" th:field="*{newPass}" />
+                <span class="help-block" th:if="${#fields.hasErrors('oldPass')}" th:errors="*{oldPass}">No such email</span>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="cNewPass" class="col-lg-2 control-label">Confirm New Password</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" id="cNewPass" placeholder="Confirm New Password" th:field="*{cNewPass}"  />
+                <span class="help-block" th:if="${#fields.hasErrors('oldPass')}" th:errors="*{oldPass}">No such email</span>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-default"> Update </button>
+            </div>
+        </div> 
+    </fieldset>
+</form>
+</body>
+</html>
