@@ -97,7 +97,8 @@ public class AccountRepository {
   }
 	
 	public boolean isManager(String username){
-	  return findEmployee(username)!=null;
+	  List<Account> e=findEmployee(username);
+	  return e!=null&&e.size()>0;
 	}
 
 }
