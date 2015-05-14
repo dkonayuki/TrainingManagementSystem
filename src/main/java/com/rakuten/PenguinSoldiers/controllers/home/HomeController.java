@@ -11,26 +11,22 @@ import org.springframework.web.bind.annotation.*;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
-import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 
 @Controller
 public class HomeController {
 	
-
-  @Autowired
-  private TrainingService trainingService;
 	@Autowired
 	private AccountRepository accountRepository;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
 		if (principal != null) {
-//			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			
-//			Account user = accountRepository.findByEmail(userDetails.getUsername());
-			model.addAttribute("trainings", trainingService.findActiveTraining());
+			Account user = accountRepository.findByEmail(userDetails.getUsername());
+			model.addAttribute("trainings", user.getTrainings());
 			return "home/homeSignedIn";
 		}
-		return "account/signin";
+		return "home/homeNotSignedIn";
 	}
 }
