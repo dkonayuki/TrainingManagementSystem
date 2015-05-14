@@ -3,14 +3,13 @@
 <head th:replace="fragments/head :: head">
 </head>
 <body>
-<div class="container text-center">
-    <h2><span class="text-danger">Rakuten</span> Training Registration</h2>
-  </div>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
 
 <form class="form-narrow form-horizontal" action="#" method="post" th:action="@{./changePassword}" th:object="${changePassForm}" >
 
     <fieldset>
-        <legend>Change Password:</legend>
+        <legend>You want to change password?</legend>
         <div class="form-group">
             <label for="oldPass" class="col-lg-2 control-label">Old Password</label>
             <div class="col-lg-10">
