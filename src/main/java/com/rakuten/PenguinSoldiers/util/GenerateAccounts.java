@@ -1,6 +1,5 @@
 package com.rakuten.PenguinSoldiers.util;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,11 +43,12 @@ public class GenerateAccounts {
     try{
       List<RakutenManager> l=jup.parse();
       for(int i=0;i<l.size();i++){
-        
+        if(i>0&&i%100==0)
+          System.out.println(i+"/"+l.size());
         RakutenManager rm=l.get(i);
         Account man=ar.findByUsername(rm.getUsername());
         if(man==null){
-          System.out.println(rm.getUsername()+" not found");
+          System.out.println("manager: ["+rm.getUsername()+"] not found");
           continue;
         }
         for(int j=0;j<rm.getEmployees().size();j++){
@@ -57,11 +57,11 @@ public class GenerateAccounts {
           Account mem=ar.findByUsername(rm.getEmployees().get(j));
           
           if(mem==null){
-            System.out.println("member "+rm.getEmployees().get(j)+" not found");
+            System.out.println("member: ["+rm.getEmployees().get(j)+"] not found");
             continue;
           }else if(mem.isSame(man))continue;
-          h.setEmployeeId(man.getId());
-          h.setManagerId(mem.getId());
+          h.setEmployeeId(mem.getId());
+          h.setManagerId(man.getId());
           if(!hr.isExist(h))
             hr.save(h);
 //          else System.out.println(h.getManagerId()+"-"+h.getEmployeeId()+" already added");

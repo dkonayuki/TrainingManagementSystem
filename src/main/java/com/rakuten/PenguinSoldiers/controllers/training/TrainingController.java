@@ -46,7 +46,7 @@ public class TrainingController {
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
-		List<Training> trainings = trainingService.findAll();
+		List<Training> trainings = trainingService.findActiveTraining();
 
 		model.addAttribute("trainings", trainings);
 		
