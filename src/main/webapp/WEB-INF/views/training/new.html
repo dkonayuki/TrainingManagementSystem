@@ -9,62 +9,83 @@
 
 	<div class="container text-center add-training">
 		<form th:action="@{/trainings}" class="form-horizontal" method="POST"
-			autocomplete="off">
+			autocomplete="on" th:object="${trainingForm}" id="trainingForm">
 
 			<fieldset>
 				<legend>Add a new training program</legend>
 				<div class="form-group">
 					<label for="Name" class="col-lg-2 control-label">Name</label>
+
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Name"
-							placeholder="Name" name="name" />
+						<input type="text" class="form-control" placeholder="Name"
+							th:field="*{name}" /> <span class="help-block"
+							th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
+							can't be left empty</span>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<label for="Overview" class="col-lg-2 control-label">Overview</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" id="Overview"
-							placeholder="Overview" name="overview"></textarea>
+						<textarea class="form-control" placeholder="Overview"
+							th:field="*{overview}"></textarea>
 					</div>
 				</div>
 
 				<div class="form-group goal-div">
 					<label for="Goal" class="col-lg-2 control-label">Goal</label>
 					<div class="col-lg-8">
-						<div class="entry input-group ">
-							<input class="form-control" name="goals[]" type="text"
-								placeholder="Goal" /> <span class="input-group-btn">
+						<div th:each="goal:${trainingForm.goals}"
+							class="entry input-group ">
+							<input class="form-control form-goal" th:value="${goal}"
+								name="goals" type="text" placeholder="Goal" /> <span
+								class="input-group-btn">
 								<button class="btn btn-success btn-add" type="button">
 									<span class="glyphicon glyphicon-plus"></span>
 								</button>
 							</span>
 						</div>
-					<!-- 	<div class="entry input-group ">
-							<input class="form-control" name="goal[]" type="text"
-								placeholder="Goal" /> <span class="input-group-btn">
-								<button class="btn btn-success btn-add" type="button">
-									<span class="glyphicon glyphicon-plus"></span>
-								</button>
-							</span>
-						</div>
- 					-->
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="Outline" class="col-lg-2 control-label">Outline</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Outline"
-							placeholder="Outline" name="outline" />
+						<table class="table outline-table">
+							<tr >
+								<th class="col-lg-4">Date</th>
+								<th class="col-lg-6">Content</th>
+								<th class="col-lg-1"></th>
+								<th></th>
+							</tr>
+							<tr class="entry-row" th:each="outline : ${trainingForm.outlines}">
+								<td>
+									<div class='input-group date date_selector'>
+										<input type='text' name="outline-date" class="form-control"
+											placeholder="" /> <span class="input-group-addon"> <span
+											class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</td>
+								<td><div class="">
+										<input type="text" class="form-control outline-text"
+											placeholder="Outline" name="outline-text" />
+									</div></td>
+								<td><span class="input-group-btn">
+										<button class="btn btn-success btn-add-outline" type="button">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+								</span></td>
+								<td><input type="hidden" name="outlines" th:value="${outline}"/></td>
+							</tr>
+						</table>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="Premise" class="col-lg-2 control-label">Premise</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Premise"
-							placeholder="Premise" name="premise" />
+						<input type="text" class="form-control" placeholder="Premise"
+							th:field="*{premise}" />
 					</div>
 				</div>
 
@@ -72,7 +93,7 @@
 					<label for="Date" class="col-lg-2 control-label">Beginning
 						date</label>
 					<div class='col-lg-4 input-group date' id='id_date'>
-						<input type='text' class="form-control" name="date"
+						<input type='text' class="form-control" th:field="*{date}"
 							placeholder="Starting date" /> <span class="input-group-addon">
 							<span class="glyphicon glyphicon-calendar"></span>
 						</span>
@@ -80,7 +101,7 @@
 					<label for="Target" class="col-lg-2 control-label">Application
 						deadline</label>
 					<div class='col-lg-4 input-group date' id='id_duedate'>
-						<input type='text' class="form-control" name="duedate"
+						<input type='text' class="form-control" th:field="*{dueDate}"
 							placeholder="Deadline" /> <span class="input-group-addon">
 							<span class="glyphicon glyphicon-calendar"></span>
 						</span>
@@ -92,8 +113,8 @@
 					<label for="Target" class="col-lg-2 control-label">Target
 						people</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="Target"
-							placeholder="Target" name="target" />
+						<input type="text" class="form-control" placeholder="Target"
+							th:field="*{targetPeople}" />
 					</div>
 				</div>
 
@@ -102,8 +123,8 @@
 						number</label>
 					<div class="col-lg-10">
 						<input type="number" min="1" step="1" class="form-control"
-							id="ParticipantNum" placeholder="Number of Participants"
-							name="participantNum" />
+							placeholder="Number of Participants"
+							th:field="*{participantNumber}" />
 					</div>
 				</div>
 
@@ -112,9 +133,8 @@
 				<div class="form-group">
 					<label for="Venue" class="col-lg-2 control-label">Venue</label>
 					<div class="col-lg-10">
-						<!-- 						<input type="text" class="form-control" id="Venue"
-							placeholder="Venue" name="venue" />   -->
-						<select class="col-lg-4" id="venue" multiple="multiple" name="venue">
+						<!--						<select class="col-lg-4" name="venue" id="venue"
+							multiple="multiple">
 							<option value="13">Asakai room</option>
 							<option value="5">Outside</option>
 							<option value="6">Fitness Club</option>
@@ -122,6 +142,9 @@
 							<option value="90">RT2 3F</option>
 							<option value="32">TOEIC Room</option>
 						</select>
+-->
+						<input type="text" class="form-control" placeholder="Venue"
+							th:field="*{venue}" />
 					</div>
 				</div>
 
@@ -151,14 +174,22 @@
 		$(function() {
 
 			// Date time pickers
-			$('#id_date').datetimepicker();
-			$('#id_duedate').datetimepicker();
-
-			// Multiselect
-			$('#venue').multiselect({
-				buttonWidth : '400px',
-				dropRight : true
+			$('#id_date').datetimepicker({
+				format : "D/MM/YYYY, HH:mm"
 			});
+			$('#id_duedate').datetimepicker({
+				format : "D/MM/YYYY, HH:mm"
+			});
+
+			$('.date_selector').datetimepicker({
+				format : "D/MM/YYYY, HH:mm"
+			});
+			// Multiselect
+			/*			$('#venue').multiselect({
+			 buttonWidth : '400px',
+			 dropRight : true
+			 });
+			 */
 
 			// add more button
 			$(document)
@@ -173,10 +204,6 @@
 										currentEntry.clone()).appendTo(
 										controlForm);
 
-								console.log(controlForm);
-								console.log(currentEntry);
-								console.log(newEntry);
-								
 								newEntry.find('input').val('');
 								controlForm
 										.find('.entry:not(:last) .btn-add')
@@ -190,6 +217,67 @@
 						$(this).parents('.entry:first').remove();
 						e.preventDefault();
 						return false;
+					});
+
+			// add more outline button
+			$(document)
+					.on(
+							'click',
+							'.btn-add-outline',
+							function(e) {
+								e.preventDefault();
+
+								var controlForm = $('.outline-table:first'), currentEntry = $(
+										this).parents('.entry-row:first'), newEntry = $(
+										currentEntry.clone()).appendTo(
+										controlForm);
+
+								//								rowCount = controlForm.find('tr').length;
+								//								console.log(rowCount);
+								//								$td = newEntry.find('td:first');
+								//								console.log($td.text());
+								//									$td.text(rowCount - 1) ;
+								newEntry.find('input').val('');
+								newEntry.find('.date_selector').datetimepicker(
+										{
+											format : "D/MM/YYYY, HH:mm"
+										});
+								controlForm
+										.find(
+												'.entry-row:not(:last) .btn-add-outline')
+										.removeClass('btn-add-outline')
+										.addClass('btn-remove-outline')
+										.removeClass('btn-success')
+										.addClass('btn-danger')
+										.html(
+												'<span class="glyphicon glyphicon-minus"></span>');
+							}).on('click', '.btn-remove-outline', function(e) {
+						$(this).parents('.entry-row:first').remove();
+						e.preventDefault();
+						return false;
+					});
+
+			// handle form submit and serialize fields
+
+			$('#trainingForm').on(
+					'submit',
+					function(e) {
+						// e.preventDefault();
+						$this = $(this);
+						$this.find('#outline').val(
+								encodeURIComponent($('table.outline-table')
+										.find('input').serialize()));
+
+						$this.find('.outline-text').each(function() {
+							// This urlencodes value of outlines
+							this.value = encodeURIComponent(this.value);
+						});
+						$this.find('.outline-text').each(function() {
+							// This urlencodes value of outlines
+							this.value = encodeURIComponent(this.value);
+						});
+
+						console.log($(this).serialize());
 					});
 		});
 	</script>

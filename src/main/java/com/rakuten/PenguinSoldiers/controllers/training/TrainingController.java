@@ -3,6 +3,8 @@ package com.rakuten.PenguinSoldiers.controllers.training;
 import java.security.Principal;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,11 +13,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rakuten.PenguinSoldiers.controllers.home.HeaderPageContentBuilder;
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
+import com.rakuten.PenguinSoldiers.models.account.SignupForm;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
 import com.rakuten.PenguinSoldiers.models.admin.AdminRepository;
 import com.rakuten.PenguinSoldiers.models.goal.Goal;
@@ -24,6 +29,7 @@ import com.rakuten.PenguinSoldiers.models.outline.Outline;
 import com.rakuten.PenguinSoldiers.models.premise.Premise;
 import com.rakuten.PenguinSoldiers.models.target.Target;
 import com.rakuten.PenguinSoldiers.models.training.Training;
+import com.rakuten.PenguinSoldiers.models.training.TrainingForm;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
 import com.rakuten.PenguinSoldiers.util.ControllerUtil;
@@ -38,8 +44,8 @@ public class TrainingController {
 	private AccountRepository accountRepository;
 
 	@Autowired
-  private AdminRepository adminRepository;
-	
+	private AdminRepository adminRepository;
+
 	@Autowired
 	private UserService userService;
 
@@ -51,32 +57,22 @@ public class TrainingController {
 		List<Training> trainings = trainingService.findAll();
 		
 		model.addAttribute("trainings", trainings);
-		
+
 		return "training/index";
 	}
 
-	/*@RequestMapping(value = "message", method = RequestMethod.GET)
-	public String messages(Model model) {
-	    model.addAttribute("messages", messageRepository.findAll());
-	    return "message/list";
-	}*/
-
-	/*Training a = this.trainingService.findById(3);
-	a.setName("new");
-	trainingService.update(a);*/
-	//Training a = new Training("up");
-	//trainingService.save(a);
-	//trainingService.delete(5);
-
 	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)
-	public String show(Principal principal, Model model, @PathVariable Integer id) {
+	public String show(Principal principal, Model model,
+			@PathVariable Integer id) {
 		Training training = this.trainingService.findById(id);
+		// convert training in
 		model.addAttribute(training);
 		return "training/show";
 	}
 
-	@RequestMapping(value = "trainings/new", method=RequestMethod.GET)
-	public String addTrainingPrograms() {
+	@RequestMapping(value = "trainings/new", method = RequestMethod.GET)
+	public String addTrainingPrograms(Model model) {
+		model.addAttribute("trainingForm", new TrainingForm());
 		return "training/new";
 	}
 	
@@ -110,10 +106,67 @@ public class TrainingController {
 				tr.addGoal(g);
 				g.setTraining(tr);				
 			}
+	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
+			Errors errors, final Model model, RedirectAttributes ra) {
+		if (errors.hasErrors()) {
+			model.addAttribute("trainingForm", trainingForm);
+			// ra.addFlashAttribute("trainingForm", trainingForm);
+			return "training/new";
 		}
-		*/
-		trainingService.save(tr);
 
+		System.out.println(trainingForm.toString());
+
+		// create new training program item
+		Training tr = trainingForm.createTraining(accountRepository);
+		if (tr == null) {
+			model.addAttribute("trainingForm", trainingForm);
+			return "training/new";
+		}
+		/*
+		 * Long training_id = tr.getId();
+		 * 
+		 * // add training goal Goal gl = new Goal(goal);
+		 * gl.setTraining_id(training_id);
+		 * 
+		 * // add training outline Outline ol = new Outline(outline);
+		 * ol.setTraining_id(training_id);
+		 * 
+		 * // add training premise Premise pr = new Premise(premise);
+		 * pr.setTraining_id(training_id);
+		 * 
+		 * // add training target people Target ta = new Target(target);
+		 * ta.setTraining_id(training_id);
+		 * 
+		 * // add training venue info Venue ve = new Venue(venue);
+		 * ve.setTraining_id(training_id);
+		 */
+		// return to home
+		// return "redirect:/";
+		/*
+		 * ======= public String addAction(@RequestParam("name") String name,
+		 * @RequestParam("overview") String overview,
+		 * 
+		 * @RequestParam("goal") String goal, @RequestParam("date") String date,
+		 * @RequestParam("target") String target,
+		 * 
+		 * @RequestParam("participantNum") String participantNum,
+		 * @RequestParam("duedate") String duedate,
+		 * 
+		 * @RequestParam("outline") String outline,
+		 * 
+		 * @RequestParam("premise") String premise, ModelMap model) { // create
+		 * new training program item Training tr = new Training(name, overview,
+		 * participantNum); UserDetails userDetails =
+		 * (UserDetails)SecurityContextHolder
+		 * .getContext().getAuthentication().getPrincipal();
+		 * 
+		 * Account user =
+		 * accountRepository.findByEmail(userDetails.getUsername());
+		 * tr.setAdmin(user); /* for (String goal : goals) { if
+		 * (!goal.isEmpty()) { Goal g = new Goal(goal); tr.addGoal(g);
+		 * g.setTraining(tr); } }
+		 */
+		trainingService.save(tr);
 		return "redirect:trainings/" + tr.getId();
 	}
 
