@@ -81,6 +81,7 @@ public class TrainingController {
 	}
 	
 	@RequestMapping(value = "trainings/{id}", produces="text/html", method = RequestMethod.DELETE)
+	@ResponseBody
 	public String destroy(@PathVariable Integer id) {
 		System.out.println(id);
 		
