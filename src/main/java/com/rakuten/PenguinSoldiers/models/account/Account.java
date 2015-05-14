@@ -39,7 +39,11 @@ public class Account implements java.io.Serializable {
 	private String password;
 	
 	@OneToMany(mappedBy = "admin", fetch=FetchType.EAGER)
-	public List<Training> trainings;
+	private List<Training> trainings;
+	
+	/*
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy="participants")
+	public List<Training> registered_trainings;*/
 
 	private String role = "ROLE_USER";
 
