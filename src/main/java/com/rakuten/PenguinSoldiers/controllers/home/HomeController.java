@@ -20,13 +20,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
+		
 		if (principal != null) {
 			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			
-			Account user = accountRepository.findByEmail(userDetails.getUsername());
+			Account user = accountRepository.findByUsername(userDetails.getUsername());
 			model.addAttribute("trainings", user.trainings);
 			return "home/homeSignedIn";
 		}
-		return "home/homeNotSignedIn";
+		return "account/signin";
 	}
 }
