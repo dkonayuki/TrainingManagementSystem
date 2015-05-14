@@ -75,7 +75,7 @@
 											<span class="glyphicon glyphicon-plus"></span>
 										</button>
 								</span></td>
-								<td><input type="hidden" name="outlines" th:value="${outline}"/></td>
+								<td><input type="hidden" name="outlines" class="outline-input" th:value="${outline}"/></td>
 							</tr>
 						</table>
 					</div>
@@ -264,19 +264,22 @@
 					function(e) {
 						// e.preventDefault();
 						$this = $(this);
-						$this.find('#outline').val(
-								encodeURIComponent($('table.outline-table')
-										.find('input').serialize()));
+						$this.find('.outline-input').each(function() {
+							$t2 = $(this);
+//							console.log('this is');
+//							console.log($t2);
+//							console.log($t2.parents('tr').find('input'));
+//							console.log($t2.parents('tr').find('input').serialize());
+							enc = encodeURIComponent($t2.parents('tr').find('input').not($t2).serialize());
+							$t2.val(enc);
+							//val(encodeURIComponent($('table.outline-table')));
+						});
 
 						$this.find('.outline-text').each(function() {
 							// This urlencodes value of outlines
 							this.value = encodeURIComponent(this.value);
 						});
-						$this.find('.outline-text').each(function() {
-							// This urlencodes value of outlines
-							this.value = encodeURIComponent(this.value);
-						});
-
+						
 						console.log($(this).serialize());
 					});
 		});

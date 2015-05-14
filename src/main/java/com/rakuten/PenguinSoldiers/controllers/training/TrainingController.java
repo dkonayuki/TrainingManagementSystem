@@ -79,6 +79,10 @@ public class TrainingController {
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
 			Errors errors, final Model model, RedirectAttributes ra) {
 		if (errors.hasErrors()) {
+			if(trainingForm.getGoals().size() < 1) 
+				trainingForm.getGoals().add("");
+			if(trainingForm.getOutlines().size() < 1) 
+				trainingForm.getOutlines().add("");
 			model.addAttribute("trainingForm", trainingForm);
 			// ra.addFlashAttribute("trainingForm", trainingForm);
 			return "training/new";
