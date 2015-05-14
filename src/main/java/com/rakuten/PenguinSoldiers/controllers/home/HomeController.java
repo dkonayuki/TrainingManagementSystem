@@ -32,6 +32,6 @@ public class HomeController {
 		  model.addAttribute("trainings", trainingService.findActiveTraining());
 			return "home/homeSignedIn";
 		}
-		return "home/homeNotSignedIn";
+		return "account/signin";
 	}
 }
