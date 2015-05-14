@@ -23,10 +23,14 @@ public class AccountRepository {
 
 	@Transactional
 	public Account save(Account account) {
-		account.setPassword(passwordEncoder.encode(account.getPassword()));
-//	  account.setPassword(passwordEncoder.encode("raku10"));
+//		account.setPassword(passwordEncoder.encode(account.getPassword()));
+	  account.setPassword(passwordEncoder.encode("raku10"));
 		entityManager.persist(account);
 		return account;
+	}
+	
+	public void update(Account account){
+	  entityManager.merge(account);
 	}
 	
 	public Account findById(Long id) {

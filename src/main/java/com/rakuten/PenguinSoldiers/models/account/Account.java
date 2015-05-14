@@ -129,5 +129,6 @@ public class Account implements java.io.Serializable {
 	  if(a.getId()==null||this.getId()==null)return false;
 	  return a.getId().equals(this.getId());
 	}
+	
 
 }
