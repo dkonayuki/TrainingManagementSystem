@@ -3,10 +3,12 @@ package com.rakuten.PenguinSoldiers.models.goal;
 
 import javax.persistence.*;
 
+import com.rakuten.PenguinSoldiers.models.training.Training;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "goal")
-@NamedQuery(name = Goal.FIND_BY_ID, query = "select a from Goal a where a.training_id = :id")
+@NamedQuery(name = Goal.FIND_BY_ID, query = "select a from Goal a where a.id = :id")
 public class Goal implements java.io.Serializable {
 
 	
@@ -14,7 +16,10 @@ public class Goal implements java.io.Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private Long training_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "training_id")
+	private Training training;
 	
 	@Lob
 	private String content;
@@ -27,23 +32,16 @@ public class Goal implements java.io.Serializable {
 
 	}
 
-
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Training getTraining() {
+		return training;
 	}
-
-	public Long getTraining_id() {
-		return training_id;
+	public void setTraining(Training training) {
+		this.training = training;
 	}
-
-	public void setTraining_id(Long training_id) {
-		this.training_id = training_id;
-	}
-
 	public String getContent() {
 		return content;
 	}
