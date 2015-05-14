@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+
+<div class="container text-center">
+</div>
+
+<div class="container text-center add-training">
+<!-- 
+<div th:text="${acpc.generate()}">1</div>
+ -->
+<table class="table traininglist">
+		<tr>
+		<th>Names</th>
+		</tr>
+		<tr th:each="admin : ${acpc.admins}">
+	    <td th:text="${admin.name}">1</td>
+		</tr>
+</table>
+	
+	
+<form th:action = "@{/admin/addAdmin}" >
+
+    <fieldset>
+        <legend>Add New Admin Member</legend>
+        <div class="form-group">
+            <label for="New Admin" class="col-lg-2 control-label">New Admin id</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="newAdminId" placeholder="newAdminId" name="newAdminId"  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-default">Add</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+</div>
+</body>
+</html>

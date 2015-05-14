@@ -3,6 +3,10 @@
 <head th:replace="fragments/head :: head">
 </head>
 <body>
+<div class="container text-center">
+    <h2><span class="text-danger">Rakuten</span> Training Registration</h2>
+</div>
+
 <form class="form-narrow form-horizontal" method="post" th:action="@{/signup}" th:object="${signupForm}">
     <!--/* Show general error message when form contains errors */-->
     <th:block th:if="${#fields.hasErrors('${signupForm.*}')}">
