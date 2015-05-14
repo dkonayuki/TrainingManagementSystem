@@ -9,7 +9,7 @@
 
 	<div class="container text-center add-training">
 		<form th:action="@{/trainings}" class="form-horizontal" method="POST"
-			autocomplete="on" th:object="${trainingForm}">
+			autocomplete="on" th:object="${trainingForm}" id="trainingForm">
 
 			<fieldset>
 				<legend>Add a new training program</legend>
@@ -34,9 +34,9 @@
 				<div class="form-group goal-div">
 					<label for="Goal" class="col-lg-2 control-label">Goal</label>
 					<div class="col-lg-8">
-						<div th:each="goal : ${trainingForm.goals}"
+						<div th:each="goal:${trainingForm.goals}"
 							class="entry input-group ">
-							<input class="form-control" th:value="${goal.getContent()}"
+							<input class="form-control form-goal" th:value="${goal}"
 								name="goals" type="text" placeholder="Goal" /> <span
 								class="input-group-btn">
 								<button class="btn btn-success btn-add" type="button">
@@ -50,30 +50,42 @@
 				<div class="form-group">
 					<label for="Outline" class="col-lg-2 control-label">Outline</label>
 					<div class="col-lg-10">
-						<table class="table">
-						<tr>
-						<th>No.</th>
-						<th>Date</th>
-						<th>Content</th>
-						</tr>
-						<tr>
-						<td>1</td>
-						<td>2015/05/04</td>
-						<td>
-							<textarea type="text" class="form-control" placeholder="Outline"
-								th:field="*{outline}" ></textarea>
+						<table class="table outline-table">
+							<tr >
+								<th class="col-lg-4">Date</th>
+								<th class="col-lg-6">Content</th>
+								<th class="col-lg-1"></th>
+								<th></th>
+							</tr>
+							<tr class="entry-row" th:each="outline : ${trainingForm.outlines}">
+								<td>
+									<div class='input-group date date_selector'>
+										<input type='text' name="outline-date" class="form-control"
+											placeholder="" /> <span class="input-group-addon"> <span
+											class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
 								</td>
-								</tr>
+								<td><div class="">
+										<input type="text" class="form-control outline-text"
+											placeholder="Outline" name="outline-text" />
+									</div></td>
+								<td><span class="input-group-btn">
+										<button class="btn btn-success btn-add-outline" type="button">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+								</span></td>
+								<td><input type="hidden" name="outlines" th:value="${outline}"/></td>
+							</tr>
 						</table>
 					</div>
 				</div>
 
-				<!-- 
 				<div class="form-group">
 					<label for="Premise" class="col-lg-2 control-label">Premise</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control"
-							placeholder="Premise" th:field="*{premise}" />
+						<input type="text" class="form-control" placeholder="Premise"
+							th:field="*{premise}" />
 					</div>
 				</div>
 
@@ -101,8 +113,8 @@
 					<label for="Target" class="col-lg-2 control-label">Target
 						people</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control"
-							placeholder="Target" th:field="*{targetPeople}" />
+						<input type="text" class="form-control" placeholder="Target"
+							th:field="*{targetPeople}" />
 					</div>
 				</div>
 
@@ -121,7 +133,7 @@
 				<div class="form-group">
 					<label for="Venue" class="col-lg-2 control-label">Venue</label>
 					<div class="col-lg-10">
-						<select class="col-lg-4" name="venue[]" id="venue"
+						<!--						<select class="col-lg-4" name="venue" id="venue"
 							multiple="multiple">
 							<option value="13">Asakai room</option>
 							<option value="5">Outside</option>
@@ -130,9 +142,12 @@
 							<option value="90">RT2 3F</option>
 							<option value="32">TOEIC Room</option>
 						</select>
+-->
+						<input type="text" class="form-control" placeholder="Venue"
+							th:field="*{venue}" />
 					</div>
 				</div>
-	-->
+
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" class="btn btn-default">Add</button>
@@ -159,14 +174,22 @@
 		$(function() {
 
 			// Date time pickers
-			$('#id_date').datetimepicker();
-			$('#id_duedate').datetimepicker();
-
-			// Multiselect
-			$('#venue').multiselect({
-				buttonWidth : '400px',
-				dropRight : true
+			$('#id_date').datetimepicker({
+				format : "D/MM/YYYY, HH:mm"
 			});
+			$('#id_duedate').datetimepicker({
+				format : "D/MM/YYYY, HH:mm"
+			});
+
+			$('.date_selector').datetimepicker({
+				format : "D/MM/YYYY, HH:mm"
+			});
+			// Multiselect
+			/*			$('#venue').multiselect({
+			 buttonWidth : '400px',
+			 dropRight : true
+			 });
+			 */
 
 			// add more button
 			$(document)
@@ -194,6 +217,67 @@
 						$(this).parents('.entry:first').remove();
 						e.preventDefault();
 						return false;
+					});
+
+			// add more outline button
+			$(document)
+					.on(
+							'click',
+							'.btn-add-outline',
+							function(e) {
+								e.preventDefault();
+
+								var controlForm = $('.outline-table:first'), currentEntry = $(
+										this).parents('.entry-row:first'), newEntry = $(
+										currentEntry.clone()).appendTo(
+										controlForm);
+
+								//								rowCount = controlForm.find('tr').length;
+								//								console.log(rowCount);
+								//								$td = newEntry.find('td:first');
+								//								console.log($td.text());
+								//									$td.text(rowCount - 1) ;
+								newEntry.find('input').val('');
+								newEntry.find('.date_selector').datetimepicker(
+										{
+											format : "D/MM/YYYY, HH:mm"
+										});
+								controlForm
+										.find(
+												'.entry-row:not(:last) .btn-add-outline')
+										.removeClass('btn-add-outline')
+										.addClass('btn-remove-outline')
+										.removeClass('btn-success')
+										.addClass('btn-danger')
+										.html(
+												'<span class="glyphicon glyphicon-minus"></span>');
+							}).on('click', '.btn-remove-outline', function(e) {
+						$(this).parents('.entry-row:first').remove();
+						e.preventDefault();
+						return false;
+					});
+
+			// handle form submit and serialize fields
+
+			$('#trainingForm').on(
+					'submit',
+					function(e) {
+						// e.preventDefault();
+						$this = $(this);
+						$this.find('#outline').val(
+								encodeURIComponent($('table.outline-table')
+										.find('input').serialize()));
+
+						$this.find('.outline-text').each(function() {
+							// This urlencodes value of outlines
+							this.value = encodeURIComponent(this.value);
+						});
+						$this.find('.outline-text').each(function() {
+							// This urlencodes value of outlines
+							this.value = encodeURIComponent(this.value);
+						});
+
+						console.log($(this).serialize());
 					});
 		});
 	</script>

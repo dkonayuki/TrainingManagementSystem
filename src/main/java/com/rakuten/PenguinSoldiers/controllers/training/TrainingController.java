@@ -44,8 +44,8 @@ public class TrainingController {
 	private AccountRepository accountRepository;
 
 	@Autowired
-  private AdminRepository adminRepository;
-	
+	private AdminRepository adminRepository;
+
 	@Autowired
 	private UserService userService;
 
@@ -55,28 +55,15 @@ public class TrainingController {
 		List<Training> trainings = trainingService.findActiveTraining();
 
 		model.addAttribute("trainings", trainings);
-		
+
 		return "training/index";
 	}
-
-	/*
-	 * @RequestMapping(value = "message", method = RequestMethod.GET) public
-	 * String messages(Model model) { model.addAttribute("messages",
-	 * messageRepository.findAll()); return "message/list"; }
-	 */
-
-	/*
-	 * Training a = this.trainingService.findById(3); a.setName("new");
-	 * trainingService.update(a);
-	 */
-	// Training a = new Training("up");
-	// trainingService.save(a);
-	// trainingService.delete(5);
 
 	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)
 	public String show(Principal principal, Model model,
 			@PathVariable Integer id) {
 		Training training = this.trainingService.findById(id);
+		// convert training in
 		model.addAttribute(training);
 		return "training/show";
 	}
@@ -88,19 +75,23 @@ public class TrainingController {
 	}
 
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
-// <<<<<<< HEAD
+	// <<<<<<< HEAD
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
 			Errors errors, final Model model, RedirectAttributes ra) {
-		if(errors.hasErrors()) {
+		if (errors.hasErrors()) {
 			model.addAttribute("trainingForm", trainingForm);
-			//ra.addFlashAttribute("trainingForm", trainingForm);
+			// ra.addFlashAttribute("trainingForm", trainingForm);
 			return "training/new";
 		}
-		
+
 		System.out.println(trainingForm.toString());
+
 		// create new training program item
 		Training tr = trainingForm.createTraining(accountRepository);
-		trainingService.save(tr);
+		if (tr == null) {
+			model.addAttribute("trainingForm", trainingForm);
+			return "training/new";
+		}
 		/*
 		 * Long training_id = tr.getId();
 		 * 
@@ -122,32 +113,30 @@ public class TrainingController {
 		// return to home
 		// return "redirect:/";
 		/*
-=======
-	public String addAction(@RequestParam("name") String name, @RequestParam("overview") String overview, 
-			@RequestParam("goal") String goal, @RequestParam("date") String date, @RequestParam("target") String target, 
-			@RequestParam("participantNum") String participantNum, @RequestParam("duedate") String duedate, 
-			@RequestParam("outline") String outline,
-			@RequestParam("premise") String premise, ModelMap model)
-	{
-		// create new training program item
-		Training tr = new Training(name, overview, participantNum);
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		Account user = accountRepository.findByEmail(userDetails.getUsername());
-		tr.setAdmin(user);
-		/*
-		for (String goal : goals) {
-			if (!goal.isEmpty()) {
-				Goal g = new Goal(goal);
-				tr.addGoal(g);
-				g.setTraining(tr);				
-			}
-		}
-		*/
+		 * ======= public String addAction(@RequestParam("name") String name,
+		 * @RequestParam("overview") String overview,
+		 * 
+		 * @RequestParam("goal") String goal, @RequestParam("date") String date,
+		 * @RequestParam("target") String target,
+		 * 
+		 * @RequestParam("participantNum") String participantNum,
+		 * @RequestParam("duedate") String duedate,
+		 * 
+		 * @RequestParam("outline") String outline,
+		 * 
+		 * @RequestParam("premise") String premise, ModelMap model) { // create
+		 * new training program item Training tr = new Training(name, overview,
+		 * participantNum); UserDetails userDetails =
+		 * (UserDetails)SecurityContextHolder
+		 * .getContext().getAuthentication().getPrincipal();
+		 * 
+		 * Account user =
+		 * accountRepository.findByEmail(userDetails.getUsername());
+		 * tr.setAdmin(user); /* for (String goal : goals) { if
+		 * (!goal.isEmpty()) { Goal g = new Goal(goal); tr.addGoal(g);
+		 * g.setTraining(tr); } }
+		 */
 		trainingService.save(tr);
-
->>>>>>> develop
-*/
 		return "redirect:trainings/" + tr.getId();
 	}
 
