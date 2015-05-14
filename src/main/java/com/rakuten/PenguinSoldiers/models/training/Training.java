@@ -38,6 +38,18 @@ public class Training implements java.io.Serializable {
 	@JoinColumn(name = "admin_id")
   private Account admin;
 	
+	@Lob
+	private String target;
+	@Lob
+	private String premise;
+	@Lob
+	private String outline;
+	@Lob
+	private String goal;
+	@Lob
+	private String venue;
+	
+	/*
 	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Target> targets;
 	
@@ -51,7 +63,7 @@ public class Training implements java.io.Serializable {
 	private List<Goal> goals;
 	
 	@OneToMany(mappedBy = "training", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Venue> venues;
+	private List<Venue> venues;*/
 	
 	/*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
   @JoinTable(name="account_training", 
@@ -75,17 +87,61 @@ public class Training implements java.io.Serializable {
 		this.name = name;
 		this.overview = overview;
 		this.max_participants = Integer.parseInt(participantNum);
+		/*
 		this.goals = new ArrayList<Goal>();
 		this.outlines = new ArrayList<Outline>();
 		this.venues = new ArrayList<Venue>();
 		this.targets = new ArrayList<Target>();
 		this.premises = new ArrayList<Premise>();
+		*/
+	}
+	
+	
+
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
+	}
+
+	public String getPremise() {
+		return premise;
+	}
+
+	public void setPremise(String premise) {
+		this.premise = premise;
+	}
+
+	public String getOutline() {
+		return outline;
+	}
+
+	public void setOutline(String outline) {
+		this.outline = outline;
+	}
+
+	public String getGoal() {
+		return goal;
+	}
+
+	public void setGoal(String goal) {
+		this.goal = goal;
+	}
+
+	public String getVenue() {
+		return venue;
+	}
+
+	public void setVenue(String venue) {
+		this.venue = venue;
 	}
 
 	public Integer getId() {
 		return id;
 	}
-	
+	/*
 	public List<Target> getTargets() {
 		return targets;
 	}
@@ -129,6 +185,7 @@ public class Training implements java.io.Serializable {
 	public void setVenues(List<Venue> venues) {
 		this.venues = venues;
 	}
+	*/
 
 	public Account getAdmin() {
 		return admin;
