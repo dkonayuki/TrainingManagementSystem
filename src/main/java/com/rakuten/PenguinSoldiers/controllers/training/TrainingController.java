@@ -46,8 +46,8 @@ public class TrainingController {
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
-		List<Training> trainings = trainingService.findActiveTraining();
-
+//		List<Training> trainings = trainingService.findActiveTraining();
+		List<Training> trainings = trainingService.findAll();
 		model.addAttribute("trainings", trainings);
 		
 		return "training/index";
@@ -77,10 +77,18 @@ public class TrainingController {
 	public String addTrainingPrograms() {
 		return "training/new";
 	}
+	
+	@RequestMapping(value = "trainings/{id}", method=RequestMethod.DELETE)
+	public String destroy(@PathVariable Integer id) {
+		System.out.println(id);
+		
+		trainingService.delete(id);
+		return "redirect:trainings";
+	}
 
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 	public String addAction(@RequestParam("name") String name, @RequestParam("overview") String overview, 
-			@RequestParam("goals[]") String[] goals, @RequestParam("date") String date, @RequestParam("target") String target, 
+			@RequestParam("goals[]") String goal, @RequestParam("date") String date, @RequestParam("target") String target, 
 			@RequestParam("participantNum") String participantNum, @RequestParam("duedate") String duedate, 
 			@RequestParam("outline") String outline,
 			@RequestParam("premise") String premise, ModelMap model)
@@ -91,7 +99,7 @@ public class TrainingController {
 
 		Account user = accountRepository.findByEmail(userDetails.getUsername());
 		tr.setAdmin(user);
-		
+		/*
 		for (String goal : goals) {
 			if (!goal.isEmpty()) {
 				Goal g = new Goal(goal);
@@ -99,7 +107,7 @@ public class TrainingController {
 				g.setTraining(tr);				
 			}
 		}
-		
+		*/
 		trainingService.save(tr);
 
 		return "redirect:trainings/" + tr.getId();

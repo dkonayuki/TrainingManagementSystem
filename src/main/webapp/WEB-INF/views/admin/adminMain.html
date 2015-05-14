@@ -24,12 +24,16 @@
 		<th>Details</th>
 		<th>Date</th>
 		<th>Status</th>
+		<th>Action</th>
 		</tr>
 		<tr th:each="training : ${trainings}">
 	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
 	    <td th:text="${training.overview}">1</td>
 	    <td th:text="${training.due_date}">1</td>
 	    <td th:text="${training.status}">1</td>
+	    <td>
+        <li><a href="/training/edit" th:href="@{training/edit}" >Edit</a></li>
+        </td>
 		</tr>
 	</table>	
 

@@ -27,6 +27,7 @@ public class Admin implements java.io.Serializable {
   
   private Long addedBy;
   
+  @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
   private Timestamp addedOn;
   
   public Long getId() {
