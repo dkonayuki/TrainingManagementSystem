@@ -19,7 +19,8 @@
 					<div class="col-lg-10">
 						<input type="text" class="form-control" placeholder="Name"
 							th:field="*{name}" /> <span class="help-block"
-							th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name can't be left empty</span>
+							th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
+							can't be left empty</span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -33,9 +34,11 @@
 				<div class="form-group goal-div">
 					<label for="Goal" class="col-lg-2 control-label">Goal</label>
 					<div class="col-lg-8">
-						<div th:each="goal : ${trainingForm.goals}" class="entry input-group ">
-							<input class="form-control" th:value="${goal}" name="goals" type="text"
-								placeholder="Goal" /> <span class="input-group-btn">
+						<div th:each="goal : ${trainingForm.goals}"
+							class="entry input-group ">
+							<input class="form-control" th:value="${goal.getContent()}"
+								name="goals" type="text" placeholder="Goal" /> <span
+								class="input-group-btn">
 								<button class="btn btn-success btn-add" type="button">
 									<span class="glyphicon glyphicon-plus"></span>
 								</button>
@@ -44,15 +47,28 @@
 					</div>
 				</div>
 
-				<!-- 
 				<div class="form-group">
 					<label for="Outline" class="col-lg-2 control-label">Outline</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control"
-							placeholder="Outline" th:field="*{outline}" />
+						<table class="table">
+						<tr>
+						<th>No.</th>
+						<th>Date</th>
+						<th>Content</th>
+						</tr>
+						<tr>
+						<td>1</td>
+						<td>2015/05/04</td>
+						<td>
+							<textarea type="text" class="form-control" placeholder="Outline"
+								th:field="*{outline}" ></textarea>
+								</td>
+								</tr>
+						</table>
 					</div>
 				</div>
 
+				<!-- 
 				<div class="form-group">
 					<label for="Premise" class="col-lg-2 control-label">Premise</label>
 					<div class="col-lg-10">

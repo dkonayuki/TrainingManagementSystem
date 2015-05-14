@@ -90,8 +90,10 @@ public class TrainingController {
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 // <<<<<<< HEAD
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
-			Errors errors, RedirectAttributes ra) {
+			Errors errors, final Model model, RedirectAttributes ra) {
 		if(errors.hasErrors()) {
+			model.addAttribute("trainingForm", trainingForm);
+			//ra.addFlashAttribute("trainingForm", trainingForm);
 			return "training/new";
 		}
 		

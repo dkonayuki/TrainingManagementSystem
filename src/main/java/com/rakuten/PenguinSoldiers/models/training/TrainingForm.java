@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
+import com.rakuten.PenguinSoldiers.models.goal.Goal;
+import com.rakuten.PenguinSoldiers.models.outline.Outline;
 
 /** Class for handling request for adding new training */
 public class TrainingForm {
@@ -22,10 +24,10 @@ public class TrainingForm {
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String overview;
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private List<String> goals;
-/*	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private String outline;
+	private List<Goal> goals;
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private List<Outline> outline;
+	/*	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String premise;
 	private String date;
 	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
@@ -38,8 +40,8 @@ public class TrainingForm {
 	*/
 	
 	public TrainingForm() {
-		goals = new ArrayList<String>();
-		goals.add("");
+		goals = new ArrayList<Goal>();
+		goals.add(new Goal("goal12"));
 	}
 	
 	public String getName() {
@@ -58,23 +60,23 @@ public class TrainingForm {
 		this.overview = overview;
 	}
 
-	public List<String> getGoals() {
+	public List<Goal> getGoals() {
 		return this.goals;
 	}
 
-	public void setGoals(List<String> goals) {
+	public void setGoals(List<Goal> goals) {
 		this.goals = goals;
 	}
 
-	/*
-	public String getOutline() {
+	public List<Outline> getOutline() {
 		return this.outline;
 	}
 
-	public void setOutline(String outline) {
+	public void setOutline(List<Outline> outline) {
 		this.outline = outline;
 	}
-
+	
+	/*
 	public String getPremise() {
 		return this.premise;
 	}
@@ -138,7 +140,7 @@ public class TrainingForm {
 	}
 
 	public String toString() {
-		return "name:" + name + ", overview:" + overview + ", goals:" + goals.toString();
+		return "name:" + name + ", overview:" + overview + ", goals:" + goals.get(0).getContent();
 				/* + ", outline:" + outline + ", premise:" + premise + ", date:" + date 
 				+ ", targetPeople:" + targetPeople + ", participantnumber:" + participantNumber + ", duedate:" + dueDate
 				+ ", venue:" + venue.toString(); */
