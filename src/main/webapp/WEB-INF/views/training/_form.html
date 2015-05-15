@@ -24,7 +24,7 @@
 
 		<div class="form-group goal-div">
 			<label for="Goal" class="col-lg-2 control-label">Goal</label>
-			<div class="col-lg-8">
+			<div class="col-lg-10">
 				<div th:each="goal:${trainingForm.goals}" class="entry input-group ">
 					<input class="form-control form-goal" th:value="${goal}"
 						name="goals" type="text" placeholder="Goal" /> <span
@@ -43,7 +43,7 @@
 				<table class="table outline-table">
 					<tr>
 						<th class="col-lg-4">Date</th>
-						<th class="col-lg-6">Content</th>
+						<th class="col-lg-8">Content</th>
 						<th class="col-lg-1"></th>
 						<th></th>
 					</tr>
