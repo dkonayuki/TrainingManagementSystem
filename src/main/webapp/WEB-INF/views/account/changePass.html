@@ -5,34 +5,31 @@
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
 
-
 <form class="form-narrow form-horizontal" action="#" method="post" th:action="@{./changePassword}" th:object="${changePassForm}" >
 
     <fieldset>
         <legend>You want to change password?</legend>
         <div class="form-group">
-            <label for="oldPass" class="col-lg-2 control-label">Old Password</label>
+            <label for="oldPass" class="col-lg-2 control-label">Old </label>
             <div class="col-lg-10">
                 <input type="password" class="form-control" id="oldPass" placeholder="Old Password" th:field="*{oldPass}" />
-                <span class="help-block" th:if="${#fields.hasErrors('oldPass')}" th:errors="*{oldPass}">No such email</span>
+                <span class="help-block" th:if="${oldPassError!=null}" th:text="${oldPassError}">Incorrect email</span>
             </div>
 
         </div>
         <div class="form-group">
-            <label for="newPass" class="col-lg-2 control-label">New Password</label>
+            <label for="newPass" class="col-lg-2 control-label">New </label>
             <div class="col-lg-10">
                 <input type="password" class="form-control" id="newPass" placeholder="New Password" th:field="*{newPass}" />
-                <span class="help-block" th:if="${#fields.hasErrors('oldPass')}" th:errors="*{oldPass}">No such email</span>
             </div>
 
         </div>
         <div class="form-group">
-            <label for="cNewPass" class="col-lg-2 control-label">Confirm New Password</label>
+            <label for="cNewPass" class="col-lg-2 control-label">Confirm</label>
             <div class="col-lg-10">
-                <input type="password" class="form-control" id="cNewPass" placeholder="Confirm New Password" th:field="*{cNewPass}"  />
-                <span class="help-block" th:if="${#fields.hasErrors('oldPass')}" th:errors="*{oldPass}">No such email</span>
+                <input type="password" class="form-control" id="cNewPass" placeholder="Confirm New Password" th:field="*{cNewPass}"/>
+                <span class="help-block" th:if="${cNewPassError!=null}" th:text="${cNewPassError}">Incorrect email</span>
             </div>
-
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
