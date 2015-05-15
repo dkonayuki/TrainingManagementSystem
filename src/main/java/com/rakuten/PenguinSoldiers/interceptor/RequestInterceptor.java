@@ -36,11 +36,13 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
     throws Exception {
+
     String username="";
     UserDetails ud=ControllerUtil.getUserDetails();
     if(ud!=null)
       username=ud.getUsername();
-    modelAndView.addObject("pageContent",HeaderPageContentBuilder.build(accountRepository, adminRepository, username));
+    modelAndView.addObject("pageContent",HeaderPageContentBuilder.build(accountRepository, adminRepository, username,request.getServletPath()));
+
 //    System.out.println("---After Method Execution---postHandle()");
   }
   

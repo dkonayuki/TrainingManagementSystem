@@ -9,12 +9,14 @@
 </div>
 
 <div class="container text-center add-training">
-<!-- 
+<!--  
 <div th:text="${acpc.generate()}">1</div>
  -->
-<table class="table traininglist">
+ 
+ 
+<table class="table">
 		<tr>
-		<th>Names</th>
+		<th>Current Admin:</th>
 		</tr>
 		<tr th:each="admin : ${acpc.admins}">
 	    <td th:text="${admin.name}">1</td>
@@ -27,9 +29,9 @@
     <fieldset>
         <legend>Add New Admin Member</legend>
         <div class="form-group">
-            <label for="New Admin" class="col-lg-2 control-label">New Admin id</label>
+            <label for="New Admin" class="col-lg-2 control-label">New Admin Username</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="newAdminId" placeholder="newAdminId" name="newAdminId"  />
+                <input type="text" class="form-control" id="newAdminId" placeholder="" name="newAdminId"  />
             </div>
         </div>
 

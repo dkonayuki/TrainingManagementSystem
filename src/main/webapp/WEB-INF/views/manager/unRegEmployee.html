@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+
+<div class="container" align="left">
+    <u>
+    <h2 th:text="'Unregister Employee to '+ ${tumc.training.getName()}"> Manage trainings </h2>
+    </u>
+</div>
+
+
+<!--  
+<table class="table">
+		<tr>
+		<th>Registered:</th>
+		</tr>
+		<tr th:each="list: ${tumc.out}">
+	    <td th:text="${list.getName()}">1</td>
+		</tr>
+</table>
+	 -->
+	 
+	 <a class="training-delete-btn" href="#" th:href="@{/manager/manage(id=${regEmployeeForm.getTrainingId()})}"><span class="glyphicon glyphicon-plus"></span></a>
+<div th:if="${tumc.getIn().size()>0}">
+<form th:action = "@{/manager/removeEmployee}" th:object="${regEmployeeForm}"  >
+
+    <fieldset>
+        <legend></legend>
+        <div class="form-group">
+            <label for="New Admin" class="col-lg-2 control-label">Registered Employees</label>
+            <select multiple="multiple" class="form-control" id="regAccount" th:field="*{in}" >
+              <option th:each="list : ${tumc.getIn()}" th:text="${list.getName()}" th:value="${list.getId()}" value="1">1</option>
+            </select>
+            <input type="hidden" class="form-control" id="trainingId" placeholder="trainingId" th:field="*{trainingId}" th:value="${regEmployeeForm.getTrainingId()}"/>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-default">Remove</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+</div>
+
+<div th:if="${tumc.getIn().size()==0}">
+Noone is registered
+</div>
+
+</body>
+</html>

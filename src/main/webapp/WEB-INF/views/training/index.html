@@ -6,8 +6,8 @@
 	<div th:replace="fragments/header :: header">Header</div>
 	<div class="container">
 
-	<h2>List of all trainings</h2>
-	<table id="training-list" class="table traininglist">
+	<u><h2>List of all training history</h2></u>
+	<table class="table roundtable">
 		<tr>
 		<th>Training Name</th>
 		<th>Details</th>
@@ -23,6 +23,7 @@
 	    <td>
 	    	<a href="#" th:href="@{/trainings/{id}/edit(id=${training.id})}"><span class="glyphicon glyphicon-pencil"></span></a>
 	    	<a class="training-delete-btn" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+	    	<a class="training-delete-btn" href="#" th:href="@{/manager/manage(id=${training.id})}"><span class="glyphicon glyphicon-plus"></span></a>
 	    </td>
 		</tr>
 	</table>
