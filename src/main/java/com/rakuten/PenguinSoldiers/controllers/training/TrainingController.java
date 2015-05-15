@@ -52,8 +52,10 @@ public class TrainingController {
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
-		List<Training> trainings = trainingService.findActiveTraining();
+		//List<Training> trainings = trainingService.findActiveTraining();
 
+		List<Training> trainings = trainingService.findAll();
+		
 		model.addAttribute("trainings", trainings);
 
 		return "training/index";
@@ -65,17 +67,48 @@ public class TrainingController {
 		Training training = this.trainingService.findById(id);
 		// convert training in
 		model.addAttribute(training);
+		
 		return "training/show";
 	}
+	
+	@RequestMapping(value = "trainings/{id}/edit", method = RequestMethod.GET)
+	public String edit(Model model, @PathVariable Integer id) {
+		Training training = this.trainingService.findById(id);
+		model.addAttribute("trainingForm", TrainingForm.createForm(training));
+		model.addAttribute("training", training);
 
+		return "training/edit";
+	}
+	
+	@RequestMapping(value = "trainings/{id}", method = RequestMethod.POST)
+	public String update(@Valid @ModelAttribute TrainingForm trainingForm,
+			Errors errors, final Model model, RedirectAttributes ra, @PathVariable Integer id) {
+		Training training = this.trainingService.findById(id);
+		Training tr = trainingForm.createTraining(accountRepository);
+		
+		training.copy(tr);
+		
+		trainingService.update(training);
+
+		return "redirect:/trainings/" + training.getId();
+	}
+	
 	@RequestMapping(value = "trainings/new", method = RequestMethod.GET)
 	public String addTrainingPrograms(Model model) {
 		model.addAttribute("trainingForm", new TrainingForm());
 		return "training/new";
 	}
+	
+	@RequestMapping(value = "trainings/{id}", produces="text/html", method = RequestMethod.DELETE)
+	@ResponseBody
+	public String destroy(@PathVariable Integer id) {
+		System.out.println(id);
+		
+		trainingService.delete(id);
+		return "redirect:trainings";
+	}
 
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
-	// <<<<<<< HEAD
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
 			Errors errors, final Model model, RedirectAttributes ra) {
 		if (errors.hasErrors()) {
@@ -96,52 +129,9 @@ public class TrainingController {
 			model.addAttribute("trainingForm", trainingForm);
 			return "training/new";
 		}
-		/*
-		 * Long training_id = tr.getId();
-		 * 
-		 * // add training goal Goal gl = new Goal(goal);
-		 * gl.setTraining_id(training_id);
-		 * 
-		 * // add training outline Outline ol = new Outline(outline);
-		 * ol.setTraining_id(training_id);
-		 * 
-		 * // add training premise Premise pr = new Premise(premise);
-		 * pr.setTraining_id(training_id);
-		 * 
-		 * // add training target people Target ta = new Target(target);
-		 * ta.setTraining_id(training_id);
-		 * 
-		 * // add training venue info Venue ve = new Venue(venue);
-		 * ve.setTraining_id(training_id);
-		 */
-		// return to home
-		// return "redirect:/";
-		/*
-		 * ======= public String addAction(@RequestParam("name") String name,
-		 * @RequestParam("overview") String overview,
-		 * 
-		 * @RequestParam("goal") String goal, @RequestParam("date") String date,
-		 * @RequestParam("target") String target,
-		 * 
-		 * @RequestParam("participantNum") String participantNum,
-		 * @RequestParam("duedate") String duedate,
-		 * 
-		 * @RequestParam("outline") String outline,
-		 * 
-		 * @RequestParam("premise") String premise, ModelMap model) { // create
-		 * new training program item Training tr = new Training(name, overview,
-		 * participantNum); UserDetails userDetails =
-		 * (UserDetails)SecurityContextHolder
-		 * .getContext().getAuthentication().getPrincipal();
-		 * 
-		 * Account user =
-		 * accountRepository.findByEmail(userDetails.getUsername());
-		 * tr.setAdmin(user); /* for (String goal : goals) { if
-		 * (!goal.isEmpty()) { Goal g = new Goal(goal); tr.addGoal(g);
-		 * g.setTraining(tr); } }
-		 */
+		
 		trainingService.save(tr);
-		return "redirect:trainings/" + tr.getId();
+		return "redirect:/trainings/" + tr.getId();
 	}
 
 }

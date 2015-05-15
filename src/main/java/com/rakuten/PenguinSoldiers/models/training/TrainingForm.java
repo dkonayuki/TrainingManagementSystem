@@ -21,25 +21,25 @@ public class TrainingForm {
 	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
 	private static final String INVALID_DATE_MESSAGE = "{invalidDate.message}";
 	private static final String INVALID_INTEGER_MESSAGE = "{invalidInteger.message}";
-	
+
 	public static final String STATUS_OPEN = "open";
 	public static final String STATUS_CLOSED = "closed";
 	public static final String STATUS_ALMOST = "almost";
 
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String name;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String overview;
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private List<String> goals;
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private List<String> outlines;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String premise;
-	
+
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String date;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String targetPeople;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String participantNumber;
@@ -50,12 +50,27 @@ public class TrainingForm {
 	private String venue;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String status;
-	
+
 	public TrainingForm() {
 		goals = new ArrayList<String>();
 		outlines = new ArrayList<String>();
 		goals.add("");
 		outlines.add("");
+	}
+
+	public TrainingForm(Training training) {
+		this.name = training.getName();
+		this.overview = training.getOverview();
+		this.premise = training.getPremise();
+		this.venue = training.getVenue();
+		this.dueDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm")
+				.format(training.getDue_date());
+		this.date = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(training
+				.getStart_date());
+		// TODO
+		this.targetPeople = training.getTarget();
+		this.participantNumber = String.valueOf(training.getMax_participants());
+		this.status = training.getStatus();
 	}
 
 	public String getName() {
@@ -137,13 +152,18 @@ public class TrainingForm {
 	public void setVenue(String venue) {
 		this.venue = venue;
 	}
-	
+
 	public String getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public static TrainingForm createForm(Training training) {
+		TrainingForm tf = new TrainingForm(training);
+		return tf;
 	}
 
 	public Training createTraining(AccountRepository accountRepository) {
@@ -180,10 +200,11 @@ public class TrainingForm {
 	}
 
 	public String toString() {
-		return "name:" + name + ", overview:" + overview + ", goals:" + goals.toString()
-				+ ", outline:" + outlines.toString() + ", premise:" + premise + ", date:"
-				+ date + ", targetPeople:" + targetPeople
-				+ ", participantnumber:" + participantNumber + ", duedate:"
-				+ dueDate + ", venue:" + venue + ", status:" + status;
+		return "name:" + name + ", overview:" + overview + ", goals:"
+				+ goals.toString() + ", outline:" + outlines.toString()
+				+ ", premise:" + premise + ", date:" + date + ", targetPeople:"
+				+ targetPeople + ", participantnumber:" + participantNumber
+				+ ", duedate:" + dueDate + ", venue:" + venue + ", status:"
+				+ status;
 	}
 }

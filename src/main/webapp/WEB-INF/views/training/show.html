@@ -14,22 +14,11 @@
 		</div>
 		<div class="details">
 		<h3><small>Training Goal</small></h3>
-		<ul class="details">
-		<li>Nulla sit amet lorem eu mi aliquam dictum bibendum id dui.</li>
-		<li>Curabitur ante ipsum, congue sit amet ornare nec, pharetra fringilla metus. </li>
-		<li>Nulla facilisi. Suspendisse potenti. Vestibulum ut pellentesque urna. </li>
-		 </ul>
+		<p th:text="${training.goal}"></p>
 		</div>
 		<div class="details">
 		<h3><small>Target People</small></h3>
-		<ul class="details">
-		<li>Fusce mi quam, placerat in accumsan in, mattis sit amet arcu.</li>
-		<li>Vestibulum at efficitur lorem, nec porta dui.</li>
-		 </ul>
-		</div>
-		<div class="details">
-		<h3><small>Training Date </small></h3>
-		<h3>2015 May 04</h3>
+		<p th:text="${training.target}"></p>
 		</div>
 		<div class="details">
 		<h3><small>Number of participants</small></h3>
@@ -37,13 +26,16 @@
 		</div>
 		<div >
 		<h3><small>Training Venue</small></h3>
-		<h3>The Bridge</h3>
+		<h3 th:text="${training.venue}">The Bridge</h3>
 		</div>
 		<div class="details">
 		<h3><small>Goals</small></h3>
+		<h3 th:text="${training.goal}">The Bridge</h3>
+		<!-- 
 		<ul>
-		<li th:each="goal : ${training.getGoals()}" th:text="${goal.content}">En las Orillas del Sar</li>
+		<li th:each="goal : ${training.getGoal()}" th:text="${goal.content}">En las Orillas del Sar</li>
 		</ul>
+		 -->
 		</div>
 		
 	</div>
