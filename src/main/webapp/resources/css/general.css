@@ -30,7 +30,7 @@ div.form-group {
 
 
 /* Design for add button */
-.entry:not(:first-of-type) {
+.entry:not(:first-of-type), .entry-row:not(:first-of-type) {
     margin-top: 10px;
 }
 
