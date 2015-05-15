@@ -18,9 +18,9 @@
 			</div>
 			<div class="navbar-collapse collapse" id="navBarCollapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#" th:href="@{/}">Home</a></li>
-					<li><a href="/trainings" th:href="@{/trainings}">Training</a></li>
-					<li th:if="${pageContent.isAdmin()||pageContent.isManager()}" class="dropdown"><a href="#" class="dropdown-toggle"
+					<li th:class="${pageContent.showActiveLabel(pageContent.HOME_LABEL)}" class=""><a href="#" th:href="@{/}">Home</a></li>
+					<li th:class="${pageContent.showActiveLabel(pageContent.TRAINING_LABEL)}" class=""><a href="/trainings" th:href="@{/trainings}">Training</a></li>
+					<li th:class="'dropdown '+ ${pageContent.showActiveLabel(pageContent.MODE_LABEL)}" th:if="${pageContent.isAdmin()||pageContent.isManager()}" class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false">Mode
 							<span class="caret"></span>
 					</a>
@@ -37,7 +37,7 @@
 				
 				
 				<ul class="nav navbar-nav navbar-right">
-				    <li class="dropdown">
+				    <li th:class="'dropdown '+ ${pageContent.showActiveLabel(pageContent.ACCOUNT_LABEL)}" class="">
 				      <a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false">Account
 							<span class="caret"></span>

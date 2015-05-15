@@ -7,15 +7,46 @@
 
 <div class="container" align="left">
     <u>
-    <h2> Manage trainings </h2>
+    <h2 th:text="'Register Employee to '+${tumc.training.getName()}"> Manage trainings </h2>
     </u>
 </div>
 
-<div class="container text-center">
-		<div class="text-center">
-			<h2>Please Make the training reservation for your group members here</h2>
-			
-		</div>
-	</div>
+
+ 
+<table class="table">
+		<tr>
+		<th>Registered: <a class="training-delete-btn" href="#" th:href="@{/manager/remove(id=${regEmployeeForm.getTrainingId()})}"><span class="glyphicon glyphicon-minus"></span></a></th>
+		</tr>
+		<tr th:each="in: ${tumc.in}">
+	    <td th:text="${in.getName()}">1</td>
+		</tr>
+</table>
+
+	
+<div th:if="${tumc.getOut().size()>0}">
+<form th:action = "@{/manager/addEmployee}" th:object="${regEmployeeForm}"  >
+
+    <fieldset>
+        <legend></legend>
+        <div class="form-group">
+            <label for="New Admin" class="col-lg-2 control-label">Employees</label>
+            <select multiple="multiple" class="form-control" id="regAccount" th:field="*{out}" >
+              <option th:each="list : ${tumc.getOut()}" th:text="${list.getName()}" th:value="${list.getId()}" value="1">1</option>
+            </select>
+            <input type="hidden" class="form-control" id="trainingId" placeholder="trainingId" th:field="*{trainingId}" th:value="${regEmployeeForm.getTrainingId()}"/>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-default">Add</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+</div>
+<div th:if="${tumc.getOut().size()==0}">
+Everyone is registered
+</div>
+
 </body>
 </html>
