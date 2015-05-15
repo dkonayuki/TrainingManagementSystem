@@ -22,12 +22,14 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
   @Autowired
   private AccountRepository accountRepository;
   
-  
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
     throws Exception {
     
 //    System.out.println("---Before Method Execution---preHandle()");
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Methods",
+                       "GET, POST, PUT, DELETE, OPTIONS");
     return true;
   }
   
