@@ -33,7 +33,7 @@
 
 				<div class="form-group goal-div">
 					<label for="Goal" class="col-lg-2 control-label">Goal</label>
-					<div class="col-lg-8">
+					<div class="col-lg-10">
 						<div th:each="goal:${trainingForm.goals}"
 							class="entry input-group ">
 							<input class="form-control form-goal" th:value="${goal}"
@@ -51,13 +51,14 @@
 					<label for="Outline" class="col-lg-2 control-label">Outline</label>
 					<div class="col-lg-10">
 						<table class="table outline-table">
-							<tr >
+							<tr>
 								<th class="col-lg-4">Date</th>
-								<th class="col-lg-6">Content</th>
+								<th class="col-lg-7">Content</th>
 								<th class="col-lg-1"></th>
 								<th></th>
 							</tr>
-							<tr class="entry-row" th:each="outline : ${trainingForm.outlines}">
+							<tr class="entry-row"
+								th:each="outline : ${trainingForm.outlines}">
 								<td>
 									<div class='input-group date date_selector'>
 										<input type='text' name="outline-date" class="form-control"
@@ -75,7 +76,8 @@
 											<span class="glyphicon glyphicon-plus"></span>
 										</button>
 								</span></td>
-								<td><input type="hidden" name="outlines" class="outline-input" th:value="${outline}"/></td>
+								<td><input type="hidden" name="outlines"
+									class="outline-input" th:value="${outline}" /></td>
 							</tr>
 						</table>
 					</div>
@@ -148,6 +150,16 @@
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label for="Status" class="col-lg-2 control-label">Status</label>
+					<div class="col-lg-10">
+						<select class="col-lg-6 form-control" th:field="*{status}" id="status">
+							<option th:value="${trainingForm.STATUS_OPEN}">Open</option>
+							<option th:value="${trainingForm.STATUS_ALMOST}">Almost full</option>
+							<option th:value="${trainingForm.STATUS_CLOSED}">Closed</option>
+						</select>
+					</div>
+				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 						<button type="submit" class="btn btn-default">Add</button>
@@ -264,22 +276,27 @@
 					function(e) {
 						// e.preventDefault();
 						$this = $(this);
-						$this.find('.outline-input').each(function() {
-							$t2 = $(this);
-//							console.log('this is');
-//							console.log($t2);
-//							console.log($t2.parents('tr').find('input'));
-//							console.log($t2.parents('tr').find('input').serialize());
-							enc = encodeURIComponent($t2.parents('tr').find('input').not($t2).serialize());
-							$t2.val(enc);
-							//val(encodeURIComponent($('table.outline-table')));
-						});
+						$this.find('.outline-input')
+								.each(
+										function() {
+											$t2 = $(this);
+											//							console.log('this is');
+											//							console.log($t2);
+											//							console.log($t2.parents('tr').find('input'));
+											//							console.log($t2.parents('tr').find('input').serialize());
+											enc = encodeURIComponent($t2
+													.parents('tr')
+													.find('input').not($t2)
+													.serialize());
+											$t2.val(enc);
+											//val(encodeURIComponent($('table.outline-table')));
+										});
 
 						$this.find('.outline-text').each(function() {
 							// This urlencodes value of outlines
 							this.value = encodeURIComponent(this.value);
 						});
-						
+
 						console.log($(this).serialize());
 					});
 		});

@@ -21,6 +21,10 @@ public class TrainingForm {
 	private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
 	private static final String INVALID_DATE_MESSAGE = "{invalidDate.message}";
 	private static final String INVALID_INTEGER_MESSAGE = "{invalidInteger.message}";
+	
+	public static final String STATUS_OPEN = "open";
+	public static final String STATUS_CLOSED = "closed";
+	public static final String STATUS_ALMOST = "almost";
 
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String name;
@@ -30,19 +34,23 @@ public class TrainingForm {
 	private List<String> goals;
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private List<String> outlines;
-	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String premise;
+	
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String date;
-	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String targetPeople;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String participantNumber;
 
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String dueDate;
-	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String venue;
-
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private String status;
+	
 	public TrainingForm() {
 		goals = new ArrayList<String>();
 		outlines = new ArrayList<String>();
@@ -129,6 +137,14 @@ public class TrainingForm {
 	public void setVenue(String venue) {
 		this.venue = venue;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public Training createTraining(AccountRepository accountRepository) {
 		Training tr = new Training(name, overview, participantNumber);
@@ -137,6 +153,7 @@ public class TrainingForm {
 		tr.setOutline(outlines.toString());
 		tr.setVenue(venue);
 		tr.setPremise(premise);
+		tr.setStatus(status);
 
 		// convert string date to DateTime
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
@@ -167,6 +184,6 @@ public class TrainingForm {
 				+ ", outline:" + outlines.toString() + ", premise:" + premise + ", date:"
 				+ date + ", targetPeople:" + targetPeople
 				+ ", participantnumber:" + participantNumber + ", duedate:"
-				+ dueDate + ", venue:" + venue;
+				+ dueDate + ", venue:" + venue + ", status:" + status;
 	}
 }
