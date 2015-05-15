@@ -29,7 +29,7 @@ public class Training implements java.io.Serializable {
 
 	public static final String FIND_BY_ID = "Training.findById";
 	public static final String FIND_ACTIVE_TRAINING= "Training.findActiveTraining";
-
+	
 	@Id
 	@GeneratedValue
 	private Integer id;

@@ -138,6 +138,18 @@
 					th:field="*{venue}" />
 			</div>
 		</div>
+		<div class="form-group">
+			<label for="Status" class="col-lg-2 control-label">Status</label>
+			<div class="col-lg-10">
+				<select class="col-lg-6 form-control" th:field="*{status}"
+					id="status">
+					<option th:value="${trainingForm.STATUS_OPEN}">Open</option>
+					<option th:value="${trainingForm.STATUS_ALMOST}">Almost
+						full</option>
+					<option th:value="${trainingForm.STATUS_CLOSED}">Closed</option>
+				</select>
+			</div>
+		</div>
 
 		<div class="form-group">
 			<div class="col-lg-offset-2 col-lg-10">
