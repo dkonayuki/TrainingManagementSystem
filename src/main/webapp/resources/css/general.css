@@ -135,3 +135,13 @@ table.roundtable tr {
 table.roundtable tr:nth-child(2n+1) {
   background: #e1e1e1;
 }
+/*table design end */
+
+/*admin page design BEGIN*/
+div.all-content {
+	border: 1px dashed #ccc;
+	border-top: 2px solid #333;
+}
+
+
+/*admin page design END*/
