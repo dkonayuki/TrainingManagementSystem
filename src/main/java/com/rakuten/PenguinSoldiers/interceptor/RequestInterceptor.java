@@ -39,7 +39,7 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
     UserDetails ud=ControllerUtil.getUserDetails();
     if(ud!=null)
       username=ud.getUsername();
-    modelAndView.addObject("pageContent",HeaderPageContentBuilder.build(accountRepository, adminRepository, username));
+    modelAndView.addObject("pageContent",HeaderPageContentBuilder.build(accountRepository, adminRepository, username,request.getServletPath()));
 
 //    System.out.println("---After Method Execution---postHandle()");
   }

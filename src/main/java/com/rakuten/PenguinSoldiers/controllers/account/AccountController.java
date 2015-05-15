@@ -12,17 +12,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.ChangePassForm;
+import com.rakuten.PenguinSoldiers.models.account.ChangePassFormValidator;
 import com.rakuten.PenguinSoldiers.models.account.ForgotPassForm;
+import com.rakuten.PenguinSoldiers.support.web.MessageHelper;
 
 @Controller
 @Secured("ROLE_USER")
@@ -49,8 +54,10 @@ class AccountController {
 	}
 	
 	@RequestMapping(value = "account/changePassword", method = RequestMethod.POST)
-	public String changePassword(@Valid @ModelAttribute ChangePassForm changePassForm, Principal principal){
+	public String changePassword(@Validated @ModelAttribute ChangePassForm changePassForm, Principal principal, Model model){
 	  Account account=accountRepository.findByUsername(principal.getName());
+//	  ChangePassFormValidator cpfv=new ChangePassFormValidator();
+//	  cpfv.validate(changePassForm, result);
 	  if(account!=null){
 	    if(changePassForm.isConfirmed()){
 	      if(passwordEncoder.matches(changePassForm.getOldPass(), account.getPassword())){
@@ -59,7 +66,13 @@ class AccountController {
 	          accountRepository.update(account);
 	          return "redirect:/";
 	        }
+	      }else{
+	        model.addAttribute("oldPassError", "Wrong Old Password.");
 	      }
+	      
+	    }else{
+	      MessageHelper.addErrorAttribute(model, "not match");
+	      model.addAttribute("cNewPassError", "Not Matched");
 	    }
 	    
 	  }

@@ -30,6 +30,16 @@ public class TrainingRepository {
 		}
 	}
 	
+	public Training findById(Long id) {
+    try {
+      return entityManager.createNamedQuery(Training.FIND_BY_ID, Training.class)
+          .setParameter("id", id)
+          .getSingleResult();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+	
 	public List<Training> findActiveTraining() {
     try {
       return entityManager.createNamedQuery(Training.FIND_ACTIVE_TRAINING, Training.class)
