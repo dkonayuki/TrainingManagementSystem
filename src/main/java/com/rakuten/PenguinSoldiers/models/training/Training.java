@@ -29,7 +29,7 @@ public class Training implements java.io.Serializable {
 
 	public static final String FIND_BY_ID = "Training.findById";
 	public static final String FIND_ACTIVE_TRAINING= "Training.findActiveTraining";
-
+	
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -86,7 +86,12 @@ public class Training implements java.io.Serializable {
 	public Training(String name, String overview, String participantNum) {
 		this.name = name;
 		this.overview = overview;
-		this.max_participants = Integer.parseInt(participantNum);
+		
+		if (participantNum.isEmpty()) {
+			this.max_participants = 0;
+		} else {
+			this.max_participants = Integer.parseInt(participantNum);
+		}
 		/*
 		this.goals = new ArrayList<Goal>();
 		this.outlines = new ArrayList<Outline>();
@@ -96,8 +101,6 @@ public class Training implements java.io.Serializable {
 		*/
 	}
 	
-	
-
 	public String getTarget() {
 		return target;
 	}
@@ -248,7 +251,16 @@ public class Training implements java.io.Serializable {
 		this.status = status;
 	}
 
-
+	public void copy(Training tr) {
+		this.due_date = tr.due_date;
+		this.start_date = tr.start_date;
+		this.goal = tr.goal;
+		this.max_participants = tr.max_participants;
+		this.name = tr.name;
+		this.premise = tr.premise;
+		this.overview = tr.overview;
+		this.venue = tr.venue;
+	}
 
 }
 

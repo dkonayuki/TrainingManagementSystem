@@ -14,6 +14,7 @@ import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.admin.Admin;
 import com.rakuten.PenguinSoldiers.models.admin.AdminRepository;
+import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 import com.rakuten.PenguinSoldiers.util.DateTimeUtil;
 
 import java.lang.String;
@@ -27,14 +28,14 @@ public class AdminController {
 	@Autowired
 	private AccountRepository accountRepository;
 	
+	@Autowired
+	private TrainingService trainingService;
 	
 	public void init(Model model){
 	  AdminControllerPageContent acpc=new AdminControllerPageContent();
 	  acpc.setAdminList(accountRepository.listAdmins());
 	  model.addAttribute("acpc",acpc);
 	}
-	
-	
 	
 	@RequestMapping(value = "admin/addAdmin", method = RequestMethod.GET)
   public String addAdmin(@RequestParam("newAdminId") String newAdminId, Model model){
@@ -67,7 +68,9 @@ public class AdminController {
 		return "admin/addAdminPage";
 	}
 	@RequestMapping(value = "admin", method = RequestMethod.GET)
-	public String admin() {
+	public String admin(Model model) {
+		
+		model.addAttribute("trainings", trainingService.findAll());
 		return "admin/adminMain";
 	}
 }

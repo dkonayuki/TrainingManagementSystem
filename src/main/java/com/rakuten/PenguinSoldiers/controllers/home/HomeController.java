@@ -24,6 +24,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
+		
 		if (principal != null) {
 //			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //			
