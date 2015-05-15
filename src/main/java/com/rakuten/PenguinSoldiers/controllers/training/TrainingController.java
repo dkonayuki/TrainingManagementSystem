@@ -80,7 +80,7 @@ public class TrainingController {
 		return "training/edit";
 	}
 	
-	@RequestMapping(value = "trainings/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "trainings/{id}", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute TrainingForm trainingForm,
 			Errors errors, final Model model, RedirectAttributes ra, @PathVariable Integer id) {
 		Training training = this.trainingService.findById(id);
@@ -112,6 +112,10 @@ public class TrainingController {
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
 			Errors errors, final Model model, RedirectAttributes ra) {
 		if (errors.hasErrors()) {
+			if(trainingForm.getGoals().size() < 1) 
+				trainingForm.getGoals().add("");
+			if(trainingForm.getOutlines().size() < 1) 
+				trainingForm.getOutlines().add("");
 			model.addAttribute("trainingForm", trainingForm);
 			// ra.addFlashAttribute("trainingForm", trainingForm);
 			return "training/new";
