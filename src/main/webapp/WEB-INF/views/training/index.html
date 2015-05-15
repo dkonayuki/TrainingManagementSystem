@@ -20,7 +20,10 @@
 	    <td th:text="${training.overview}">1</td>
 	    <td th:text="${training.due_date}">1</td>
 	    <td th:text="${training.status}">1</td>
-	    <td><a class="training-delete-btn" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+	    <td>
+	    	<a href="#" th:href="@{/trainings/{id}/edit(id=${training.id})}"><span class="glyphicon glyphicon-pencil"></span></a>
+	    	<a class="training-delete-btn" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+	    </td>
 		</tr>
 	</table>
 	</div>

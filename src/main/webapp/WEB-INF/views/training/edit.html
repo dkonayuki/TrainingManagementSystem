@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+
+	<div class="container text-center">Edit</div>
+
+	<div class="container text-center add-training">
+	<form th:action="@{/trainings/{id}(id=${training.id})}" class="form-horizontal" method="PUT"
+			autocomplete="on" th:object="${trainingForm}" id="trainingForm">
+		<div th:replace="training/_form :: training-form"></div>
+	</form>
+	</div>
+	
+</body>
+</html>

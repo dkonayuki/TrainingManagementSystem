@@ -24,7 +24,7 @@ public class TrainingForm {
 
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String name;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String overview;
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private List<String> goals;
@@ -32,10 +32,12 @@ public class TrainingForm {
 	private List<String> outlines;
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String premise;
+
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String date;
 	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String targetPeople;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String participantNumber;
 
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
@@ -48,6 +50,18 @@ public class TrainingForm {
 		outlines = new ArrayList<String>();
 		goals.add("");
 		outlines.add("");
+	}
+	
+	public TrainingForm(Training training) {
+		this.name = training.getName();
+		this.overview = training.getOverview();
+		this.premise = training.getPremise();
+		this.venue = training.getVenue();
+		this.dueDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(training.getDue_date());
+		this.date = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(training.getStart_date());
+		//TODO
+		this.targetPeople = training.getTarget();
+		this.participantNumber = String.valueOf(training.getMax_participants());
 	}
 
 	public String getName() {
@@ -128,6 +142,11 @@ public class TrainingForm {
 
 	public void setVenue(String venue) {
 		this.venue = venue;
+	}
+	
+	public static TrainingForm createForm(Training training) {
+		TrainingForm tf = new TrainingForm(training);
+		return tf;
 	}
 
 	public Training createTraining(AccountRepository accountRepository) {

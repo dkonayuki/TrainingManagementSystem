@@ -18,9 +18,9 @@
 	th:src="@{/resources/js/jquery-2.1.4.min.js}"></script>
 <script src="../../../resources/js/application.js"
 	th:src="@{/resources/js/application.js}"></script>
-	<meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf" th:attr="content=${_csrf.token}"/>
 	<!-- default header name is X-CSRF-TOKEN -->
-	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+	<meta name="_csrf_header" th:attr="content=${_csrf.headerName}"/>
 </head>
 <body>
 </body>
