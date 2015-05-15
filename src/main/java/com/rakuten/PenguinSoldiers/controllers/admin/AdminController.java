@@ -44,7 +44,7 @@ public class AdminController {
         (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     
     
-    Account a=accountRepository.findByEmail(userDetails.getUsername());//change to username
+    Account a=accountRepository.findByUsername(userDetails.getUsername());//change to username
     //check if user is admin
     if(adminRepository.isAdmin(a.getId())){
       //check if new admin is eligible
