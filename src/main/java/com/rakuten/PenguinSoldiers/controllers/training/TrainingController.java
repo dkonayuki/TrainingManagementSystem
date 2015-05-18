@@ -81,7 +81,7 @@ public class TrainingController {
 		return "training/edit";
 	}
 	
-	@RequestMapping(value = "trainings/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "trainings/{id}", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute TrainingForm trainingForm,
 			Errors errors, final Model model, RedirectAttributes ra, @PathVariable Integer id) {
 		Training training = this.trainingService.findById(id);

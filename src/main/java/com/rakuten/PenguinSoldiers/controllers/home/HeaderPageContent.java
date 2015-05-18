@@ -13,6 +13,18 @@ public class HeaderPageContent {
   
   private String activeLabel="";
   
+  private String accountName;
+  
+  
+  
+  public String getAccountName() {
+    return accountName;
+  }
+
+  public void setAccountName(String accountName) {
+    this.accountName = accountName;
+  }
+
   public boolean isAdmin() {
     return isAdmin;
   }
@@ -43,5 +55,9 @@ public class HeaderPageContent {
   
   public String showActiveLabel(String label){
     return this.isActiveLabel(label) ? "active" : "";
+  }
+  
+  public String showAccountTab(){
+    return this.getAccountName()+" <span class=\'caret\'></span> ";
   }
 }
