@@ -11,23 +11,26 @@
 			<div
 				th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
 		</th:block>
-		<p class="text-centered welcome">Welcome to fantastic world of
-			training at RAKUTEN!!!</p>
 	</div>
 	
-	<div class = "text-center">
-	<h2>List of my trainings</h2>
-	</div>
-	<table class="table traininglist">
+	
+	<div class="container">
+	<u><h2>List of coming training programs</h2></u>
+	<table class="table roundtable">
 		<tr>
 		<th>Training Name</th>
-		<th>Number of participants</th>
+		<th>Details</th>
+		<th>Date</th>
+		<th>Status</th>
 		</tr>
 		<tr th:each="training : ${trainings}">
 	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
-	    <td th:text="${training.max_participants}">1</td>
+	    <td th:text="${training.overview}">1</td>
+	    <td th:text="${training.due_date}">1</td>
+	    <td th:text="${training.status}">1</td>
 		</tr>
-	</table>
+	</table>	
+	</div>
 
 </body>
 </html>

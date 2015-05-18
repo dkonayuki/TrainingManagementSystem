@@ -6,17 +6,23 @@
 <div class="container text-center">
     <h2><span class="text-danger">Rakuten</span> Training Registration</h2>
   </div>
+  
+  <div class = "text-center rakuten-logo">
+    <img src="./resources/images/Rakuten.jpg"  alt="Rakuten logo" style="height:90px" />
+    </div>
+	
 
 <form class="form-narrow form-horizontal" action="#" method="post" th:action="@{/authenticate}">
     <th:block th:if="${param.error != null}">
-        <div th:replace="fragments/alert :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
+        <div th:replace="fragments/alert :: alert (type='danger', message='Invalid username and password.')">Alert</div>
     </th:block>
     <fieldset>
+    
         <legend>Please Sign In</legend>
         <div class="form-group">
-            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+            <label for="inputEmail" class="col-lg-2 control-label">Username</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="username" />
+                <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username" />
             </div>
         </div>
         <div class="form-group">
@@ -36,20 +42,20 @@
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
+                <button type="submit" class="btn btn-success btn-lg">Sign in</button>
             </div>
         </div>
+        <!-- 
 
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <p>New here? <a href="signup" th:href="@{/signup}">Sign Up</a></p>
-            </div>
-        </div>
+         -->
                <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <p><a href="forgotPassword" th:href="@{/forgotPassword}">Forgot password?</a></p>
             </div>
         </div>
+        
+        <div th:replace="fragments/footer :: footer">&copy; 2015
+			PenguinSoldiers</div>
  
     </fieldset>
 </form>

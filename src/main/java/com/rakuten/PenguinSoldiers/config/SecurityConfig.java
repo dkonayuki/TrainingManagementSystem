@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
+import com.rakuten.PenguinSoldiers.controllers.account.SigninAuthFailHandler;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
 
 @Configuration
@@ -54,6 +55,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin() //Setup form based authentication using the Java configuration defaults. Authentication is performed when a POST is submitted to the URL “/login” with the parameters “username” and “password”.
                 .loginPage("/signin")	// Explicitly state the login page
                 .permitAll() // allow access to any URL that formLogin() uses
+//                .failureHandler(new SigninAuthFailHandler())
                 .failureUrl("/signin?error=1")
                 .loginProcessingUrl("/authenticate") // Specifies the URL to validate the credentials.
                 .and()
