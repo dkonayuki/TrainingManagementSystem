@@ -100,14 +100,13 @@ table.traininglist tr:hover {
   background: #bbd4ee;
   cursor:pointer;
 }
-/* training table design END */
 
 table.roundtable{
     background: #FF0000;
     border-radius:10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
-    width: 80%;
+    /* width: 80%; */
 	min-width: 400px;
 	margin: 50px auto;
 }
