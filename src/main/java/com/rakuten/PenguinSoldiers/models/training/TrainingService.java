@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.rakuten.PenguinSoldiers.models.account.Account;
+
 @Service
 public class TrainingService {
 	
@@ -52,6 +54,15 @@ public class TrainingService {
 	
 	public List<Training> findActiveTraining(){
 	  return trainingRepository.findActiveTraining();
+	}
+	
+	public List<Training> findRegsiterdTraining(boolean registered, Account a){
+	  if(a==null)return null;
+	  if(registered)
+	    return trainingRepository.findRegisteredTraining(a.getId());
+	  else
+	    return trainingRepository.findNotRegisteredTraining(a.getId());
+//	  return null;
 	}
 
 }

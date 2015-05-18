@@ -26,6 +26,38 @@ div.details {
 	
 }
 
+blockquote.trainingtitle {
+	background-color: red;
+	border-left: 5px solid red;
+	text-align: left;
+}
+
+td {
+	padding: 8px;
+}
+
+td.type {
+	background-color: #C1C1C1;
+}
+
+.panel {
+	min-height: 40px;
+	background-color: transparent;
+	border-style: none;
+	border-color: black;
+	box-shadow: none;
+	text-align: left;
+	padding: 10px 10px 10px 10px;
+}
+
+.panel-heading {
+	border-style: solid none none solid;
+	border-width: 2px 0px 0px 2px;
+	border-color: #BABABA;
+	font-family: "Plantagenet Cherokee", Georgia, serif;
+	color: #8585FF;
+}
+
 ul.details {
 	list-style-type: none;
 	display: block;
