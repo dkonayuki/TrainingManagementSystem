@@ -25,8 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.ChangePassForm;
-import com.rakuten.PenguinSoldiers.models.account.ChangePassFormValidator;
-import com.rakuten.PenguinSoldiers.models.account.ForgotPassForm;
 import com.rakuten.PenguinSoldiers.support.web.MessageHelper;
 
 @Controller
