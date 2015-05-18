@@ -11,12 +11,14 @@ import com.rakuten.PenguinSoldiers.models.premise.Premise;
 import com.rakuten.PenguinSoldiers.models.target.Target;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
 
+import org.json.*;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
 
-
+import java.net.URLDecoder;
 
 @SuppressWarnings("serial")
 @Entity
@@ -173,9 +175,34 @@ public class Training implements java.io.Serializable {
 		this.outlines = outlines;
 	}
 
-	public List<Goal> getGoals() {
+	*/
+
+	public List<String> getGoals() {
+		List<String> goals = new ArrayList<String>();
+
+		JSONArray jsonGoals = new JSONArray(this.getGoal());
+		for (int i = 0; i < jsonGoals.length(); i++)
+		{
+			goals.add(jsonGoals.get(i).toString());
+		}
+
 		return goals;
 	}
+
+	public List<String> getOutlineList() {
+		List<String> outline = new ArrayList<String>();
+		String tmpOutline;
+
+		JSONArray jsonOutline = new JSONArray(this.getOutline());
+		for (int i = 0; i < jsonOutline.length(); i++)
+		{
+			tmpOutline = URLDecoder.decode(URLDecoder.decode(jsonOutline.get(i).toString()));
+			outline.add(tmpOutline);
+		}
+
+		return outline;
+	}
+	/*
 
 	public void setGoals(List<Goal> goals) {
 		this.goals = goals;
