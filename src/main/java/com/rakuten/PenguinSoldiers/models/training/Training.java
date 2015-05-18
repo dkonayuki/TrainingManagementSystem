@@ -25,12 +25,16 @@ import java.net.URLDecoder;
 @Table(name = "training")
 @NamedQueries({
 @NamedQuery(name = Training.FIND_ACTIVE_TRAINING, query = "select a from Training a where a.start_date >= now()"),
-@NamedQuery(name = Training.FIND_BY_ID, query = "select a from Training a where a.id = :id")
+@NamedQuery(name = Training.FIND_BY_ID, query = "select a from Training a where a.id = :id"),
+@NamedQuery(name = Training.FIND_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.start_date >= now() and a.id = tu.trainingId and tu.userId=:id"),
+@NamedQuery(name = Training.FIND_NOT_REGISTERED_TRAINING, query = "select a from Training a where a.start_date >= now() and a.id not in ( select tu.trainingId from TrainingUser tu where tu.userId=:id)")
 })
 public class Training implements java.io.Serializable {
 
 	public static final String FIND_BY_ID = "Training.findById";
 	public static final String FIND_ACTIVE_TRAINING= "Training.findActiveTraining";
+	public static final String FIND_REGISTERED_TRAINING= "Training.findRegisteredTraining";
+	public static final String FIND_NOT_REGISTERED_TRAINING= "Training.findNotRegisteredTraining";
 	
 	@Id
 	@GeneratedValue

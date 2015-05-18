@@ -20,11 +20,11 @@ import javax.persistence.UniqueConstraint;
 public class Hierarchy implements java.io.Serializable {
   
   public static final String FIND_BY_MANAGER_ID_EMPLOYEE_ID="Hierarchy.findByManagerIdEmployeId";
+  
   @Id
   @GeneratedValue
   private Long id;
   
-  @Column(unique = true)
   private Long managerId;
   private Long employeeId;
   

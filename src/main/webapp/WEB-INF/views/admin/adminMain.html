@@ -4,44 +4,40 @@
 </head>
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
 
-<div class="container" align="left">
-    <u>
-    <h2> Administrator </h2>
-    </u>
-</div>
+	<div class="col-lg-9 container">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
 
-<div class="bs-docs-sidebar col-lg-4">
-    <ul class="nav nav-list bs-docs-sidenav affix">
-      <li class="active"><a href="/trainings/new" th:href="@{trainings/new}" ><i class="icon-chevron-right"></i> + New Training</a></li>
-      <li class=""><a href="/admin/addAdmin" th:href="@{admin/addAdminPage}" ><i class="icon-chevron-right"></i> + Admin member</a></li>
-    </ul>
-</div>
+		<div class="container" align="left">
+			<h2 class="page title">Administrator</h2>
+		</div>
 
-<div class="col-lg-8">
-	<table class="table roundtable" >
-		<tr>
-		<th>Training Name</th>
-		<th>Overview</th>
-		<th>Details</th>
-		<th>Details</th>
-		<th>Date</th>
-		<th>Status</th>
-		<th>Action</th>
-		</tr>
-		<tr th:each="training : ${trainings}">
-	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
-	    <td th:text="${training.overview}">1</td>
-	    <td th:text="${training.overview}">1</td>
-	    <td th:text="${training.overview}">1</td>
-	    <td th:text="${training.due_date}">1</td>
-	    <td th:text="${training.status}">1</td>
-	    <td>
-        <li><a href="/training/edit" th:href="@{training/edit}" >Edit</a></li>
-        </td>
-		</tr>
-	</table>	
-</div>
-
+		<div class="all-content col-lg-12">
+			<table class="table roundtable">
+				<tr>
+					<th>Training Name</th>
+					<th>Overview</th>
+					<th>Details</th>
+					<th>Details</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+				<tr th:each="training : ${trainings}">
+					<td><a href="" th:href="@{/trainings/{id}(id=${training.id})}"
+						th:text="${training.name}">Add Programs</a></td>
+					<td th:text="${training.overview}">1</td>
+					<td th:text="${training.overview}">1</td>
+					<td th:text="${training.overview}">1</td>
+					<td th:text="${training.due_date}">1</td>
+					<td th:text="${training.status}">1</td>
+					<td>
+						<li><a href="/training/edit" th:href="@{training/edit}">Edit</a></li>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
