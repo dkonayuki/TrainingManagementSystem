@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,27 +29,32 @@ public class TrainingForm {
 	public static final String STATUS_CLOSED = "closed";
 	public static final String STATUS_ALMOST = "almost";
 
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private String name;
-	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private String overview;
-	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private List<String> goals;
-	// @NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	private List<String> outlines;
 	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	@NotEmpty(message = "Please enter Name.")
+    @Size(min = 1, max = 255, message = "Name must be between 1 and 255 characters")
+	private String name;
+	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private String overview;
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private List<String> goals;
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	private List<String> outlines;
+    //@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String premise;
 
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	@NotNull(message = "Please enter Date.")
 	private String date;
 	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String targetPeople;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String participantNumber;
 
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	@NotEmpty(message = "Please enter Duedate.")
 	private String dueDate;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	@NotEmpty(message = "Please enter Venue.")
 	private String venue;
 	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String status;
