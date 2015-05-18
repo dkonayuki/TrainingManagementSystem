@@ -16,9 +16,11 @@ public class HeaderPageContentBuilder {
     if(a!=null){
       hpc.setAdmin(adR.isAdmin(a.getId()));
       hpc.setManager(ar.isManager(a.getUsername()));
+      hpc.setAccountName(a.getName());
     }
     String headerLabel=HeaderPageContentBuilder.convertServletNameToHeaderLabel(servletName);
     hpc.setActiveLabel(headerLabel);
+    
     return hpc;
   }
   

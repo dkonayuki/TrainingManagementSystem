@@ -7,6 +7,8 @@
 	<div class="container">
 
 	<u><h2>List of all training history</h2></u>
+	
+	
 	<table class="table roundtable">
 		<tr>
 		<th>Training Name</th>
@@ -15,6 +17,7 @@
 		<th>Status</th>
 		<th></th>
 		</tr>
+	
 		<tr class="training-item" th:each="training : ${trainings}" th:attr="data-id=${training.getId()}">
 	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
 	    <td th:text="${training.overview}">1</td>
