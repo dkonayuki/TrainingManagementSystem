@@ -286,6 +286,7 @@ public class Training implements java.io.Serializable {
 		this.due_date = tr.due_date;
 		this.start_date = tr.start_date;
 		this.goal = tr.goal;
+		this.outline = tr.outline;
 		this.max_participants = tr.max_participants;
 		this.name = tr.name;
 		this.premise = tr.premise;
