@@ -5,7 +5,6 @@
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
 	<div class="container text-center">
-<<<<<<< HEAD
 	    <blockquote class="trainingtitle">
 	    <h1 th:text="${training.name}">Course name</h1>
 	    </blockquote>
@@ -62,41 +61,6 @@
           </div>
         </div>
         </div>
-=======
-		<div class="details">
-		<h2 th:text="${training.name}">Learn Keigo Training</h2>
-		</div>
-		<div class="details">
-		<h3><small>Overview</small></h3> 
-		<p th:text="${training.overview}"></p>
-		</div>
-		<div class="details">
-		<h3><small>Target People</small></h3>
-		<p th:text="${training.target}"></p>
-		</div>
-		<div class="details">
-		<h3><small>Number of participants</small></h3>
-		<h3 th:text="${training.max_participants}"> 64</h3>
-		</div>
-		<div class="details">
-		<h3><small>Outline</small></h3>
-		<h3 th:text="${training.outline}">The Bridge</h3>
-		</div>
-		<div >
-		<h3><small>Training Venue</small></h3>
-		<h3 th:text="${training.venue}">The Bridge</h3>
-		</div>
-		<div class="details">
-		<h3><small>Goals</small></h3>
-		<h3 th:text="${training.goal}">The Bridge</h3>
-		<!-- 
-		<ul>
-		<li th:each="goal : ${training.getGoal()}" th:text="${goal.content}">En las Orillas del Sar</li>
-		</ul>
-		 -->
-		</div>
-		
-	</div>
->>>>>>> develop
+
 </body>
 </html>
