@@ -27,7 +27,7 @@ public class HomeController {
 		
 		if (principal != null) {
 //			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			
+			
 //			Account user = accountRepository.findByEmail(userDetails.getUsername());
 //			model.addAttribute("trainings", user.getTrainings());
 		  model.addAttribute("trainings", trainingService.findActiveTraining());
