@@ -22,9 +22,12 @@
 			</div>
 			<div class="details">
 				<h3><small>Outline</small></h3>
-				<ul>
-					<li th:each="outline : ${training.getOutlineList()}" th:text="${outline}">En las Orillas del Sar</li>
-				</ul>
+				<table>
+					<tr th:each="outline : ${training.getOutlineList()}">
+						<td th:text="${outline.getDate()}"></td>
+						<td th:text="${outline.getText()}"></td>
+					</tr>
+				</table>
 			</div>
 			<div >
 				<h3><small>Training Venue</small></h3>
