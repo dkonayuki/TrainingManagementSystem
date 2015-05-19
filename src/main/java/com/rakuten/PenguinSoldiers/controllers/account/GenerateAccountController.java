@@ -20,6 +20,8 @@ public class GenerateAccountController {
   @RequestMapping(value = "generate")
   public String genAccount() {
     
+    
+    
     GenerateAccounts.generate(accountRepository);
     
     return "account/generate";

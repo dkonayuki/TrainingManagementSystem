@@ -44,7 +44,7 @@
 				<ul class="nav navbar-nav navbar-right">
 				    <li th:class="'dropdown '+ ${pageContent.showActiveLabel(pageContent.ACCOUNT_LABEL)}" class="">
 				      <a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Account
+						data-toggle="dropdown" role="button" aria-expanded="false"> <span th:text="${pageContent.getAccountName()}"> Account</span>
 							<span class="caret"></span>
 					  </a>
 					  <ul class="dropdown-menu" role="menu">
