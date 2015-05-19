@@ -43,11 +43,11 @@ public class TrainingForm {
 	private String premise;
 
 	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
-	@NotNull(message = "Please enter Date.")
+	//@NotNull(message = "Please enter Date.")
 	private String date;
 	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String targetPeople;
-	@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
+	@NotEmpty(message = TrainingForm.NOT_BLANK_MESSAGE)
 	private String participantNumber;
 
 	//@NotBlank(message = TrainingForm.NOT_BLANK_MESSAGE)
