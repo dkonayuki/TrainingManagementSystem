@@ -34,7 +34,9 @@
 			
 					<form id="training_form" method="get" action="#">
 			<input type="text" class="" name="name" id="name" size="21" maxlength="120" onkeyup="reloadTrainingHomePage()"></input>
+			<a class="training-delete-btn" href="#" ><span class="glyphicon glyphicon-search"></span></a>
 			<input th:value="${hpc.getTrainingTab()}" type="hidden" class="" name="filter" id="training_form_filter" size="21" maxlength="120"></input>
+			
 			<!-- 
 			<input type="submit" value="search" class=""></input>
 			 -->
@@ -69,9 +71,10 @@
 				</tr>
 			</table>
 			  </div>
-			</div>
-			<div th:if="${trainings==null or trainings.size()==0}" class="">No
+			  <div th:if="${trainings==null or trainings.size()==0}" class="">No
 				Training Found.</div>
+			</div>
+			
 		</div>
 	</div>
 </body>

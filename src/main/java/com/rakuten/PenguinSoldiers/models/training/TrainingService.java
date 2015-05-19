@@ -64,7 +64,8 @@ public class TrainingService {
 	  if(filter.equals(HomeController.TRAINING_FILTER_PAST))
 	    return trainingRepository.findPastRegisteredTraining(a.getId(),name);
 	  else if(filter.equals(HomeController.TRAINING_FILTER_OUT))
-	    return trainingRepository.findNotRegisteredTraining(a.getId(),name);
+//	    return trainingRepository.findNotRegisteredTraining(a.getId(),name);
+	    return trainingRepository.findActiveTraining(name);
 	  else
 	    return trainingRepository.findRegisteredTraining(a.getId(),name);
 //	  return null;
