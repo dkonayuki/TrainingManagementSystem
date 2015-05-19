@@ -61,6 +61,19 @@ public class TrainingController {
 
 		return "training/index";
 	}
+	
+	@RequestMapping(value = "questionnairetest", method = RequestMethod.GET)
+	public String question(Principal principal, Model model) {
+		// Here we are returning a collection of Training objects
+		
+		//List<Training> trainings = trainingService.findActiveTraining();
+
+		List<Training> trainings = trainingService.findAll();
+		
+		model.addAttribute("questionnairetest", trainings);
+
+		return "training/Questionnaire";
+	}
 
 	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)
 	public String show(Principal principal, Model model,
