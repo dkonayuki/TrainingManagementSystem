@@ -7,6 +7,7 @@ public class HomePageContent {
   
   public static String TRAINING_TAB_IN="in";
   public static String TRAINING_TAB_OUT="out";
+  public static String TRAINING_TAB_PAST="past";
   
   public String getTrainingTab() {
     return trainingTab;

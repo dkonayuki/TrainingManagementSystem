@@ -40,6 +40,16 @@ public class TrainingRepository {
     }
   }
 	
+	public List<Training> findByName(String name) {
+    try {
+      return entityManager.createNamedQuery(Training.FIND_BY_NAME, Training.class)
+          .setParameter("name", "%" + name + "%")
+          .getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+	
 	public List<Training> findRegisteredTraining(Long id) {
     try {
       return entityManager.createNamedQuery(Training.FIND_REGISTERED_TRAINING, Training.class)
@@ -53,6 +63,16 @@ public class TrainingRepository {
 	public List<Training> findNotRegisteredTraining(Long id) {
     try {
       return entityManager.createNamedQuery(Training.FIND_NOT_REGISTERED_TRAINING, Training.class)
+          .setParameter("id", id)
+          .getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+	
+	public List<Training> findPastRegisteredTraining(Long id) {
+    try {
+      return entityManager.createNamedQuery(Training.FIND_PAST_REGISTERED_TRAINING, Training.class)
           .setParameter("id", id)
           .getResultList();
     } catch (PersistenceException e) {

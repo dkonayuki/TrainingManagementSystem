@@ -21,8 +21,11 @@
 			<ul class="nav nav-tabs">
 				<li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_IN)}"
 					class=""><a href="?filter=in">Your training</a></li>
+				<li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_PAST)}"><a
+					href="?filter=past">Past training</a></li>
 				<li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_OUT)}"><a
 					href="?filter=out">Available training</a></li>
+			    
 			</ul>
 			<table th:if="${trainings!=null and trainings.size()>0}"
 				class="table roundtable">
@@ -36,8 +39,8 @@
 				<tr th:each="training : ${trainings}">
 					<td><a href="" th:href="@{/trainings/{id}(id=${training.id})}"
 						th:text="${training.name}">Add Programs</a></td>
-					<td th:text="${training.overview}">Overview</td>
-					<td th:text="${training.due_date}">date</td>
+					<td th:text="${training.getOverview(100)}">Overview</td>
+					<td th:text="${#calendars.format(training.due_date,'MMMM dd, yyyy')}">date</td>
 					<td th:text="${training.status}">status</td>
 					<td th:if="${pageContent.isAdmin()||pageContent.isManager()}">
 						<a th:if="${pageContent.isAdmin()}" href="#"
