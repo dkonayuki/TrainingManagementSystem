@@ -90,6 +90,16 @@ public class TrainingRepository {
     }
   }
 	
+	public List<Training> findAllTraining(String name) {
+    try {
+      return entityManager.createNamedQuery(Training.FIND_ALL_TRAINING, Training.class)
+          .setParameter("name", name)
+          .getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+	
 	public List<Training> findActiveTraining() {
     return findActiveTraining("%");
   }
