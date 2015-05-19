@@ -10,7 +10,7 @@
 
 			<div class="col-lg-10">
 				<input type="text" class="form-control" placeholder="Name"
-					th:field="*{name}" /> <span class="help-block"
+					th:field="*{name}" /> <span class="help-block danger"
 					th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
 					can't be left empty</span>
 			</div>
@@ -21,7 +21,9 @@
 			</label>
 			<div class="col-lg-10">
 				<textarea class="form-control" placeholder="Overview"
-					th:field="*{overview}"></textarea>
+					th:field="*{overview}"></textarea><span class="help-block"
+					th:if="${#fields.hasErrors('overview')}" th:errors="*{overview}">Overview
+					can't be left empty</span>
 			</div>
 		</div>
 
@@ -54,7 +56,7 @@
 						<td>
 							<div class='input-group date date_selector'>
 								<input type='text' name="outline-date" class="form-control"
-									placeholder="" /> <span class="input-group-addon"> <span
+									placeholder="Training date" /> <span class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>
 							</div>
@@ -100,6 +102,9 @@
 					<span class="glyphicon glyphicon-calendar"></span>
 				</span>
 			</div>
+			<span class="help-block"
+					th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}">Due Date
+					can't be left empty</span>
 
 		</div>
 
@@ -120,6 +125,9 @@
 				<input type="number" min="1" step="1" class="form-control"
 					placeholder="Number of Participants"
 					th:field="*{participantNumber}" />
+					<span class="help-block"
+					th:if="${#fields.hasErrors('participantNumber')}" th:errors="*{participantNumber}">Participant number
+					can't be left empty</span>
 			</div>
 		</div>
 
@@ -131,6 +139,9 @@
 			<div class="col-lg-10">
 				<input type="text" class="form-control" placeholder="Venue"
 					th:field="*{venue}" />
+					<span class="help-block"
+					th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}">Venue
+					can't be left empty</span>
 			</div>
 		</div>
 		<div class="form-group">
