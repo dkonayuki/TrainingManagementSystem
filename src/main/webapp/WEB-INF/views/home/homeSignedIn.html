@@ -15,10 +15,9 @@
 	
 	
 	<div class="container">
-	<u><h2>List of coming training programs</h2></u>
 	<ul class="nav nav-tabs">
-      <li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_IN)}" class=""><a href="?filter=in">Registered</a></li>
-      <li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_OUT)}"><a href="?filter=out">Available</a></li>
+      <li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_IN)}" class=""><a href="?filter=in">Your training</a></li>
+      <li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_OUT)}"><a href="?filter=out">Available training</a></li>
     </ul>
 	<table th:if="${trainings!=null and trainings.size()>0}" class="table roundtable">
 		<tr>
