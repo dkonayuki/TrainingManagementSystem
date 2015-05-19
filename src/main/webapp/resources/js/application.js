@@ -51,10 +51,10 @@ function preparePage() {
 function reloadTrainingList() {
 	
 	var query = $("#training-search input").val();
-	
+	var toUrl="./trainings?name=" + query;
 	$.ajax({
 		type: "GET",
-		url: "/trainings?name=" + query,
+		url: toUrl,
 		success: function(data) {
 			$("#training-list").html(data);
 		},
@@ -63,7 +63,7 @@ function reloadTrainingList() {
 		}
 	});
 	
-	window.history.replaceState({}, "Trainings", "./trainings?name=" + query);
+	window.history.replaceState({}, "Trainings", toUrl);
 
 }
 
