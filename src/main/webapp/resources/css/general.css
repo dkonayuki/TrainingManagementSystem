@@ -174,14 +174,19 @@ div.all-content {
 .left-nav-ul {
   border: 1px dashed #ccc;
   box-shadow: 1px 1px 4px #ccc;
-  border-radius: 5px;
-  border-top: 2px solid #f41;
+  border-radius: 0px 0px 5px 5px;
+  border-top: 2px solid #ef4411;
 }
 
 .left-nav-title {
 	font-weight: bold;
-  	padding: 2px 10px 5px;
+  	padding: 5px 20px 4px;
   	display: block;
+  	background-color: #ef4411;
+  	color: #eee;
+  	border-radius: 5px 5px 0px 0px;
+  	box-shadow: 3px 3px 10px #ccc;
+  	
 }
 
 /*admin page design END*/
@@ -212,6 +217,10 @@ form.form-horizontal .control-label {
 }
   /* new training design END */
   
-  div a {
+div a {
   	/* color: #d21; */
-  }
+}
+
+.begin-div {
+	margin-top:100px;
+}
