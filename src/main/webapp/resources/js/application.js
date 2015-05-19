@@ -63,7 +63,7 @@ function reloadTrainingList() {
 		}
 	});
 	
-	window.history.replaceState({}, "Trainings", "/trainings?name=" + query);
+	window.history.replaceState({}, "Trainings", "./trainings?name=" + query);
 
 }
 
