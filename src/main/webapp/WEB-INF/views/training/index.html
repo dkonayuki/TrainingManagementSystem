@@ -17,7 +17,7 @@
 		</tr>
 	
 		<tr class="training-item" th:each="training : ${trainings}" th:attr="data-id=${training.getId()}">
-	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
+	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Course name</a></td>
 	    <td th:text="${training.overview}">1</td>
 	    <td th:text="${training.due_date}">1</td>
 	    <td th:text="${training.status}">1</td>
