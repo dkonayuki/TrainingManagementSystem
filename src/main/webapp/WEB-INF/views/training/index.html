@@ -4,21 +4,23 @@
 </head>
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
-	<div class="container">
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
 
+	<div class="col-lg-9 container">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
 		<h2>List of all training history</h2>
-		
+
 		<form id="training-search" method="get" action="#">
 			<input type="text" class="" name="name" size="21" maxlength="120"></input>
 			<!-- 
 			<input type="submit" value="search" class=""></input>
 			 -->
 		</form>
-		
+
 		<div id="training-list">
-			<div th:replace="training/_training_list :: training-list(${trainings})">Header</div>
+			<div
+				th:replace="training/_training_list :: training-list(${trainings})">Header</div>
 		</div>
-		
 	</div>
 
 

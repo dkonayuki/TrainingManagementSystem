@@ -4,6 +4,10 @@
 </head>
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
+
+	<div class="col-lg-9 container">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
 	<div class="container text-center">
 	    <blockquote class="trainingtitle">
 	    <h1 th:text="${training.name}">Course name</h1>
@@ -59,6 +63,7 @@
 
           </div>
           </div>
+        </div>
         </div>
         </div>
 </body>
