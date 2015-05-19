@@ -70,6 +70,16 @@ public class TrainingRepository {
     }
   }
 	
+	public List<Training> findPastRegisteredTraining(Long id) {
+    try {
+      return entityManager.createNamedQuery(Training.FIND_PAST_REGISTERED_TRAINING, Training.class)
+          .setParameter("id", id)
+          .getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+	
 	public List<Training> findActiveTraining() {
     try {
       return entityManager.createNamedQuery(Training.FIND_ACTIVE_TRAINING, Training.class)

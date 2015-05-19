@@ -18,6 +18,11 @@ import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 @Controller
 public class HomeController {
   
+  
+  public static final String TRAINING_FILTER_IN="in";
+  public static final String TRAINING_FILTER_OUT="out";
+  public static final String TRAINING_FILTER_PAST="past";
+  
   @Autowired
   private AccountRepository accountRepository;
   
@@ -32,7 +37,8 @@ public class HomeController {
 //      
       Account user = accountRepository.findByUsername(userDetails.getUsername());
 
-      List<Training> list=trainingService.findRegsiterdTraining(filter.equals("in"),user);
+      List<Training> list=trainingService.findRegsiterdTraining(filter,user);
+      
       model.addAttribute("trainings", list);
       
       HomePageContent hpc=new HomePageContent();

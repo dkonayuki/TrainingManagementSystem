@@ -26,8 +26,9 @@ import java.net.URLDecoder;
 @NamedQueries({
 @NamedQuery(name = Training.FIND_ACTIVE_TRAINING, query = "select a from Training a where a.start_date >= now()"),
 @NamedQuery(name = Training.FIND_BY_ID, query = "select a from Training a where a.id = :id"),
-@NamedQuery(name = Training.FIND_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.start_date >= now() and a.id = tu.trainingId and tu.userId=:id"),
-@NamedQuery(name = Training.FIND_NOT_REGISTERED_TRAINING, query = "select a from Training a where a.start_date >= now() and a.id not in ( select tu.trainingId from TrainingUser tu where tu.userId=:id)"),
+@NamedQuery(name = Training.FIND_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.start_date >= now() and a.id = tu.trainingId and tu.userId=:id order by a.start_date desc"),
+@NamedQuery(name = Training.FIND_PAST_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.id = tu.trainingId and tu.userId=:id and a.start_date<now() order by a.start_date  desc"),
+@NamedQuery(name = Training.FIND_NOT_REGISTERED_TRAINING, query = "select a from Training a where a.start_date >= now() and a.id not in ( select tu.trainingId from TrainingUser tu where tu.userId=:id) order by a.start_date  desc"),
 @NamedQuery(name = Training.FIND_BY_NAME, query = "select a from Training a where a.name LIKE :name")
 })
 public class Training implements java.io.Serializable {
@@ -35,6 +36,7 @@ public class Training implements java.io.Serializable {
 	public static final String FIND_BY_ID = "Training.findById";
 	public static final String FIND_ACTIVE_TRAINING= "Training.findActiveTraining";
 	public static final String FIND_REGISTERED_TRAINING= "Training.findRegisteredTraining";
+	public static final String FIND_PAST_REGISTERED_TRAINING= "Training.findPastRegisteredTraining";
 	public static final String FIND_NOT_REGISTERED_TRAINING= "Training.findNotRegisteredTraining";
 	public static final String FIND_BY_NAME = "Training.findByName";
 	
@@ -298,6 +300,12 @@ public class Training implements java.io.Serializable {
 		this.premise = tr.premise;
 		this.overview = tr.overview;
 		this.venue = tr.venue;
+	}
+	
+	public String getOverview(int length){
+	  if(this.getOverview()==null)return null;
+	  if(this.getOverview().length()>length)return this.getOverview().substring(0,length);
+	  return this.getOverview();
 	}
 
 }
