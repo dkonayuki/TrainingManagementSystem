@@ -18,10 +18,12 @@
 					class="rakuten-name">Rakuten</span> Training Registration</a>
 			</div>
 			<div class="navbar-collapse collapse" id="navBarCollapse">
+			<!--
 				<ul class="nav navbar-nav">
 					<li
 						th:class="${pageContent.showActiveLabel(pageContent.HOME_LABEL)}"
 						class=""><a href="#" th:href="@{/}">Home</a></li>
+				
 					<li
 						th:class="${pageContent.showActiveLabel(pageContent.TRAINING_LABEL)}"
 						class=""><a href="/trainings" th:href="@{/trainings}">Training</a></li>
@@ -37,13 +39,13 @@
 								th:href="@{/admin}">Admin</a></li>
 							<li th:if="${pageContent.isManager()}"><a href="./manager"
 								th:href="@{/manager}">Manager</a></li>
-							<!-- 
+							 
 							<li class="divider"></li>
 							<li><a href="#">Set current as default</a></li>
-							 -->
+							 
 						</ul></li>
 				</ul>
-
+-->
 
 				<ul class="nav navbar-nav navbar-right">
 					<li th:class="'dropdown '+ ${pageContent.showActiveLabel(pageContent.ACCOUNT_LABEL)}" class="">

@@ -30,16 +30,16 @@ public class HomeController {
   private TrainingService trainingService;
   
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String index(@RequestParam(value = "filter", required = false, defaultValue = "in") String filter, Principal principal, Model model) {
+  public String index(@RequestParam(value = "filter", required = false, defaultValue = "in") String filter, @RequestParam(value = "name", required = false, defaultValue = "%") String name, Principal principal, Model model) {
     
     if (principal != null) {
-      UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//      UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+////      
+//      Account user = accountRepository.findByUsername(userDetails.getUsername());
+//
+//      List<Training> list=trainingService.findRegsiterdTraining(filter,name,user);
 //      
-      Account user = accountRepository.findByUsername(userDetails.getUsername());
-
-      List<Training> list=trainingService.findRegsiterdTraining(filter,user);
-      
-      model.addAttribute("trainings", list);
+      model.addAttribute("trainings", search(filter,name));
       
       HomePageContent hpc=new HomePageContent();
       hpc.setTrainingTab(filter);
@@ -48,5 +48,24 @@ public class HomeController {
       return "home/homeSignedIn";
     }
     return "account/signin";
+  }
+  
+  
+  @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.HEAD},     
+      headers = "x-requested-with=XMLHttpRequest")
+  public String search(@RequestParam(value = "filter", required = false, defaultValue = "in") String filter, @RequestParam(value = "name", required = false, defaultValue = "%") String name, Model model) {
+//    List<Training> tl = trainingService.findByName(name);
+//    model.addAttribute("trainings", tl);
+    model.addAttribute("trainings", search(filter,name));
+//    HomePageContent hpc=new HomePageContent();
+//    hpc.setTrainingTab(filter);
+//    model.addAttribute("hpc", hpc);
+    return "home/_training_list";
+  }
+  
+  public List<Training> search(String filter, String name){
+    UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();  
+    Account user = accountRepository.findByUsername(userDetails.getUsername());
+    return trainingService.findRegsiterdTraining(filter,name,user);
   }
 }

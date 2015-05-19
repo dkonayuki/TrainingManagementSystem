@@ -50,30 +50,30 @@ public class TrainingRepository {
     }
   }
 	
-	public List<Training> findRegisteredTraining(Long id) {
+	public List<Training> findRegisteredTraining(Long id, String name) {
     try {
       return entityManager.createNamedQuery(Training.FIND_REGISTERED_TRAINING, Training.class)
-          .setParameter("id", id)
+          .setParameter("id", id).setParameter("name", name)
           .getResultList();
     } catch (PersistenceException e) {
       return null;
     }
   }
 	
-	public List<Training> findNotRegisteredTraining(Long id) {
+	public List<Training> findNotRegisteredTraining(Long id, String name) {
     try {
       return entityManager.createNamedQuery(Training.FIND_NOT_REGISTERED_TRAINING, Training.class)
-          .setParameter("id", id)
+          .setParameter("id", id).setParameter("name", name)
           .getResultList();
     } catch (PersistenceException e) {
       return null;
     }
   }
 	
-	public List<Training> findPastRegisteredTraining(Long id) {
+	public List<Training> findPastRegisteredTraining(Long id, String name) {
     try {
       return entityManager.createNamedQuery(Training.FIND_PAST_REGISTERED_TRAINING, Training.class)
-          .setParameter("id", id)
+          .setParameter("id", id).setParameter("name", name)
           .getResultList();
     } catch (PersistenceException e) {
       return null;

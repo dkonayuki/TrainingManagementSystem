@@ -36,16 +36,25 @@ $(document).ready(function() {
 	var timeout; // add delay time
 	$("#training-search input").keyup(function() {
 		window.clearTimeout(timeout); //clear delay
-		timeout = window.setTimeout(reloadTrainingList, 500);
+		timeout = window.setTimeout(reloadTrainingList, 200);
 
 		return false;
 	});
 
 });
 
+function filterTrainingList(url){
+  var timeout; // add delay time
+  window.clearTimeout(timeout); //clear delay 
+  timeout = window.setTimeout(function() {
+	  reloadTrainingList('./?filter=past&name=');
+  }, 200);
+  return false;
+}
+
 function preparePage() {
 	var name = getParameterByName("name");
-	$("#training-search input").val(name);
+	$("#training-searh input").val(name);
 }
 
 function reloadTrainingList() {
@@ -66,6 +75,8 @@ function reloadTrainingList() {
 	window.history.replaceState({}, "Trainings", toUrl);
 
 }
+
+
 
 /*get url params*/
 function getParameterByName(key,target){
@@ -96,4 +107,42 @@ function getParameterByName(key,target){
 		return values;
 	}
 
+}
+
+
+
+
+
+
+//functions used in home page
+function updateTrainingTab(here){
+	var activeTab= $("#activeTrainingTab").val();
+	$(activeTab).removeClass("active");
+	$('training_tab_in').addClass("active");
+	$("#activeTrainingTab").val(here);
+}
+
+function queryTrainingList(toUrl){
+	$.ajax({
+		type: "GET",
+		url: toUrl,
+		success: function(data) {
+			//update the page fragment
+            //use a different file otherwise will refresh the entire html body of the page
+			$("#training_list").html(data);
+		},
+		error: function(XHR, message, errorThrown) {
+			console.log(errorThrown);
+		}
+	});
+	
+	window.history.replaceState({}, "Trainings", toUrl);
+
+}
+
+function reloadTrainingHomePage(){
+	var query = $("#training_form input").val();
+	var filter= $("#training_form_filter").val();
+	var toUrl="./?filter="+filter+"&name=" + query;
+	queryTrainingList(toUrl);
 }
