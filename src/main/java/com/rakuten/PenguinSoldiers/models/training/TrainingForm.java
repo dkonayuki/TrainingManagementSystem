@@ -77,7 +77,9 @@ public class TrainingForm {
 		if (this.goals.isEmpty()) {
 			this.goals.add("");
 		}
-		//this.outlines = training.getOutlineList();
+		this.outlines = training.getOutlineList();
+		
+		System.out.println(this.outlines);
 		this.targetPeople = training.getTarget();
 		this.participantNumber = String.valueOf(training.getMax_participants());
 		this.status = training.getStatus();
