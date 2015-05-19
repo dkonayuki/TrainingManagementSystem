@@ -46,21 +46,21 @@
 
 
 				<ul class="nav navbar-nav navbar-right">
-					<li
-						th:class="'dropdown '+ ${pageContent.showActiveLabel(pageContent.ACCOUNT_LABEL)}"
-						class=""><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Account
+					<li th:class="'dropdown '+ ${pageContent.showActiveLabel(pageContent.ACCOUNT_LABEL)}" class="">
+				      <a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false"> <span th:text="${pageContent.getAccountName()}"> Account</span>
 							<span class="caret"></span>
-					</a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="./account/wantChangePass"
+					  </a>
+				      <ul class="dropdown-menu" role="menu">
+						<li><a href="./account/wantChangePass"
 								th:href="@{/account/wantChangePass}">Change Password</a></li>
-							<li th:if="${#authorization.expression('isAuthenticated()')}">
-								<a href="/logout" th:href="@{#}" onclick="$('#form').submit();">Logout</a>
-								<form style="visibility: hidden" id="form" method="post"
+						<li th:if="${#authorization.expression('isAuthenticated()')}">
+						  <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">Logout</a>
+						  <form style="visibility: hidden" id="form" method="post"
 									action="#" th:action="@{/logout}"></form>
-							</li>
-						</ul></li>
+						</li>
+					  </ul>
+					</li>
 					<li th:if="${#authorization.expression('!isAuthenticated()')}">
 						<a href="/signin" th:href="@{/signin}">Sign in</a>
 					</li>

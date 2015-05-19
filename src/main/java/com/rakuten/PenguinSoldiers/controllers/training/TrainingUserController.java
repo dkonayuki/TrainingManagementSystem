@@ -2,6 +2,7 @@ package com.rakuten.PenguinSoldiers.controllers.training;
 
 import java.security.Principal;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
-import com.rakuten.PenguinSoldiers.models.account.ChangePassForm;
 import com.rakuten.PenguinSoldiers.models.training.RegisterUserForm;
 import com.rakuten.PenguinSoldiers.models.training.TrainingRepository;
 import com.rakuten.PenguinSoldiers.models.training.TrainingUser;
@@ -38,6 +38,8 @@ public class TrainingUserController {
   public String displayForm(@RequestParam("id") String id, Principal principal, Model model) {
     
     Account a=ControllerUtil.getUserAccount(accountRepository);
+    if(a!=null&&!accountRepository.isManager(a.getUsername())) return "redirect:/";
+    
     TrainingUserManageContent tumc=TrainingUserManageContentBuilder.build(trainingUserRepository, trainingRepository,new Integer(id), a.getId());
     model.addAttribute("tumc", tumc);
     RegisterUserForm ruf=new RegisterUserForm();
@@ -51,6 +53,8 @@ public class TrainingUserController {
   public String addEmployee(@Validated @ModelAttribute RegisterUserForm regUserForm, Principal principal, Model model) {
     
     Account a=ControllerUtil.getUserAccount(accountRepository);
+    if(a!=null&&!accountRepository.isManager(a.getUsername())) return "redirect:/";
+    
     addUser(regUserForm, a);
     TrainingUserManageContent tumc=TrainingUserManageContentBuilder.build(trainingUserRepository, trainingRepository,new Integer(regUserForm.getTrainingId()), a.getId());
     model.addAttribute("tumc", tumc);
