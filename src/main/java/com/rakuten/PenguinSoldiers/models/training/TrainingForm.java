@@ -68,6 +68,7 @@ public class TrainingForm {
 		this.date = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(training
 				.getStart_date());
 		// TODO
+		this.goals = training.getGoals();
 		this.targetPeople = training.getTarget();
 		this.participantNumber = String.valueOf(training.getMax_participants());
 		this.status = training.getStatus();
