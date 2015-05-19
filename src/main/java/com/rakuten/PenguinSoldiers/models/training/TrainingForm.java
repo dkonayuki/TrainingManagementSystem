@@ -71,12 +71,13 @@ public class TrainingForm {
 		this.overview = training.getOverview();
 		this.premise = training.getPremise();
 		this.venue = training.getVenue();
-		this.dueDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm")
-				.format(training.getDue_date());
-		this.date = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(training
-				.getStart_date());
-		// TODO
+		this.dueDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(training.getDue_date());
+		this.date = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(training.getStart_date());
 		this.goals = training.getGoals();
+		if (this.goals.isEmpty()) {
+			this.goals.add("");
+		}
+		//this.outlines = training.getOutlineList();
 		this.targetPeople = training.getTarget();
 		this.participantNumber = String.valueOf(training.getMax_participants());
 		this.status = training.getStatus();
