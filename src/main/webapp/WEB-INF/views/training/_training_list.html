@@ -1,0 +1,29 @@
+<div th:fragment="training-list(trainings)">
+
+	<table class="table roundtable">
+		<tr>
+			<th>Training Name</th>
+			<th>Details</th>
+			<th>Date</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+
+		<tr class="training-item" th:each="training : ${trainings}"
+			th:attr="data-id=${training.getId()}">
+			<td><a href="" th:href="@{/trainings/{id}(id=${training.id})}"
+				th:text="${training.name}">Add Programs</a></td>
+			<td th:text="${training.overview}">1</td>
+			<td th:text="${training.due_date}">1</td>
+			<td th:text="${training.status}">1</td>
+			<td><a href="#"
+				th:href="@{/trainings/{id}/edit(id=${training.id})}"><span
+					class="glyphicon glyphicon-pencil"></span></a> <a
+				class="training-delete-btn" href="#"><span
+					class="glyphicon glyphicon-remove"></span></a> <a href="#"
+				th:href="@{/manager/manage(id=${training.id})}"><span
+					class="glyphicon glyphicon-plus"></span></a></td>
+		</tr>
+	</table>
+	
+</div>

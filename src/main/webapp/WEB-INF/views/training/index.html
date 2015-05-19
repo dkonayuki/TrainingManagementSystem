@@ -6,30 +6,21 @@
 	<div th:replace="fragments/header :: header">Header</div>
 	<div class="container">
 
-	<u><h2>List of all training history</h2></u>
-	<table id="training-list" class="table roundtable">
-		<tr>
-		<th>Training Name</th>
-		<th>Details</th>
-		<th>Date</th>
-		<th>Status</th>
-		<th></th>
-		</tr>
-	
-		<tr class="training-item" th:each="training : ${trainings}" th:attr="data-id=${training.getId()}">
-	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
-	    <td th:text="${training.overview}">1</td>
-	    <td th:text="${training.due_date}">1</td>
-	    <td th:text="${training.status}">1</td>
-	    <td>
-	    	<a href="#" th:href="@{/trainings/{id}/edit(id=${training.id})}"><span class="glyphicon glyphicon-pencil"></span></a>
-	    	<a class="training-delete-btn" href="#"><span class="glyphicon glyphicon-remove"></span></a>
-	    	<a href="#" th:href="@{/manager/manage(id=${training.id})}"><span class="glyphicon glyphicon-plus"></span></a>
-	    </td>
-		</tr>
-	</table>
+		<h2>List of all training history</h2>
+		
+		<form id="training-search" method="get" action="#">
+			<input type="text" class="" name="name" size="21" maxlength="120"></input>
+			<!-- 
+			<input type="submit" value="search" class=""></input>
+			 -->
+		</form>
+		
+		<div id="training-list">
+			<div th:replace="training/_training_list :: training-list(${trainings})">Header</div>
+		</div>
+		
 	</div>
-	
+
 
 </body>
 </html>

@@ -50,16 +50,27 @@ public class TrainingController {
 	private UserService userService;
 
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
-	public String index(Principal principal, Model model) {
+	public String index(@RequestParam(value = "name") String name, Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
 		
 		//List<Training> trainings = trainingService.findActiveTraining();
-
-		List<Training> trainings = trainingService.findAll();
-		
+		List<Training> trainings;
+		if (name.isEmpty()) {
+			trainings = trainingService.findAll();
+		} else {
+			trainings = trainingService.findByName(name);
+		}
 		model.addAttribute("trainings", trainings);
 
 		return "training/index";
+	}
+	
+	@RequestMapping(value = "trainings", method = {RequestMethod.GET, RequestMethod.HEAD},     
+	    headers = "x-requested-with=XMLHttpRequest")
+	public String search(@RequestParam(value = "name") String name, Model model) {
+		List<Training> tl = trainingService.findByName(name);
+		model.addAttribute("trainings", tl);
+		return "training/_training_list";
 	}
 
 	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)

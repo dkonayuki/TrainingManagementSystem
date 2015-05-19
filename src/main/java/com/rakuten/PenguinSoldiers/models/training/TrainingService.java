@@ -64,5 +64,9 @@ public class TrainingService {
 	    return trainingRepository.findNotRegisteredTraining(a.getId());
 //	  return null;
 	}
+	
+	public List<Training> findByName(String name) {
+		return trainingRepository.findByName(name);
+	}
 
 }
