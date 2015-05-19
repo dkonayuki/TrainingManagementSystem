@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rakuten.PenguinSoldiers.support.web.*;
+import com.rakuten.PenguinSoldiers.util.GenerateAccounts;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.account.Account;
+import com.rakuten.PenguinSoldiers.models.account.HierarchyRepository;
 import com.rakuten.PenguinSoldiers.models.account.SignupForm;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
+import com.rakuten.PenguinSoldiers.controllers.account.GenerateAccountController;
 import com.rakuten.api.users.JsonUserParser;
 
 @Controller
@@ -24,12 +27,20 @@ public class SignupController {
 
 	@Autowired
 	private AccountRepository accountRepository;
+	@Autowired
+	  private HierarchyRepository hierarchyRepository;
+	  
 
 	@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = "signup")
 	public String signup(Model model) {
+//		GenerateAccountController gac=new GenerateAccountController();
+//		gac.genAccount();
+//		GenerateAccounts.generate(accountRepository);
+		GenerateAccounts.generateOrg(accountRepository,hierarchyRepository);
+//		gac.genOrg();
 		model.addAttribute(new SignupForm());
 		return SIGNUP_VIEW_NAME;
 	}
@@ -37,6 +48,7 @@ public class SignupController {
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	public String signup(@Valid @ModelAttribute SignupForm signupForm,
 			Errors errors, RedirectAttributes ra) {
+		
 		if (errors.hasErrors()) {
 			return SIGNUP_VIEW_NAME;
 		}
