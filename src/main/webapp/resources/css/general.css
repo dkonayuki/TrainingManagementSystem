@@ -168,13 +168,21 @@ div.all-content {
 }
 
 .lef-nav {
-	margin-top: 50px;
+	margin-top: 100px;
 }
 
 .left-nav-ul {
-	border: 1px solid #ccc;
-	box-shadow: 1px 1px 4px #ccc;
-	border-radius: 5px;
+  border: 1px dashed #ccc;
+  box-shadow: 1px 1px 4px #ccc;
+  border-radius: 5px;
+  border-top: 2px solid #f41;
 }
+
+.left-nav-title {
+	font-weight: bold;
+  	padding: 2px 10px 5px;
+  	display: block;
+}
+
 
 /*admin page design END*/
