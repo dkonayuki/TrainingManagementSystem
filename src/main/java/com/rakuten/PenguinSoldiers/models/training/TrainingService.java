@@ -57,14 +57,16 @@ public class TrainingService {
 	  return trainingRepository.findActiveTraining();
 	}
 	
-	public List<Training> findRegsiterdTraining(String  filter, Account a){
+	public List<Training> findRegsiterdTraining(String  filter, String name, Account a){
 	  if(a==null)return null;
+	  if(name==null)name="%";
+	  else name="%"+name+"%";
 	  if(filter.equals(HomeController.TRAINING_FILTER_PAST))
-	    return trainingRepository.findPastRegisteredTraining(a.getId());
+	    return trainingRepository.findPastRegisteredTraining(a.getId(),name);
 	  else if(filter.equals(HomeController.TRAINING_FILTER_OUT))
-	    return trainingRepository.findNotRegisteredTraining(a.getId());
+	    return trainingRepository.findNotRegisteredTraining(a.getId(),name);
 	  else
-	    return trainingRepository.findRegisteredTraining(a.getId());
+	    return trainingRepository.findRegisteredTraining(a.getId(),name);
 //	  return null;
 	}
 	
