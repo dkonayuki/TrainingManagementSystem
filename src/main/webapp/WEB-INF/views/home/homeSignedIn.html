@@ -12,36 +12,48 @@
 				th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
 		</th:block>
 	</div>
-	
-	
-	<div class="container">
-	<u><h2>List of coming training programs</h2></u>
-	<ul class="nav nav-tabs">
-      <li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_IN)}" class=""><a href="?filter=in">Registered</a></li>
-      <li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_OUT)}"><a href="?filter=out">Available</a></li>
-    </ul>
-	<table th:if="${trainings!=null and trainings.size()>0}" class="table roundtable">
-		<tr>
-		<th>Training Name</th>
-		<th>Details</th>
-		<th>Date</th>
-		<th>Status</th>
-		<th th:if="${pageContent.isAdmin()||pageContent.isManager()}" ></th>
-		</tr>
-		<tr th:each="training : ${trainings}">
-	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
-	    <td th:text="${training.overview}">Overview</td>
-	    <td th:text="${training.due_date}">date</td>
-	    <td th:text="${training.status}">status</td>
-	    <td th:if="${pageContent.isAdmin()||pageContent.isManager()}">
-	    	<a th:if="${pageContent.isAdmin()}" href="#" th:href="@{/trainings/{id}/edit(id=${training.id})}"><span class="glyphicon glyphicon-pencil"></span></a>
-	    	<a th:if="${pageContent.isAdmin()}" class="training-delete-btn" href="#"><span class="glyphicon glyphicon-remove"></span></a>
-	    	<a th:if="${pageContent.isManager()}" class="training-delete-btn" href="#" th:href="@{/manager/manage(id=${training.id})}"><span class="glyphicon glyphicon-plus"></span></a>
-	    </td>
-		</tr>
-	</table>
-	<div th:if="${trainings==null or trainings.size()==0}" class="">No Training Found.</div>	
-	</div>
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
 
+	<div class="col-lg-9 container">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
+
+		<div class="container">
+			<ul class="nav nav-tabs">
+				<li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_IN)}"
+					class=""><a href="?filter=in">Your training</a></li>
+				<li th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_OUT)}"><a
+					href="?filter=out">Available training</a></li>
+			</ul>
+			<table th:if="${trainings!=null and trainings.size()>0}"
+				class="table roundtable">
+				<tr>
+					<th>Training Name</th>
+					<th>Details</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th th:if="${pageContent.isAdmin()||pageContent.isManager()}"></th>
+				</tr>
+				<tr th:each="training : ${trainings}">
+					<td><a href="" th:href="@{/trainings/{id}(id=${training.id})}"
+						th:text="${training.name}">Add Programs</a></td>
+					<td th:text="${training.overview}">Overview</td>
+					<td th:text="${training.due_date}">date</td>
+					<td th:text="${training.status}">status</td>
+					<td th:if="${pageContent.isAdmin()||pageContent.isManager()}">
+						<a th:if="${pageContent.isAdmin()}" href="#"
+						th:href="@{/trainings/{id}/edit(id=${training.id})}"><span
+							class="glyphicon glyphicon-pencil"></span></a> <a
+						th:if="${pageContent.isAdmin()}" class="training-delete-btn"
+						href="#"><span class="glyphicon glyphicon-remove"></span></a> <a
+						th:if="${pageContent.isManager()}" class="training-delete-btn"
+						href="#" th:href="@{/manager/manage(id=${training.id})}"><span
+							class="glyphicon glyphicon-plus"></span></a>
+					</td>
+				</tr>
+			</table>
+			<div th:if="${trainings==null or trainings.size()==0}" class="">No
+				Training Found.</div>
+		</div>
+	</div>
 </body>
 </html>

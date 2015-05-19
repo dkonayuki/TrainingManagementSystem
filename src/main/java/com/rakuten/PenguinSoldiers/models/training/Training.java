@@ -191,15 +191,19 @@ public class Training implements java.io.Serializable {
 		return goals;
 	}
 
-	public List<String> getOutlineList() {
-		List<String> outline = new ArrayList<String>();
-		String tmpOutline;
+	public List<Outline> getOutlineList() {
+		List<Outline> outline = new ArrayList<Outline>();
+		String outlinesJsonString = URLDecoder.decode(URLDecoder.decode(this.getOutline()));
+		String outlineDate, outlineText;
 
-		JSONArray jsonOutline = new JSONArray(this.getOutline());
-		for (int i = 0; i < jsonOutline.length(); i++)
+		JSONArray outlinesJson = new JSONArray(outlinesJsonString);
+		JSONObject outlineJson;
+		for (int i = 0; i < outlinesJson.length(); i++)
 		{
-			tmpOutline = URLDecoder.decode(URLDecoder.decode(jsonOutline.get(i).toString()));
-			outline.add(tmpOutline);
+			outlineJson = outlinesJson.getJSONObject(i);
+			outlineDate = outlineJson.getString("outline-date");
+			outlineText = outlineJson.getString("outline-text");
+			outline.add(new Outline(outlineDate, outlineText));
 		}
 
 		return outline;
@@ -297,5 +301,4 @@ public class Training implements java.io.Serializable {
 	}
 
 }
-
 

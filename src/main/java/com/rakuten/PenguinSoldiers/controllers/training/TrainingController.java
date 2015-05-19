@@ -50,12 +50,12 @@ public class TrainingController {
 	private UserService userService;
 
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
-	public String index(@RequestParam(value = "name") String name, Principal principal, Model model) {
+	public String index(@RequestParam(value = "name", required = false) String name, Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
 		
 		//List<Training> trainings = trainingService.findActiveTraining();
 		List<Training> trainings;
-		if (name.isEmpty()) {
+		if (name == null) {
 			trainings = trainingService.findAll();
 		} else {
 			trainings = trainingService.findByName(name);
@@ -71,6 +71,19 @@ public class TrainingController {
 		List<Training> tl = trainingService.findByName(name);
 		model.addAttribute("trainings", tl);
 		return "training/_training_list";
+	}
+	
+	@RequestMapping(value = "questionnairetest", method = RequestMethod.GET)
+	public String question(Principal principal, Model model) {
+		// Here we are returning a collection of Training objects
+		
+		//List<Training> trainings = trainingService.findActiveTraining();
+
+		List<Training> trainings = trainingService.findAll();
+		
+		model.addAttribute("questionnairetest", trainings);
+
+		return "training/Questionnaire";
 	}
 
 	@RequestMapping(value = "trainings/{id}", method = RequestMethod.GET)

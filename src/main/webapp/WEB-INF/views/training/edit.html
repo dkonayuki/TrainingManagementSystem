@@ -5,10 +5,10 @@
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
 
-	<div class="container text-center">Edit</div>
+	<div class="container text-center form-title">Edit Training</div>
 
 	<div class="container text-center add-training">
-	<form th:action="@{/trainings/{id}(id=${training.id})}" class="form-horizontal" th:method="POST"
+	<form th:action="@{/trainings/{id}(id=${training.id})}" class="form-horizontal form-add" th:method="POST"
 			autocomplete="on" th:object="${trainingForm}" id="trainingForm">
 		<div th:replace="training/_form :: training-form"></div>
 	</form>

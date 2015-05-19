@@ -5,26 +5,31 @@
 
 	<fieldset>
 		<div class="form-group">
-			<label for="Name" class="col-lg-2 control-label">Name</label>
+			<label for="Name" class="col-lg-2 control-label">Name <span
+				class="color-red">*</span></label>
 
 			<div class="col-lg-10">
 				<input type="text" class="form-control" placeholder="Name"
-					th:field="*{name}" /> <span class="help-block"
+					th:field="*{name}" /> <span class="help-block danger"
 					th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
 					can't be left empty</span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="Overview" class="col-lg-2 control-label">Overview</label>
+			<label for="Overview" class="col-lg-2 control-label">Overview
+				<span class="color-red">*</span>
+			</label>
 			<div class="col-lg-10">
 				<textarea class="form-control" placeholder="Overview"
-					th:field="*{overview}"></textarea>
+					th:field="*{overview}"></textarea><span class="help-block"
+					th:if="${#fields.hasErrors('overview')}" th:errors="*{overview}">Overview
+					can't be left empty</span>
 			</div>
 		</div>
 
 		<div class="form-group goal-div">
 			<label for="Goal" class="col-lg-2 control-label">Goal</label>
-			<div class="col-lg-8">
+			<div class="col-lg-10">
 				<div th:each="goal:${trainingForm.goals}" class="entry input-group ">
 					<input class="form-control form-goal" th:value="${goal}"
 						name="goals" type="text" placeholder="Goal" /> <span
@@ -43,7 +48,7 @@
 				<table class="table outline-table">
 					<tr>
 						<th class="col-lg-4">Date</th>
-						<th class="col-lg-6">Content</th>
+						<th class="col-lg-7">Content</th>
 						<th class="col-lg-1"></th>
 						<th></th>
 					</tr>
@@ -51,7 +56,7 @@
 						<td>
 							<div class='input-group date date_selector'>
 								<input type='text' name="outline-date" class="form-control"
-									placeholder="" /> <span class="input-group-addon"> <span
+									placeholder="Training date" /> <span class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>
 							</div>
@@ -89,14 +94,17 @@
 					<span class="glyphicon glyphicon-calendar"></span>
 				</span>
 			</div>
-			<label for="Target" class="col-lg-2 control-label">Application
-				deadline</label>
+			<label for="Target" class="col-lg-2 control-label"
+				style="text-align: right;">Due date <span class="color-red">*</span></label>
 			<div class='col-lg-4 input-group date' id='id_duedate'>
 				<input type='text' class="form-control" th:field="*{dueDate}"
 					placeholder="Deadline" /> <span class="input-group-addon">
 					<span class="glyphicon glyphicon-calendar"></span>
 				</span>
 			</div>
+			<span class="help-block"
+					th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}">Due Date
+					can't be left empty</span>
 
 		</div>
 
@@ -111,35 +119,34 @@
 
 		<div class="form-group">
 			<label for="Target" class="col-lg-2 control-label">Participant
-				number</label>
+				# <span class="color-red">*</span>
+			</label>
 			<div class="col-lg-10">
 				<input type="number" min="1" step="1" class="form-control"
 					placeholder="Number of Participants"
 					th:field="*{participantNumber}" />
+					<span class="help-block"
+					th:if="${#fields.hasErrors('participantNumber')}" th:errors="*{participantNumber}">Participant number
+					can't be left empty</span>
 			</div>
 		</div>
 
 		<div class="form-group"></div>
 
 		<div class="form-group">
-			<label for="Venue" class="col-lg-2 control-label">Venue</label>
+			<label for="Venue" class="col-lg-2 control-label">Venue<span
+				class="color-red">*</span></label>
 			<div class="col-lg-10">
-				<!-- <select class="col-lg-4" name="venue" id="venue"
-							multiple="multiple">
-							<option value="13">Asakai room</option>
-							<option value="5">Outside</option>
-							<option value="6">Fitness Club</option>
-							<option value="8">East Tower</option>
-							<option value="90">RT2 3F</option>
-							<option value="32">TOEIC Room</option>
-						</select>
--->
 				<input type="text" class="form-control" placeholder="Venue"
 					th:field="*{venue}" />
+					<span class="help-block"
+					th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}">Venue
+					can't be left empty</span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="Status" class="col-lg-2 control-label">Status</label>
+			<label for="Status" class="col-lg-2 control-label">Status <span
+				class="color-red">*</span></label>
 			<div class="col-lg-10">
 				<select class="col-lg-6 form-control" th:field="*{status}"
 					id="status">
@@ -153,7 +160,8 @@
 
 		<div class="form-group">
 			<div class="col-lg-offset-2 col-lg-10">
-				<button type="submit" class="btn btn-default">Add</button>
+				<button type="submit" class="btn btn-success btn-lg"
+					style="padding: 8px 30px;">Add</button>
 			</div>
 		</div>
 
@@ -172,6 +180,23 @@
 		th:src="@{/resources/js/bootstrap-datetimepicker.js}"></script>
 
 	<script type="text/javascript">
+		// function to serialize input to JSON array
+		$.fn.serializeObject = function() {
+			var o = {};
+			var a = this.serializeArray();
+			$.each(a, function() {
+				if (o[this.name] !== undefined) {
+					if (!o[this.name].push) {
+						o[this.name] = [ o[this.name] ];
+					}
+					o[this.name].push(this.value || '');
+				} else {
+					o[this.name] = this.value || '';
+				}
+			});
+			return o;
+		};
+
 		$(function() {
 
 			// Date time pickers
@@ -265,19 +290,23 @@
 					function(e) {
 						// e.preventDefault();
 						$this = $(this);
-						$this.find('.outline-input').each(function() {
-							$t2 = $(this);
-							$inputs = $t2.parents('tr').find('input').not($t2);
-							enc = encodeURIComponent(JSON.stringify($inputs.serializeArray()));
-							$t2.val(enc);
-							//val(encodeURIComponent($('table.outline-table')));
-						});
+						$this.find('.outline-input').each(
+								function() {
+									$t2 = $(this);
+									$inputs = $t2.parents('tr').find('input')
+											.not($t2);
+									enc = encodeURIComponent(JSON
+											.stringify($inputs
+													.serializeObject()));
+									$t2.val(enc);
+									//val(encodeURIComponent($('table.outline-table')));
+								});
 
 						$this.find('.outline-text').each(function() {
 							// This urlencodes value of outlines
 							this.value = encodeURIComponent(this.value);
 						});
-						
+
 						// console.log($(this).serialize());
 					});
 		});
