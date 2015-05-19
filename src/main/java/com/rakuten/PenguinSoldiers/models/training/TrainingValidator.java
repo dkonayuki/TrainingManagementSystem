@@ -23,6 +23,7 @@ public class TrainingValidator implements Validator{
 	public void validate(Object obj, Errors errors) {
 		TrainingForm trainingForm = (TrainingForm) obj;
  
+		/*
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "model", "field.required", "Required field");
  
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "field.required", "Required field");
@@ -33,6 +34,7 @@ public class TrainingValidator implements Validator{
 		{
 		errors.rejectValue("community","community.required");
 		}
+		*/
 		
 	}
 
