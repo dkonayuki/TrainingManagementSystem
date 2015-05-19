@@ -7,7 +7,7 @@
 	<div class="container">
 
 	<u><h2>List of all training history</h2></u>
-	<table class="table roundtable">
+	<table id="training-list" class="table roundtable">
 		<tr>
 		<th>Training Name</th>
 		<th>Details</th>
@@ -15,6 +15,7 @@
 		<th>Status</th>
 		<th></th>
 		</tr>
+	
 		<tr class="training-item" th:each="training : ${trainings}" th:attr="data-id=${training.getId()}">
 	    <td><a href="" th:href="@{/trainings/{id}(id=${training.id})}" th:text="${training.name}">Add Programs</a></td>
 	    <td th:text="${training.overview}">1</td>
@@ -23,7 +24,7 @@
 	    <td>
 	    	<a href="#" th:href="@{/trainings/{id}/edit(id=${training.id})}"><span class="glyphicon glyphicon-pencil"></span></a>
 	    	<a class="training-delete-btn" href="#"><span class="glyphicon glyphicon-remove"></span></a>
-	    	<a class="training-delete-btn" href="#" th:href="@{/manager/manage(id=${training.id})}"><span class="glyphicon glyphicon-plus"></span></a>
+	    	<a href="#" th:href="@{/manager/manage(id=${training.id})}"><span class="glyphicon glyphicon-plus"></span></a>
 	    </td>
 		</tr>
 	</table>

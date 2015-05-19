@@ -4,8 +4,9 @@
 </head>
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
-
-<div class="container text-center">
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
+<div class="col-lg-9">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
 </div>
 
 <div class="container text-center add-training">
