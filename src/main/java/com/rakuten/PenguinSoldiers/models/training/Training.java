@@ -24,7 +24,7 @@ import java.net.URLDecoder;
 @Entity
 @Table(name = "training")
 @NamedQueries({
-@NamedQuery(name = Training.FIND_ACTIVE_TRAINING, query = "select a from Training a where a.start_date >= now()"),
+@NamedQuery(name = Training.FIND_ACTIVE_TRAINING, query = "select a from Training a where a.start_date >= now() and a.name like :name"),
 @NamedQuery(name = Training.FIND_BY_ID, query = "select a from Training a where a.id = :id"),
 @NamedQuery(name = Training.FIND_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.start_date >= now() and a.name like :name and a.id = tu.trainingId and tu.userId=:id order by a.start_date desc"),
 @NamedQuery(name = Training.FIND_PAST_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.id = tu.trainingId and a.name like :name and tu.userId=:id and a.start_date<now() order by a.start_date  desc"),

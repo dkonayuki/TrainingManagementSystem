@@ -56,4 +56,5 @@ public class HeaderPageContent {
 	public String showAccountTab() {
 		return this.getAccountName() + " <span class=\'caret\'></span> ";
 	}
+
 }
