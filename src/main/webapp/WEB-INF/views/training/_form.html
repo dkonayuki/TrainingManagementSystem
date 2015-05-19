@@ -132,7 +132,7 @@
 		<div class="form-group">
 			<label for="Venue" class="col-lg-2 control-label">Venue</label>
 			<div class="col-lg-10">
-				<!--						<select class="col-lg-4" name="venue" id="venue"
+				<!-- <select class="col-lg-4" name="venue" id="venue"
 							multiple="multiple">
 							<option value="13">Asakai room</option>
 							<option value="5">Outside</option>
@@ -278,11 +278,8 @@
 						$this = $(this);
 						$this.find('.outline-input').each(function() {
 							$t2 = $(this);
-//							console.log('this is');
-//							console.log($t2);
-//							console.log($t2.parents('tr').find('input'));
-//							console.log($t2.parents('tr').find('input').serialize());
-							enc = encodeURIComponent($t2.parents('tr').find('input').not($t2).serialize());
+							$inputs = $t2.parents('tr').find('input').not($t2);
+							enc = encodeURIComponent(JSON.stringify($inputs.serializeArray()));
 							$t2.val(enc);
 							//val(encodeURIComponent($('table.outline-table')));
 						});
@@ -292,7 +289,7 @@
 							this.value = encodeURIComponent(this.value);
 						});
 						
-						console.log($(this).serialize());
+						// console.log($(this).serialize());
 					});
 		});
 	</script>
