@@ -24,16 +24,18 @@ import java.net.URLDecoder;
 @Entity
 @Table(name = "training")
 @NamedQueries({
-@NamedQuery(name = Training.FIND_ACTIVE_TRAINING, query = "select a from Training a where a.start_date >= now() and a.name like :name"),
+@NamedQuery(name = Training.FIND_ALL_TRAINING, query = "select a from Training a where a.name like :name"),
+@NamedQuery(name = Training.FIND_ACTIVE_TRAINING, query = "select a from Training a where a.name like :name"),
 @NamedQuery(name = Training.FIND_BY_ID, query = "select a from Training a where a.id = :id"),
-@NamedQuery(name = Training.FIND_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.start_date >= now() and a.name like :name and a.id = tu.trainingId and tu.userId=:id order by a.start_date desc"),
+@NamedQuery(name = Training.FIND_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.name like :name and a.id = tu.trainingId and tu.userId=:id order by a.start_date desc"),
 @NamedQuery(name = Training.FIND_PAST_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.id = tu.trainingId and a.name like :name and tu.userId=:id and a.start_date<now() order by a.start_date  desc"),
-@NamedQuery(name = Training.FIND_NOT_REGISTERED_TRAINING, query = "select a from Training a where a.start_date >= now() and a.name like :name and a.id not in ( select tu.trainingId from TrainingUser tu where tu.userId=:id) order by a.start_date  desc"),
+@NamedQuery(name = Training.FIND_NOT_REGISTERED_TRAINING, query = "select a from Training a where a.name like :name and a.id not in ( select tu.trainingId from TrainingUser tu where tu.userId=:id) order by a.start_date  desc"),
 @NamedQuery(name = Training.FIND_BY_NAME, query = "select a from Training a where a.name LIKE :name")
 })
 public class Training implements java.io.Serializable {
 
 	public static final String FIND_BY_ID = "Training.findById";
+	public static final String FIND_ALL_TRAINING= "Training.findAllTraining";
 	public static final String FIND_ACTIVE_TRAINING= "Training.findActiveTraining";
 	public static final String FIND_REGISTERED_TRAINING= "Training.findRegisteredTraining";
 	public static final String FIND_PAST_REGISTERED_TRAINING= "Training.findPastRegisteredTraining";
@@ -192,7 +194,7 @@ public class Training implements java.io.Serializable {
 
 		return goals;
 	}
-
+/*
 	public List<Outline> getOutlineList() {
 		List<Outline> outline = new ArrayList<Outline>();
 		String outlinesJsonString = URLDecoder.decode(URLDecoder.decode(this.getOutline()));
@@ -209,6 +211,20 @@ public class Training implements java.io.Serializable {
 		}
 
 		return outline;
+	}*/
+	public List<String> getOutlineList() {
+		List<String> outlines = new ArrayList<String>();
+		String outlinesJsonString = URLDecoder.decode(URLDecoder.decode(this.getOutline()));
+
+		JSONArray outlinesJson = new JSONArray(outlinesJsonString);
+		JSONObject outlineJson;
+		for (int i = 0; i < outlinesJson.length(); i++)
+		{
+			outlineJson = outlinesJson.getJSONObject(i);
+			outlines.add(outlineJson.toString());
+		}
+
+		return outlines;
 	}
 	/*
 
