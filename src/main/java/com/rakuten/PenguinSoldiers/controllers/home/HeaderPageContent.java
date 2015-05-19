@@ -56,7 +56,7 @@ public class HeaderPageContent {
   public String showActiveLabel(String label){
     return this.isActiveLabel(label) ? "active" : "";
   }
-  
+
   public String showAccountTab(){
     return this.getAccountName()+" <span class=\'caret\'></span> ";
   }
