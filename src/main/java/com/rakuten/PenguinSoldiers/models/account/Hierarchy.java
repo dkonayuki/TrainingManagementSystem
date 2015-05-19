@@ -24,7 +24,7 @@ public class Hierarchy implements java.io.Serializable {
   @GeneratedValue
   private Long id;
   
-  @Column(unique = true)
+  //@Column(unique = true)
   private Long managerId;
   private Long employeeId;
   
