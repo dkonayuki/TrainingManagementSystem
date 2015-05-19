@@ -172,10 +172,10 @@ div.all-content {
 }
 
 .left-nav-ul {
-  border: 1px dashed #ccc;
+  border: 1px solid #ef4411;
   box-shadow: 1px 1px 4px #ccc;
   border-radius: 0px 0px 5px 5px;
-  border-top: 2px solid #ef4411;
+  border-top: 2px solid #efefef;
 }
 
 .left-nav-title {
