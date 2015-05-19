@@ -2,10 +2,6 @@ package com.rakuten.PenguinSoldiers.models.training;
 
 import java.util.List;
 
-
-
-
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
@@ -14,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
-import com.rakuten.PenguinSoldiers.models.account.Hierarchy;
 
 @Repository
 @Transactional

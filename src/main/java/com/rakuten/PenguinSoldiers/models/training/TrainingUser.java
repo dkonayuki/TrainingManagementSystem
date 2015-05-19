@@ -15,8 +15,8 @@ import javax.persistence.Table;
 @Table(name = "training_user")
 @NamedQueries({
 @NamedQuery(name = TrainingUser.FIND_BY_ID, query = "select a from TrainingUser a where a.id = :id"),
-@NamedQuery(name = TrainingUser.FIND_REGISTERED_EMPLOYEE, query = "select a from TrainingUser tu, Account a where tu.trainingId = :trainingId and a.id=tu.userId and a.id in (select acc.id from Account acc, Hierarchy h where h.managerId=:managerId and acc.id=h.employeeId)"),
-@NamedQuery(name = TrainingUser.FIND_NOT_REGISTERED_EMPLOYEE, query = "select a FROM Hierarchy h, Account a WHERE h.managerId=:managerId and a.id=h.employeeId and a.id not in ( select tu.userId from TrainingUser tu where tu.trainingId=:trainingId )"),
+@NamedQuery(name = TrainingUser.FIND_REGISTERED_EMPLOYEE, query = "select a from TrainingUser tu, Account a where tu.trainingId = :trainingId and a.id=tu.userId and a.id in (select acc.id from Account acc, Hierarchy h where h.managerId=:managerId and acc.id=h.employeeId) order by a.name"),
+@NamedQuery(name = TrainingUser.FIND_NOT_REGISTERED_EMPLOYEE, query = "select a FROM Hierarchy h, Account a WHERE h.managerId=:managerId and a.id=h.employeeId and a.id not in ( select tu.userId from TrainingUser tu where tu.trainingId=:trainingId )  order by a.name "),
 @NamedQuery(name = TrainingUser.FIND_BY_TRAININIG_ID_ACCOUNT_ID, query = "select tu from TrainingUser tu where tu.trainingId=:trainingId and tu.userId=:accountId")
 })
 public class TrainingUser {
