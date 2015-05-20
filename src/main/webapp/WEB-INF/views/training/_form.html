@@ -179,6 +179,7 @@
 
 	<script type="text/javascript">
 		// decode hidden input outline into (date, content)inputs
+		/*
 		$(document).ready(function() {
 			$this = $('#trainingForm');
 			$this.find('.outline-input').each(
@@ -186,14 +187,15 @@
 					$t2 = $(this);
 					$input_date = $t2.parents('tr').find('input.outline-date:first');
 					$input_text = $t2.parents('tr').find('input.outline-text:first');
-					console.log($input_date);
+					//console.log($input_date);
 					//console.log($input_text);
 					var mjson = jQuery.parseJSON($t2.val());
 					console.log(mjson["outline-date"]);
 					$input_text.val(mjson["outline-text"]);
-					$input_date.val(mjson["outline-date"]);
+					$input_date.val = mjson["outline-date"];
 			});
 		});
+		*/
 		
 		// function to serialize input to JSON array
 		$.fn.serializeObject = function() {
@@ -222,9 +224,9 @@
 				format : "D/MM/YYYY, HH:mm"
 			});
 
-			//$('.date_selector').datetimepicker({
-			//	format : "D/MM/YYYY, HH:mm"
-			//});
+			$('.date_selector').datetimepicker({
+				format : "D/MM/YYYY, HH:mm"
+			});
 			// Multiselect
 			/*			$('#venue').multiselect({
 			 buttonWidth : '400px',
