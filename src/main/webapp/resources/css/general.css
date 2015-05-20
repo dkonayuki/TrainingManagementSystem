@@ -1,5 +1,9 @@
 .rakuten-name {
-	color: #844;
+	color: #fff;
+	/* box-shadow: 0px 0px 15px #fff; */
+	border-radius: 20px;
+	padding: 8px 12px;
+	border: 2px solid #fff;
 }
 
 .add-training {
@@ -30,7 +34,6 @@ div.form-group {
 	color: #f00;
 }
 
-
 .rakuten-logo {
 	margin-bottom: 30px;
 }
@@ -40,10 +43,9 @@ div.form-group {
 }
 
 /* Design for add button */
-.entry:not (:first-of-type ), .entry-row:not (:first-of-type ) {
+.entry:not (:first-of-type), .entry-row:not (:first-of-type) {
 	margin-top: 10px;
 }
-
 .glyphicon {
 	font-size: 12px;
 }
@@ -122,7 +124,7 @@ table.traininglist tr:hover {
 }
 
 table.roundtable {
-	background: #FF0000;
+	background: #e45335;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -132,9 +134,9 @@ table.roundtable {
 }
 
 table.roundtable th {
-	/*color: red;*/
+	color: #efefef;
 	padding: 8px 15px;
-	background: #FF0000;
+	background: #e45335;
 	font-weight: bold;
 	text-align: left;
 }
@@ -172,35 +174,33 @@ div.all-content {
 }
 
 .left-nav-ul {
-  border: 1px solid #ef4411;
-  box-shadow: 1px 1px 4px #ccc;
-  border-radius: 0px 0px 5px 5px;
-  border-top: 2px solid #efefef;
+	border: 1px solid #e45335;
+	box-shadow: 1px 1px 4px #ccc;
+	border-radius: 0px 0px 5px 5px;
+	border-top: 2px solid #efefef;
 }
 
 .left-nav-title {
 	font-weight: bold;
-  	padding: 5px 20px 4px;
-  	display: block;
-  	background-color: #ef4411;
-  	color: #eee;
-  	border-radius: 5px 5px 0px 0px;
-  	box-shadow: 3px 3px 10px #ccc;
-  	
+	padding: 5px 20px 4px;
+	display: block;
+	background-color: #e45335;
+	color: #eee;
+	border-radius: 5px 5px 0px 0px;
+	box-shadow: 3px 3px 10px #ccc;
 }
 
 /*admin page design END*/
 
 /* new training design BEGIN */
-
 .form-add {
-border: 1px solid #ccc;
-  padding: 20px 40px;
-  box-shadow: 3px 3px 10px #ccc;
-} 
+	border: 1px solid #ccc;
+	padding: 20px 40px;
+	box-shadow: 3px 3px 10px #ccc;
+}
 
 form.form-horizontal .control-label {
-	text-align:left;
+	text-align: left;
 }
 
 .color-red {
@@ -215,12 +215,39 @@ form.form-horizontal .control-label {
 	border-top: 1px solid #ccc;
 	padding: 10px 50px;
 }
-  /* new training design END */
-  
+/* new training design END */
 div a {
-  	/* color: #d21; */
+	/* color: #d21; */
+	
 }
 
 .begin-div {
-	margin-top:100px;
+	margin-top: 50px;
 }
+
+.page-path {
+	box-shadow: 0px 0px 2px #ccc;
+	padding: 2px 10px;
+	margin: 10px 125px 20px 25px;
+	border-radius: 3px;
+}
+
+.breadcrumb {
+	margin: 0px 125px 0px 25px;
+}
+
+/* Details page design BEGIN */
+.details h3, .details h2 {
+	text-align: left;
+}
+
+.details h3 small, .details h2 small {
+	color: #ff4334;
+}
+
+.outline-table th {
+	text-align: center;
+}
+
+.details-div {}
+/* Details page design END */

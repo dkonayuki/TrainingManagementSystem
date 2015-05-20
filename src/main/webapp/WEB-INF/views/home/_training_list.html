@@ -16,11 +16,15 @@
 					<td th:text="${#calendars.format(training.due_date,'MMMM dd, yyyy')}">date</td>
 					<td th:text="${training.status}">status</td>
 					<td th:if="${pageContent.isAdmin()||pageContent.isManager()}">
+						
 						<a th:if="${pageContent.isAdmin()}" href="#"
 						th:href="@{/trainings/{id}/edit(id=${training.id})}"><span
-							class="glyphicon glyphicon-pencil"></span></a> <a
+							class="glyphicon glyphicon-pencil"></span></a> 
+						<a
 						th:if="${pageContent.isAdmin()}" class="training-delete-btn"
-						href="#"><span class="glyphicon glyphicon-remove"></span></a> <a
+						th:onclick="${'deleteTraining('+training.id+')'}" href="#" onclick=""><span class="glyphicon glyphicon-remove"></span></a> 
+						
+						<a
 						th:if="${pageContent.isManager()}" class="training-delete-btn"
 						href="#" th:href="@{/manager/manage(id=${training.id})}"><span
 							class="glyphicon glyphicon-plus"></span></a>
