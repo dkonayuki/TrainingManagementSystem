@@ -6,65 +6,65 @@
 	<div th:replace="fragments/header :: header">Header</div>
 	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
 
-	<div class="col-lg-9 container">
+	<div class="col-lg-9 container begin-div">
 		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
-	<div class="container text-center">
-	    <blockquote class="trainingtitle">
-	    <h1 th:text="${training.name}">Course name</h1>
-	    </blockquote>
-	    
-	    <div class="panel">
-	    <h3 class="panel-heading">Training overview</h3>
-	    <div class="panel-body" th:text="${training.overview}"></div>
-	    </div>
-	    
-        <div class="panel">
-        <h3 class="panel-heading">Target employees</h3>
-	    <!-- <div class="panel-body" th:text="${training.target}"></div> -->
-        </div>
-        
-        <div class="panel">
-        <h3 class="panel-heading">By the end of this course, you should be able to...</h3>
-	    <!-- <div class="panel-body" th:text="${training.goals}"></div> -->
-        </div>
-        
-        <div class="row">
-          <div class="col-md-6">
-          <div class="panel">
-          <h3 class="panel-heading">Course curriculum</h3>
-	      <!-- <div class="panel-body" th:text="${training.curriculum}"></div> -->
-          </div>
-          </div>
-          <div class="col-md-6">
-          <div class="panel">
-          <h3 class="panel-heading">Course information</h3>
-          <table border="1" style="width:100%">
-          <tr>
-            <td class="type"><b>Period</b></td>
-            <td>thymeleaf</td>
-          </tr>
-       	  <tr>
-    		<td class="type"><b>Location</b></td>
-    		<td>thymeleaf</td>
-  		  </tr>
-  		  <tr>
-    		<td class="type"><b>Seats Available</b></td>
-    		<td>thymeleaf</td>
-  		  </tr>
-  		  <tr>
-    		<td class="type"><b>Application Deadline</b></td>
-    		<td>thymeleaf</td>
-  		  </tr>
-  		  <tr>
-    		<td class="type"><b>Things to Bring</b></td>
-    		<td>thymeleaf</td>
-  		  </tr>
-		  </table> 
 
-          </div>
-          </div>
-        </div>
-        </div>
-        </div>
+		<div class="container text-center">
+			<div class="details">
+				<h2 th:text="${training.name}">Learn Keigo Training</h2>
+			</div>
+			<div class="details">
+				<h3>
+					<small>Overview</small>
+				</h3>
+				<p th:text="${training.overview}"></p>
+			</div>
+			<div class="details">
+				<h3>
+					<small>Target People</small>
+				</h3>
+				<p th:text="${training.target}"></p>
+			</div>
+			<div class="details">
+				<h3>
+					<small>Number of participants</small>
+				</h3>
+				<p th:text="${training.max_participants}">64</p>
+			</div>
+			<div class="details">
+				<h3>
+					<small>Outline</small>
+				</h3>
+				<table class="table outline-table">
+					<tr>
+						<th class="col-lg-1"></th>					
+						<th class="col-lg-4">Date</th>
+						<th class="col-lg-7">Content</th>
+						<th></th>
+					</tr>
+					<tr th:each="outline : ${training.getOutlineList()}">
+						<td></td>
+						<td th:text="${outline.getDate()}"></td>
+						<td th:text="${outline.getText()}"></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<h3>
+					<small>Training Venue</small>
+				</h3>
+				<p th:text="${training.venue}">The Bridge</p>
+			</div>
+			<div class="details">
+				<h3>
+					<small>Goals</small>
+				</h3>
+				<ul class="list-group">
+					<li th:each="goal : ${training.getGoals()}" th:text="${goal}" class="list-group-item">En
+						las Orillas del Sar</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

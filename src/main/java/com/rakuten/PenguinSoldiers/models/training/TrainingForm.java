@@ -77,7 +77,7 @@ public class TrainingForm {
 		if (this.goals.isEmpty()) {
 			this.goals.add("");
 		}
-		this.outlines = training.getOutlineList();
+		this.outlines = training.getOutlineListStr();
 		
 		System.out.println(this.outlines);
 		this.targetPeople = training.getTarget();
