@@ -43,29 +43,8 @@ div.form-group {
 }
 
 /* Design for add button */
-.entry
-:not
- 
-(
-:first-of-type
- 
-),
-.entry-row
-:not
- 
-(
-:first-of-type
- 
-)
-{
-margin-top
-:
- 
-10
-px
-;
-
-
+.entry:not (:first-of-type), .entry-row:not (:first-of-type) {
+	margin-top: 10px;
 }
 .glyphicon {
 	font-size: 12px;
@@ -256,3 +235,17 @@ div a {
 .breadcrumb {
 	margin: 0px 125px 0px 25px;
 }
+
+/* Details page design BEGIN */
+.details h3, .details h2 {
+	text-align: left;
+}
+
+.details h3 small, .details h2 small {
+	color: #ff4334;
+}
+
+.outline-table th {
+	text-align: center;
+}
+/* Details page design END */
