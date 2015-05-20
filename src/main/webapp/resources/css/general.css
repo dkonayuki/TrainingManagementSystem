@@ -124,7 +124,7 @@ table.traininglist tr:hover {
 }
 
 table.roundtable {
-	background: #FF0000;
+	background: #e45335;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -134,9 +134,9 @@ table.roundtable {
 }
 
 table.roundtable th {
-	/*color: red;*/
+	color: #efefef;
 	padding: 8px 15px;
-	background: #FF0000;
+	background: #e45335;
 	font-weight: bold;
 	text-align: left;
 }
@@ -248,4 +248,6 @@ div a {
 .outline-table th {
 	text-align: center;
 }
+
+.details-div {}
 /* Details page design END */
