@@ -303,6 +303,7 @@ public class Training implements java.io.Serializable {
 		this.premise = tr.premise;
 		this.overview = tr.overview;
 		this.venue = tr.venue;
+		this.status = tr.status;
 	}
 
 	public String getOverview(int length) {
