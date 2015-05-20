@@ -146,3 +146,27 @@ function reloadTrainingHomePage(){
 	var toUrl="./?filter="+filter+"&name=" + query;
 	queryTrainingList(toUrl);
 }
+
+
+function deleteTraining(id){
+//	var id = $(this).parents(".training-item").data("id");
+	
+	var r = confirm("Are you sure?");
+	if (r == true) {
+		$.ajax({
+			type: "DELETE",
+			url: "./trainings/" + id,
+			success: function(data) {
+				window.location.reload();
+			},
+			error: function(XHR, message, errorThrown) {
+				console.log(errorThrown);
+			}
+
+		});
+	} else {
+	}
+	
+
+	return false;
+}
