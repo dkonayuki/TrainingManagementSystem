@@ -41,8 +41,8 @@
 						<!-- <select multiple="multiple" class="form-control" id="regAccount" th:field="*{out}" >
               <option th:each="list : ${tumc.getOut()}" th:text="${list.getName()}" th:value="${list.getId()}" value="1">1</option>
             </select> -->
-
-						<select class="col-lg-4" name="out" id="out" multiple="multiple">
+						<select class="selectpicker" data-live-search="true"
+							multiple="multiple" name="out">
 							<option th:each="list : ${tumc.getOut()}"
 								th:text="${list.getName()}" th:value="${list.getId()}" value="1">1</option>
 						</select> <input type="hidden" class="form-control" id="trainingId"
@@ -59,19 +59,7 @@
 			</form>
 		</div>
 		<div th:if="${tumc.getOut().size()==0}">Everyone is registered</div>
-		<link href="../../../resources/css/bootstrap-multiselect.css"
-			rel="stylesheet" media="screen"
-			th:href="@{/resources/css/bootstrap-multiselect.css}" />
 
-		<script src="../../../resources/js/bootstrap-multiselect.js"
-			th:src="@{/resources/js/bootstrap-multiselect.js}"></script>
-		<script>
-		// Multiselect
-		$('#out').multiselect({
-		 buttonWidth : '400px',
-		 dropRight : true
-		 });
-		</script>
 	</div>
 </body>
 </html>

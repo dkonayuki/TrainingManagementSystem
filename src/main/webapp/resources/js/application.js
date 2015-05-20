@@ -170,3 +170,4 @@ function deleteTraining(id){
 
 	return false;
 }
+
