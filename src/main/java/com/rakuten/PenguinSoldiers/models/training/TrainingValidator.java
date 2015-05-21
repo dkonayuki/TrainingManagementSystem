@@ -126,6 +126,7 @@ public class TrainingValidator {
 					try {
 						outline_date = format.parse(outlineDate);
 					} catch (ParseException e) {
+						//errors.rejectValue("outlines", "outlineDate.invalid");
 						System.out.println("Parse error " + e.getMessage());
 					}
 					if (outline_date.compareTo(today) > 0) {

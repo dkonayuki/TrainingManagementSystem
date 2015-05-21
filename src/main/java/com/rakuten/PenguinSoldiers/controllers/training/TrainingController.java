@@ -150,6 +150,7 @@ public class TrainingController {
 		trainingService.save(tr);
 		return "redirect:/trainings/" + tr.getId();
 	}*/
+	
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm, BindingResult result, final Model model, Errors errors) {		
 		
