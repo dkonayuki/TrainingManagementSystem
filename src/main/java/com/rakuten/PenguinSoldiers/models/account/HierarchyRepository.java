@@ -1,5 +1,7 @@
 package com.rakuten.PenguinSoldiers.models.account;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,13 @@ public class HierarchyRepository {
     return hierarchy;
   }
   
+  
+  @Transactional
+  public void save(List<Hierarchy> list) {
+    for(Hierarchy h : list){
+      entityManager.persist(h);
+    }
+  }
   
   public boolean isExist(Hierarchy h) {
     try {

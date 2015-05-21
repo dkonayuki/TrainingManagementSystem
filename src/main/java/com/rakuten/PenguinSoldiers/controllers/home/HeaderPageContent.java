@@ -8,6 +8,9 @@ public class HeaderPageContent {
 	public static String TRAINING_LABEL = "training";
 	public static String ACCOUNT_LABEL = "account";
 	public static String MODE_LABEL = "mode";
+	
+	public static String AVAILABLE_LABEL = "available";
+	public static String REGISTERED_LABEL = "own";
 
 	private String activeLabel = "";
 
@@ -52,9 +55,5 @@ public class HeaderPageContent {
 	public String showActiveLabel(String label) {
 		return this.isActiveLabel(label) ? "active" : "";
 	}
-
-	public String showAccountTab() {
-		return this.getAccountName() + " <span class=\'caret\'></span> ";
-	}
-
+	
 }
