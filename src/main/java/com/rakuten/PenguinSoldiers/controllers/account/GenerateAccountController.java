@@ -19,19 +19,13 @@ public class GenerateAccountController {
   
   @RequestMapping(value = "generate")
   public String genAccount() {
-    
-    
-    
-    GenerateAccounts.generate(accountRepository);
-    
+//    GenerateAccounts.generate(accountRepository);
     return "account/generate";
   }
   
   @RequestMapping(value = "generateOrg")
   public String genOrg() {
-    
-    GenerateAccounts.generateOrg(accountRepository,hierarchyRepository);
-    
+//    GenerateAccounts.generateOrg(accountRepository,hierarchyRepository);
     return "account/generate";
   }
 }

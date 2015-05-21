@@ -14,8 +14,9 @@ import com.rakuten.PenguinSoldiers.models.account.Account;
 
 public class JsonUsersParser {
   
-private String url="http://rogin.cloudapp.net/api/users.json";
   
+//  private String url="http://rogin.cloudapp.net/api/users.json";
+  private String url="http://10.0.0.5/api/users.json";
   private String fullAccountLabel="full_account";
   private String nameLabel="name";
   private String employeeNoLabel="employee_no";

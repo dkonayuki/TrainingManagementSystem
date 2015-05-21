@@ -30,7 +30,7 @@ public class HomeController {
   private TrainingService trainingService;
   
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String index(@RequestParam(value = "filter", required = false, defaultValue = "in") String filter, @RequestParam(value = "name", required = false, defaultValue = "%") String name, Principal principal, Model model) {
+  public String index(@RequestParam(value = "filter", required = false, defaultValue = "out") String filter, @RequestParam(value = "name", required = false, defaultValue = "%") String name, Principal principal, Model model) {
     
     if (principal != null) {
 //      UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -53,7 +53,7 @@ public class HomeController {
   
   @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.HEAD},     
       headers = "x-requested-with=XMLHttpRequest")
-  public String search(@RequestParam(value = "filter", required = false, defaultValue = "in") String filter, @RequestParam(value = "name", required = false, defaultValue = "%") String name, Model model) {
+  public String search(@RequestParam(value = "filter", required = false, defaultValue = "out") String filter, @RequestParam(value = "name", required = false, defaultValue = "%") String name, Model model) {
 //    List<Training> tl = trainingService.findByName(name);
 //    model.addAttribute("trainings", tl);
     model.addAttribute("trainings", search(filter,name));

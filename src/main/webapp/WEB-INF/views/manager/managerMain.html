@@ -20,14 +20,19 @@
 
 		<table class="table">
 			<tr>
-				<th>Registered: <a class="training-delete-btn" href="#"
+			  <th>Registered: <a class="training-delete-btn" href="#"
 					th:href="@{/manager/remove(id=${regEmployeeForm.getTrainingId()})}"><span
 						class="glyphicon glyphicon-minus"></span></a></th>
 			</tr>
-			<tr th:each="in: ${tumc.in}">
-				<td th:text="${in.getName()}">1</td>
+			<tr>
+			  <td>
+				<div class="row" >
+                  <div th:each="in: ${tumc.in}" th:text="${in.getName()}" class="col-sm-3" style="background-color:lavender;"></div>
+                </div>
+              </td>
 			</tr>
 		</table>
+
 
 
 		<div th:if="${tumc.getOut().size()>0}">

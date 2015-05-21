@@ -13,20 +13,19 @@
 <div th:text="${acpc.generate()}">1</div>
  -->
  
+    
+        <legend>Add New Admin Member</legend>
+         
+ <div class="row" >
+    <div th:each="admin : ${acpc.admins}" th:text="${admin.name}" class="col-sm-3" style="background-color:lavender;">
+    </div>
+  </div>
  
-<table class="table">
-		<tr>
-		<th>Current Admin:</th>
-		</tr>
-		<tr th:each="admin : ${acpc.admins}">
-	    <td th:text="${admin.name}">1</td>
-		</tr>
-</table>
+
 	
 <form th:action = "@{/admin/addAdmin}" >
 
-    <fieldset>
-        <legend>Add New Admin Member</legend>
+<fieldset>
         <div class="form-group">
             <label for="New Admin" class="col-lg-2 control-label">New Admin Username</label>
             <div class="col-lg-10">
