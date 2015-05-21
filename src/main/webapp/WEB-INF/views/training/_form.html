@@ -53,8 +53,8 @@
 					</tr>
 					<tr class="entry-row" th:each="outline : ${trainingForm.outlines}">
 						<td>
-							<div class='input-group date_selector'>
-								<input type='text' name="outline-date" class="form-control"
+							<div class='input-group date date_selector'>
+								<input type='text' name="outline-date" class="form-control outline-date"
 									placeholder="Training date" /> <span class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -168,37 +168,25 @@
 
 
 	</fieldset>
-	<script src="../../../resources/js/moment.js"
-		th:src="@{/resources/js/moment.js}"></script>
-
-	<link href="../../../resources/css/bootstrap-multiselect.css"
-		rel="stylesheet" media="screen"
-		th:href="@{/resources/css/bootstrap-multiselect.css}" />
-
-	<script src="../../../resources/js/bootstrap-multiselect.js"
-		th:src="@{/resources/js/bootstrap-multiselect.js}"></script>
-	<script src="../../../resources/js/bootstrap-datetimepicker.js"
-		th:src="@{/resources/js/bootstrap-datetimepicker.js}"></script>
 
 	<script type="text/javascript">
 		// decode hidden input outline into (date, content)inputs
-		/*
 		$(document).ready(function() {
 			$this = $('#trainingForm');
 			$this.find('.outline-input').each(
 				function() {
+
 					$t2 = $(this);
 					$input_date = $t2.parents('tr').find('input.outline-date:first');
 					$input_text = $t2.parents('tr').find('input.outline-text:first');
-					//console.log($input_date);
-					//console.log($input_text);
-					var mjson = jQuery.parseJSON($t2.val());
-					console.log(mjson["outline-date"]);
+					str = $t2.val();
+					console.log(str);
+					if(!str) return;
+					var mjson = jQuery.parseJSON(str);
+					$input_date.val(mjson["outline-date"]);
 					$input_text.val(mjson["outline-text"]);
-					$input_date.val = mjson["outline-date"];
 			});
 		});
-		*/
 		
 		// function to serialize input to JSON array
 		$.fn.serializeObject = function() {

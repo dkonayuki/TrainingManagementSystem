@@ -71,3 +71,15 @@ p.welcome {
 	margin: 50px auto;
 	font-size: 1.2em;
 }
+
+.table > tbody > tr > th.first-row-cell {
+	border-top-style: none;
+}
+
+.table > tbody > tr > th.last-row-cell {
+	border-bottom: solid 1px red;
+}
+
+.table > tbody > tr > td.last-row-cell {
+	border-bottom: solid 1px red;
+}
