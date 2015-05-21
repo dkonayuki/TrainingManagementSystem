@@ -8,7 +8,6 @@
 
 	<div class="col-lg-9 container begin-div">
 		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
-
 		<div class="container text-center details-div">
 			<div class="details">
 				<h2 th:text="${training.name}">Learn Keigo Training</h2>
@@ -63,6 +62,12 @@
 					<li th:each="goal : ${training.getGoals()}" th:text="${goal}" class="list-group-item">En
 						las Orillas del Sar</li>
 				</ul>
+			</div>
+			<div class="details">
+				<h3>
+					<small>Status</small>
+				</h3>
+				<p th:text="${training.status}"></p>
 			</div>
 		</div>
 	</div>
