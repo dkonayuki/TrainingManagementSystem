@@ -13,66 +13,74 @@ import com.rakuten.PenguinSoldiers.models.account.Account;
 
 @Service
 public class TrainingService {
-	
+
 	@Autowired
 	private TrainingRepository trainingRepository;
-	
+
 	@PostConstruct	
 	protected void initialize() {
 	}
-	
+
 	public Training create(Training training) {
 		return trainingRepository.save(training);
 	}
-	
-  public Training findById(int id) {
-    return trainingRepository.findById(id);
-  }
 
-  public void delete(int id) throws DataAccessException {
-    Training deletedTraining = trainingRepository.findById(id);
-    trainingRepository.delete(deletedTraining);
-  }
+	public Training findById(int id) {
+		return trainingRepository.findById(id);
+	}
 
-  public List<Training> findAll() {
-    return trainingRepository.findAll();
-  }
+	public void delete(int id) throws DataAccessException {
+		Training deletedTraining = trainingRepository.findById(id);
+		trainingRepository.delete(deletedTraining);
+	}
 
-  /*
-  public Training update(Training training) throws DataAccessException {
-    Training updatedTraining = trainingRepository.findById(training.getId());
+	public List<Training> findAll() {
+		return trainingRepository.findAll();
+	}
 
-    updatedTraining.setName(training.getName());
-    return updatedTraining;
-  }*/
-  public void update(Training training) {
-  	trainingRepository.update(training);
-  }
+	public List<Training> findAll(int pageNum, int pageSize) {
+		return trainingRepository.findAll(pageNum, pageSize);
+	}
+
+	/*
+	   public Training update(Training training) throws DataAccessException {
+	   Training updatedTraining = trainingRepository.findById(training.getId());
+
+	   updatedTraining.setName(training.getName());
+	   return updatedTraining;
+	   }*/
+	public void update(Training training) {
+		trainingRepository.update(training);
+	}
 
 	public void save(Training training) {
 		trainingRepository.save(training);
 	}
-	
+
 	public List<Training> findActiveTraining(){
-	  return trainingRepository.findActiveTraining();
+		return trainingRepository.findActiveTraining();
 	}
-	
+
 	public List<Training> findRegsiterdTraining(String  filter, String name, Account a){
-	  if(a==null)return null;
-	  if(name==null)name="%";
-	  else name="%"+name+"%";
-	  if(filter.equals(HomeController.TRAINING_FILTER_PAST))
-	    return trainingRepository.findPastRegisteredTraining(a.getId(),name);
-	  else if(filter.equals(HomeController.TRAINING_FILTER_OUT))
-//	    return trainingRepository.findNotRegisteredTraining(a.getId(),name);
-	    return trainingRepository.findAllTraining(name);
-	  else
-	    return trainingRepository.findRegisteredTraining(a.getId(),name);
-//	  return null;
+		if(a==null)return null;
+		if(name==null)name="%";
+		else name="%"+name+"%";
+		if(filter.equals(HomeController.TRAINING_FILTER_PAST))
+			return trainingRepository.findPastRegisteredTraining(a.getId(),name);
+		else if(filter.equals(HomeController.TRAINING_FILTER_OUT))
+			//	    return trainingRepository.findNotRegisteredTraining(a.getId(),name);
+			return trainingRepository.findAllTraining(name);
+		else
+			return trainingRepository.findRegisteredTraining(a.getId(),name);
+		//	  return null;
 	}
-	
+
 	public List<Training> findByName(String name) {
 		return trainingRepository.findByName(name);
+	}
+
+	public List<Training> findByName(String name, int pageNum, int pageSize) {
+		return trainingRepository.findByName(name, pageNum, pageSize);
 	}
 
 }

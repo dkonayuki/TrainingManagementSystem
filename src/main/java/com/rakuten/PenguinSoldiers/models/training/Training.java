@@ -42,6 +42,8 @@ public class Training implements java.io.Serializable {
 	public static final String FIND_NOT_REGISTERED_TRAINING = "Training.findNotRegisteredTraining";
 	public static final String FIND_BY_NAME = "Training.findByName";
 
+	public static final Integer PAGE_SIZE = 1;
+
 	@Id
 	@GeneratedValue
 	private Integer id;

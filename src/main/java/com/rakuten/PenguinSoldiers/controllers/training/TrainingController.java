@@ -65,6 +65,22 @@ public class TrainingController {
 		return "training/index";
 	}
 	
+	@RequestMapping(value = "trainings/page/{pagenum:[0-9]+}", method = RequestMethod.GET)
+	public String index(@RequestParam(value = "name", required = false) String name, Principal principal, Model model, @PathVariable(value="pagenum") Integer pageNum) {
+		// Here we are returning a collection of Training objects
+		
+		//List<Training> trainings = trainingService.findActiveTraining();
+		List<Training> trainings;
+		if (name == null) {
+			trainings = trainingService.findAll(pageNum, Training.PAGE_SIZE);
+		} else {
+			trainings = trainingService.findByName(name, pageNum, Training.PAGE_SIZE);
+		}
+		model.addAttribute("trainings", trainings);
+
+		return "training/index";
+	}
+
 	@RequestMapping(value = "trainings", method = {RequestMethod.GET, RequestMethod.HEAD},     
 	    headers = "x-requested-with=XMLHttpRequest")
 	public String search(@RequestParam(value = "name") String name, Model model) {

@@ -23,97 +23,128 @@ public class TrainingRepository {
 	public Training findById(int id) {
 		try {
 			return entityManager.createNamedQuery(Training.FIND_BY_ID, Training.class)
-					.setParameter("id", id)
-					.getSingleResult();
+				.setParameter("id", id)
+				.getSingleResult();
 		} catch (PersistenceException e) {
 			return null;
 		}
 	}
-	
+
 	public Training findById(Long id) {
-    try {
-      return entityManager.createNamedQuery(Training.FIND_BY_ID, Training.class)
-          .setParameter("id", id)
-          .getSingleResult();
-    } catch (PersistenceException e) {
-      return null;
-    }
-  }
-	
+		try {
+			return entityManager.createNamedQuery(Training.FIND_BY_ID, Training.class)
+				.setParameter("id", id)
+				.getSingleResult();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
 	public List<Training> findByName(String name) {
-    try {
-      return entityManager.createNamedQuery(Training.FIND_BY_NAME, Training.class)
-          .setParameter("name", "%" + name + "%")
-          .getResultList();
-    } catch (PersistenceException e) {
-      return null;
-    }
-  }
-	
+		try {
+			return entityManager.createNamedQuery(Training.FIND_BY_NAME, Training.class)
+				.setParameter("name", "%" + name + "%")
+				.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
+	public List<Training> findByName(String name, Integer pageNum, Integer pageSize) {
+		try {
+			return entityManager.createNamedQuery(Training.FIND_BY_NAME, Training.class)
+				.setParameter("name", "%" + name + "%")
+				.setFirstResult((pageNum -1)*pageSize)
+				.setMaxResults(pageSize)
+				.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
 	public List<Training> findRegisteredTraining(Long id, String name) {
-    try {
-      return entityManager.createNamedQuery(Training.FIND_REGISTERED_TRAINING, Training.class)
-          .setParameter("id", id).setParameter("name", name)
-          .getResultList();
-    } catch (PersistenceException e) {
-      return null;
-    }
-  }
-	
+		try {
+			return entityManager.createNamedQuery(Training.FIND_REGISTERED_TRAINING, Training.class)
+				.setParameter("id", id).setParameter("name", name)
+				.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
 	public List<Training> findNotRegisteredTraining(Long id, String name) {
-    try {
-      return entityManager.createNamedQuery(Training.FIND_NOT_REGISTERED_TRAINING, Training.class)
-          .setParameter("id", id).setParameter("name", name)
-          .getResultList();
-    } catch (PersistenceException e) {
-      return null;
-    }
-  }
-	
+		try {
+			return entityManager.createNamedQuery(Training.FIND_NOT_REGISTERED_TRAINING, Training.class)
+				.setParameter("id", id).setParameter("name", name)
+				.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
 	public List<Training> findPastRegisteredTraining(Long id, String name) {
-    try {
-      return entityManager.createNamedQuery(Training.FIND_PAST_REGISTERED_TRAINING, Training.class)
-          .setParameter("id", id).setParameter("name", name)
-          .getResultList();
-    } catch (PersistenceException e) {
-      return null;
-    }
-  }
-	
+		try {
+			return entityManager.createNamedQuery(Training.FIND_PAST_REGISTERED_TRAINING, Training.class)
+				.setParameter("id", id).setParameter("name", name)
+				.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
 	public List<Training> findActiveTraining(String name) {
-    try {
-      return entityManager.createNamedQuery(Training.FIND_ACTIVE_TRAINING, Training.class)
-          .setParameter("name", name)
-          .getResultList();
-    } catch (PersistenceException e) {
-      return null;
-    }
-  }
-	
+		try {
+			return entityManager.createNamedQuery(Training.FIND_ACTIVE_TRAINING, Training.class)
+				.setParameter("name", name)
+				.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
 	public List<Training> findAllTraining(String name) {
-    try {
-      return entityManager.createNamedQuery(Training.FIND_ALL_TRAINING, Training.class)
-          .setParameter("name", name)
-          .getResultList();
-    } catch (PersistenceException e) {
-      return null;
-    }
-  }
-	
+		try {
+			return entityManager.createNamedQuery(Training.FIND_ALL_TRAINING, Training.class)
+				.setParameter("name", name)
+				.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
+	public List<Training> findAllTraining(String name, Integer pageNum, Integer pageSize) {
+		try {
+			return entityManager.createNamedQuery(Training.FIND_ALL_TRAINING, Training.class)
+				.setParameter("name", name)
+				.setFirstResult((pageNum -1)*pageSize)
+				.setMaxResults(pageSize)
+				.getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
 	public List<Training> findActiveTraining() {
-    return findActiveTraining("%");
-  }
-	
+		return findActiveTraining("%");
+	}
+
 	public void update(Training training) {
 		entityManager.merge(training);
 	}
 
 	public void delete(Training training) {
-    entityManager.remove(entityManager.contains(training) ? training : entityManager.merge(training));
+		entityManager.remove(entityManager.contains(training) ? training : entityManager.merge(training));
 	}
 
 	public List<Training> findAll() {
 		return entityManager.createQuery("from Training", Training.class).getResultList();
+	}
+
+	public List<Training> findAll(int pageNum, int pageSize) {
+		return entityManager.createQuery("from Training", Training.class).
+			setFirstResult((pageNum-1)*pageSize).
+			setMaxResults(pageSize).
+			getResultList();
 	}
 
 }
