@@ -85,3 +85,11 @@ p.welcome {
 .table > tbody > tr > td.last-row-cell {
 	border-bottom: solid 1px red;
 }
+
+
+ul.nav_second{
+	padding-left:10px;
+	font-size:14px;
+}
+
+div.modal-backdrop{height:100%}

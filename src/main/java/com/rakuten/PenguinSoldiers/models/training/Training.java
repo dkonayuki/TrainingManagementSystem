@@ -217,7 +217,6 @@ public class Training implements java.io.Serializable {
 			outlineJson = outlinesJson.getJSONObject(i);
 			outlines.add(outlineJson.toString());
 		}
-
 		return outlines;
 	}
 

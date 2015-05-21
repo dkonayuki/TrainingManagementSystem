@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -31,6 +32,7 @@ import com.rakuten.PenguinSoldiers.models.target.Target;
 import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingForm;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
+import com.rakuten.PenguinSoldiers.models.training.TrainingValidator;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
 import com.rakuten.PenguinSoldiers.util.ControllerUtil;
 
@@ -48,7 +50,8 @@ public class TrainingController {
 
 	@Autowired
 	private UserService userService;
-
+	
+	
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(@RequestParam(value = "name", required = false) String name, Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
@@ -120,9 +123,11 @@ public class TrainingController {
 		return "redirect:trainings";
 	}
 
+	/*
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
-			Errors errors, final Model model, RedirectAttributes ra) {
+			Errors errors, final Model model, RedirectAttributes ra) {		
+		
 		if (errors.hasErrors()) {
 			if(trainingForm.getGoals().size() < 1) 
 				trainingForm.getGoals().add("");
@@ -130,6 +135,28 @@ public class TrainingController {
 				trainingForm.getOutlines().add("");
 			model.addAttribute("trainingForm", trainingForm);
 			// ra.addFlashAttribute("trainingForm", trainingForm);
+			return "training/new";
+		}
+
+		System.out.println(trainingForm.toString());
+
+		// create new training program item
+		Training tr = trainingForm.createTraining(accountRepository);
+		if (tr == null) {
+			model.addAttribute("trainingForm", trainingForm);
+			return "training/new";
+		}
+		
+		trainingService.save(tr);
+		return "redirect:/trainings/" + tr.getId();
+	}*/
+	
+	@RequestMapping(value = "trainings", method = RequestMethod.POST)
+	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm, BindingResult result, final Model model, Errors errors) {		
+		
+		TrainingValidator trainingValidator = new TrainingValidator();
+		trainingValidator.validate(trainingForm, result);
+		if (result.hasErrors() || errors.hasErrors()) {
 			return "training/new";
 		}
 
