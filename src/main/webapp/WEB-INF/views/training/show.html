@@ -8,68 +8,7 @@
 
 	<div class="col-lg-9 container begin-div">
 		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
-		<div class="container text-center details-div">
-			<div class="details">
-				<h2 th:text="${training.name}">Learn Keigo Training</h2>
-			</div>
-			<div class="details">
-				<h3>
-					<small>Overview</small>
-				</h3>
-				<p th:text="${training.overview}"></p>
-			</div>
-			<div class="details">
-				<h3>
-					<small>Target People</small>
-				</h3>
-				<p th:text="${training.target}"></p>
-			</div>
-			<div class="details">
-				<h3>
-					<small>Number of participants</small>
-				</h3>
-				<p th:text="${training.max_participants}">64</p>
-			</div>
-			<div class="details">
-				<h3>
-					<small>Outline</small>
-				</h3>
-				<table class="table outline-table">
-					<tr>
-						<th class="col-lg-1"></th>					
-						<th class="col-lg-4">Date</th>
-						<th class="col-lg-7">Content</th>
-						<th></th>
-					</tr>
-					<tr th:each="outline : ${training.getOutlineList()}">
-						<td></td>
-						<td th:text="${outline.getDate()}"></td>
-						<td th:text="${outline.getText()}"></td>
-					</tr>
-				</table>
-			</div>
-			<div>
-				<h3>
-					<small>Training Venue</small>
-				</h3>
-				<p th:text="${training.venue}">The Bridge</p>
-			</div>
-			<div class="details">
-				<h3>
-					<small>Goals</small>
-				</h3>
-				<ul class="list-group">
-					<li th:each="goal : ${training.getGoals()}" th:text="${goal}" class="list-group-item">En
-						las Orillas del Sar</li>
-				</ul>
-			</div>
-			<div class="details">
-				<h3>
-					<small>Status</small>
-				</h3>
-				<p th:text="${training.status}"></p>
-			</div>
-		</div>
+		<div th:replace="fragments/_details :: training_details">Training Details</div>
 	</div>
 </body>
 </html>

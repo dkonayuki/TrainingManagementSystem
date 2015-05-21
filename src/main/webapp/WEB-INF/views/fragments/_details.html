@@ -1,0 +1,79 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="training_details"
+	class="container text-center details-div">
+	<div class="details">
+		<h2 th:text="${training.name}" class="title">Learn Keigo Training</h2>
+	</div>
+	<div class="details panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Overview</h3>
+		</div>
+		<div class="panel-body">
+			<p th:text="${training.overview}"></p>
+		</div>
+	</div>
+	<div class="details panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Target People</h3>
+		</div>
+		<div class="panel-body">
+			<p th:text="${training.target}"></p>
+		</div>
+	</div>
+	<div class="details panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Number of participants</h3>
+		</div>
+		<div class="panel-body">
+			<p th:text="${training.max_participants}">64</p>
+		</div>
+	</div>
+	<div class="details panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Outline</h3>
+		</div>
+		<div class="panel-body">
+			<table class="table outline-table">
+				<tr>
+					<th class="col-lg-1"></th>
+					<th class="col-lg-4">Date</th>
+					<th class="col-lg-7">Content</th>
+					<th></th>
+				</tr>
+				<tr th:each="outline : ${training.getOutlineList()}">
+					<td></td>
+					<td th:text="${outline.getDate()}"></td>
+					<td th:text="${outline.getText()}"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="details panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Training Venue</h3>
+		</div>
+		<div class="panel-body">
+			<p th:text="${training.venue}">The Bridge</p>
+		</div>
+	</div>
+	<div class="details panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Goals</h3>
+		</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				<li th:each="goal : ${training.getGoals()}" th:text="${goal}"
+					class="list-group-item">En las Orillas del Sar</li>
+			</ul>
+		</div>
+	</div>
+	<div class="details panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Status</h3>
+		</div>
+		<div class="panel-body">
+			<p th:text="${training.status}"></p>
+		</div>
+	</div>
+</div>
+</html>
