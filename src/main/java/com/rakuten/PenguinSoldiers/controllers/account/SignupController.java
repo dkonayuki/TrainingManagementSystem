@@ -39,7 +39,7 @@ public class SignupController {
 //		GenerateAccountController gac=new GenerateAccountController();
 //		gac.genAccount();
 //		GenerateAccounts.generate(accountRepository);
-		GenerateAccounts.generateOrg(accountRepository,hierarchyRepository);
+//		GenerateAccounts.generateOrg(accountRepository,hierarchyRepository);
 //		gac.genOrg();
 		model.addAttribute(new SignupForm());
 		return SIGNUP_VIEW_NAME;
