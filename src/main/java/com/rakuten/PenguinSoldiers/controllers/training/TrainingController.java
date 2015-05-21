@@ -33,6 +33,7 @@ import com.rakuten.PenguinSoldiers.models.training.TrainingForm;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
 import com.rakuten.PenguinSoldiers.util.ControllerUtil;
+import com.rakuten.PenguinSoldiers.util.PageData;
 
 @Controller
 public class TrainingController {
@@ -56,10 +57,11 @@ public class TrainingController {
 		//List<Training> trainings = trainingService.findActiveTraining();
 		List<Training> trainings;
 		if (name == null) {
-			trainings = trainingService.findAll();
+			trainings = trainingService.findAll(1, Training.PAGE_SIZE);
 		} else {
-			trainings = trainingService.findByName(name);
+			trainings = trainingService.findByName(name, 1, Training.PAGE_SIZE);
 		}
+		model.addAttribute("pagination", new PageData(1, trainingService.findAllCount(), Training.PAGE_SIZE));
 		model.addAttribute("trainings", trainings);
 
 		return "training/index";
@@ -76,6 +78,7 @@ public class TrainingController {
 		} else {
 			trainings = trainingService.findByName(name, pageNum, Training.PAGE_SIZE);
 		}
+		model.addAttribute("pagination", new PageData(pageNum, trainingService.findAllCount(), Training.PAGE_SIZE));
 		model.addAttribute("trainings", trainings);
 
 		return "training/index";

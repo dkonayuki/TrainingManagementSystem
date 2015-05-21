@@ -124,6 +124,15 @@ public class TrainingRepository {
 		}
 	}
 
+	public int findAllTrainingCount() {
+		try {
+			return (int)(entityManager.createNamedQuery(Training.FIND_ALL_TRAINING_COUNT, java.lang.Long.class)
+				.getSingleResult()).intValue();
+		} catch (PersistenceException e) {
+			return 0;
+		}
+	}
+
 	public List<Training> findActiveTraining() {
 		return findActiveTraining("%");
 	}

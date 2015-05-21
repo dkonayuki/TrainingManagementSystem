@@ -38,6 +38,10 @@ public class TrainingService {
 		return trainingRepository.findAll();
 	}
 
+	public int findAllCount() {
+		return trainingRepository.findAllTrainingCount();
+	}
+
 	public List<Training> findAll(int pageNum, int pageSize) {
 		return trainingRepository.findAll(pageNum, pageSize);
 	}
