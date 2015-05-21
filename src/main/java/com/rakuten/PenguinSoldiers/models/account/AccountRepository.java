@@ -29,6 +29,16 @@ public class AccountRepository {
 		return account;
 	}
 	
+	public void save(List<Account> list) {
+	  for (Account a: list) {
+	    a.setPassword(passwordEncoder.encode("raku10"));
+	    entityManager.persist(a);
+//	    entityManager.
+	  }
+//  account.setPassword(passwordEncoder.encode(account.getPassword()));
+//  return account;
+}
+	
 	public void update(Account account){
 	  entityManager.merge(account);
 	}
@@ -100,5 +110,30 @@ public class AccountRepository {
 	  List<Account> e=findEmployee(username);
 	  return e!=null&&e.size()>0;
 	}
+	
+	public List<Account> findByEmail(List<String> emails) {
+    try {
+      String sql="select a from Account ";
+//      sql+="where ";
+      for(int i=0;i<emails.size();i++){
+        if(i>0)
+          sql+=" or ";
+        else
+          sql+=" where ";
+        sql+=" email = :email"+i;
+      }
+      
+      Query q=entityManager.createQuery(sql);
+      for(int i=0;i<emails.size();i++){
+        q=q.setParameter("email"+i, emails.get(i));
+      }
+      return (List<Account>)q.getResultList();
+//      return entityManager.createNamedQuery(Account.FIND_BY_EMAIL, Account.class)
+//          .setParameter("email", email)
+//          .getSingleResult();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
 
 }
