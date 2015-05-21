@@ -151,11 +151,11 @@ public class TrainingController {
 		return "redirect:/trainings/" + tr.getId();
 	}*/
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
-	public String addAction(TrainingForm trainingForm, BindingResult result, final Model model) {		
+	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm, BindingResult result, final Model model, Errors errors) {		
 		
 		TrainingValidator trainingValidator = new TrainingValidator();
 		trainingValidator.validate(trainingForm, result);
-		if (result.hasErrors()) {
+		if (result.hasErrors() || errors.hasErrors()) {
 			return "training/new";
 		}
 
