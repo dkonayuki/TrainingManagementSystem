@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
+
+	<div class="col-lg-9 container begin-div">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
+
+		<div class="container" align="left">
+			<h2 class="page title">Administrator</h2>
+		</div>
+
+		<div class="all-content col-lg-12">
+			<table class="table roundtable">
+				<tr>
+					<th>Training Name</th>
+					<th>Overview</th>
+					<th>Details</th>
+					<th>Details</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+				<tr th:each="training : ${trainings}">
+					<td><a href="" th:href="@{/trainings/{id}(id=${training.id})}"
+						th:text="${training.name}">Add Programs</a></td>
+					<td th:text="${training.overview}">1</td>
+					<td th:text="${training.overview}">1</td>
+					<td th:text="${training.overview}">1</td>
+					<td th:text="${training.due_date}">1</td>
+					<td th:text="${training.status}">1</td>
+					<td>
+						<li><a href="/training/edit" th:href="@{training/edit}">Edit</a></li>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

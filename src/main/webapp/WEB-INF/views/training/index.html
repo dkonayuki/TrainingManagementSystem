@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/head :: head">
+	</head>
+	<body>
+		<div th:replace="fragments/header :: header">Header</div>
+		<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
+
+		<div class="col-lg-9 container">
+			<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
+			<h2>List of all training history</h2>
+
+			<form id="training-search" method="get" action="#">
+				<input type="text" class="" name="name" size="21" maxlength="120"></input>
+				<!-- 
+				<input type="submit" value="search" class=""></input>
+				-->
+			</form>
+
+			<div id="training-list">
+				<div
+					th:replace="training/_training_list :: training-list(${trainings})">Header</div>
+			</div>
+
+			<!-- Pagination Bar -->
+			<nav class="clearfix" th:fragment="pagination">
+				<ul class="pagination">
+					<li th:class="${!pagination.hasPreviousPage()} ? disabled">
+						<a href="javascript:void(0);" aria-label="Previous" th:href="${pagination.hasPreviousPage()} ? '/trainings/page/' + ${(  pagination.getCurrentPage() - 1 ).toString() } : 'javascript:void(0);'">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li th:each="page : ${#numbers.sequence( 1, pagination.getTotalPages())}" th:class="${page == pagination.getCurrentPage()} ? 'active' : (${page == -1} ? 'disabled')">
+						<a href="javascript:void(0);" th:if="${page != -1}" th:text="${page}" th:href="${page != pagination.getCurrentPage()} ? '/trainings/page/' + ${page.toString()} : 'javascript:void(0);'">1</a>
+						<a href="javascript:void(0);" th:unless="${page != -1}" th:text="...">...</a>
+					</li>
+					<li th:class="${!pagination.hasNextPage()} ? disabled">
+						<a href="javascript:void(0)" aria-label="Next" th:href="${pagination.hasNextPage()} ? '/trainings/page/' + ${( pagination.getCurrentPage() + 1 ).toString()} : 'javascript:void(0);'">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+
+	</body>
+</html>

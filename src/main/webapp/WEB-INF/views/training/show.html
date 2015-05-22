@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
+
+	<div class="col-lg-9 container begin-div">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
+		<div th:replace="fragments/_details :: training_details">Training Details</div>
+	</div>
+</body>
+</html>

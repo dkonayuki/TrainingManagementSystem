@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
+	<div class="col-lg-9 container">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
+	
+    <h2 th:text="'Questionnaire for [INSERT COURSE NAME]'"></h2>
+    <div class="container text-center add-training">
+    <form th:action="@{/feedback/save}" class="form-add form-horizontal" method="POST" autocomplete="on" th:object="${sqForm}">
+    <fieldset>
+    	<div class="form-group">
+    		<label for="Q1" class="col-lg-6 control-label">1. Do you think this course was helpful?<span
+					class="color-red">*</span></label>
+		    <span class="radio-inline" th:each="type : *{yesNoTypeList}" >
+			  <input type="radio" th:field="*{helpful}" th:value="${type}" />
+			  <label style="font-weight:normal" th:for="${#ids.prev('helpful')}"
+                th:text="#{'yesNoType.'+${type}}">First type</label>
+            </span>
+    	</div>
+    	<div class="form-group">
+    		<label for="Q2" class="col-lg-6 control-label">2. How much of the training did you understand?<span
+					class="color-red">*</span></label>
+		    <span class="radio-inline" th:each="type : *{percentCompleteTypeList}" >
+			  <input type="radio" th:field="*{understand}" th:value="${type}" />
+			  <label style="font-weight:normal" th:for="${#ids.prev('understand')}"
+                th:text="#{'percentCompleteType.'+${type}}">First type</label>
+            </span>
+    	</div>
+    	<div class="form-group">
+    		<label for="Q3" class="col-lg-12 control-label">3. How would you rate this course?<span
+					class="color-red">*</span></label>
+			<table class="table">
+			<tr>
+			<th class="first-row-cell text-center"></th>
+			<th class="first-row-cell text-center">Very good</th>
+			<th class="first-row-cell text-center">Good</th>
+			<th class="first-row-cell text-center">Okay</th>
+			<th class="first-row-cell text-center">Bad</th>
+			<th class="first-row-cell text-center">Very bad</th>
+			</tr>
+			<tr>
+			<th>Training Atmosphere</th>
+			<td th:each="type : *{rateTypeList}">
+			  <input type="radio" th:field="*{atmosphere}" th:value="${type}" />
+            </td>
+			</tr>
+			<tr>
+			<th>Contents of Training Course</th>
+			<td th:each="type : *{rateTypeList}">
+			  <input type="radio" th:field="*{trainingCourse}" th:value="${type}" />
+            </td>
+			</tr><tr>
+			<th class="last-row-cell">Curriculum Pace</th>
+			<td class="last-row-cell" th:each="type : *{rateTypeList}">
+			  <input type="radio" th:field="*{curriculumPace}" th:value="${type}" />
+            </td>
+			</tr>
+			</table>
+    	</div>
+    	<div class="form-group">
+    		<label for="Q4" class="col-lg-12 control-label">4. Please tell us what you liked about this training.</label>
+			<textarea class ="form-control" th:field="*{positive}" placeholder=""></textarea>
+    	</div>
+    	<div class="form-group">
+    		<label for="Q5" class="col-lg-12 control-label">5. Please tell us how we can improve our trainings in the future.</label>
+			<textarea class ="form-control" th:field="*{improvement}" placeholder=""></textarea>
+    	</div>
+    	<div class="form-group">
+    		<label for="Q1" class="col-lg-6 control-label">6. Would you like to see a follow-up to this training?<span
+					class="color-red">*</span></label>
+			<span class="radio-inline" th:each="type : *{yesNoTypeList}" >
+			  <input type="radio" th:field="*{followUp}" th:value="${type}" />
+			  <label style="font-weight:normal" th:for="${#ids.prev('followUp')}"
+                th:text="#{'yesNoType.'+${type}}">First type</label>
+            </span>
+    	</div>
+    	<input type="hidden" th:field="*{trainingId}" th:value="*{trainingId}"/>
+    	<div class="form-group">
+			<div class="col-lg-12">
+				<button type="submit" class="btn btn-success btn-lg col-xs-12 col-xs-offset-0 col-sm-offset-5 col-sm-2">Submit</button>
+			</div>
+		</div>
+    </fieldset>
+    </form>
+	</div>
+	</div>
+</body>
+</html>

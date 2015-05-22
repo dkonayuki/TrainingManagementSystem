@@ -1,0 +1,263 @@
+.rakuten-name {
+	color: #fff;
+	/* box-shadow: 0px 0px 15px #fff; */
+	border-radius: 20px;
+	padding: 8px 12px;
+	border: 2px solid #fff;
+}
+
+.add-training {
+	width: 96%;
+	margin: 10px auto;
+}
+
+.add-training legend {
+	margin: 10px 10px 40px 80px;
+	border: none;
+}
+
+div.form-group {
+	/*	margin-bottom: 10px; */
+	display: block;
+	/*	overflow: hidden; */
+}
+
+.logo-name {
+	color: #efefef;
+}
+
+.logo-name:hover {
+	color: #fff;
+}
+
+.logo-name:hover .rakuten-name {
+	color: #f00;
+}
+
+.rakuten-logo {
+	margin-bottom: 30px;
+}
+
+.form-row {
+	margin-bottom: 60px;
+}
+
+/* Design for add button */
+.entry:not (:first-of-type), .entry-row:not (:first-of-type) {
+	margin-top: 10px;
+}
+.glyphicon {
+	font-size: 12px;
+}
+
+/* training table design BEGIN */
+table.traininglist {
+	width: 80%;
+	min-width: 400px;
+	margin: 50px auto;
+}
+
+table.traininglist th {
+	color: #fff;
+	padding: 8px 15px;
+	background: #258;
+	background: -moz-linear-gradient(rgba(34, 85, 136, 0.7),
+		rgba(34, 85, 136, 0.9) 50%);
+	background: -webkit-gradient(linear, 100% 0%, 100% 50%, from(rgba(34, 85, 136, 0.7)),
+		to(rgba(34, 85, 136, 0.9)));
+	font-weight: bold;
+	border-left: 1px solid #258;
+	border-top: 1px solid #258;
+	border-bottom: 1px solid #258;
+	line-height: 120%;
+	text-align: center;
+	text-shadow: 0 -1px 0 rgba(34, 85, 136, 0.9);
+	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset;
+}
+
+table.traininglist th:first-child {
+	border-radius: 5px 0 0 0;
+}
+
+table.traininglist th:last-child {
+	border-radius: 0 5px 0 0;
+	border-right: 1px solid #258;
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1), 0px 1px 1px
+		rgba(255, 255, 255, 0.3) inset;
+}
+
+table.traininglist tr td {
+	padding: 8px 15px;
+	border-bottom: 1px solid #84b2e0;
+	border-left: 1px solid #84b2e0;
+	text-align: center;
+}
+
+table.traininglist tr td:last-child {
+	border-right: 1px solid #84b2e0;
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+table.traininglist tr {
+	background: #fff;
+}
+
+table.traininglist tr:nth-child(2n+1) {
+	background: #f1f6fc;
+}
+
+table.traininglist tr:last-child td {
+	box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+table.traininglist tr:last-child td:first-child {
+	border-radius: 0 0 0 5px;
+}
+
+table.traininglist tr:last-child td:last-child {
+	border-radius: 0 0 5px 0;
+}
+
+table.traininglist tr:hover {
+	background: #bbd4ee;
+	cursor: pointer;
+}
+
+table.roundtable {
+	background: #e45335;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	/* width: 80%; */
+	min-width: 400px;
+	margin: 50px auto;
+}
+
+table.roundtable th {
+	color: #efefef;
+	padding: 8px 15px;
+	background: #e45335;
+	font-weight: bold;
+	text-align: left;
+}
+
+table.roundtable th:first-child {
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+table.roundtable th:last-child {
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+table.roundtable tr {
+	background: #fff;
+}
+
+table.roundtable tr:nth-child(2n+1) {
+	background: #e1e1e1;
+}
+/*table design end */
+
+/*admin page design BEGIN*/
+div.all-content {
+	border: 1px dashed #ccc;
+	border-top: 2px solid #F41;
+	box-shadow: 2px 2px 10px #ccc;
+}
+
+.left-nav {
+	margin-top: 100px;
+}
+
+.left-nav-ul {
+	border: 1px solid #e45335;
+	box-shadow: 1px 1px 4px #ccc;
+	border-radius: 0px 0px 5px 5px;
+	border-top: 2px solid #efefef;
+}
+
+.left-nav-title {
+	font-weight: bold;
+	padding: 5px 20px 4px;
+	display: block;
+	background-color: #e45335;
+	color: #eee;
+	border-radius: 5px 5px 0px 0px;
+	box-shadow: 3px 3px 10px #ccc;
+}
+
+/*admin page design END*/
+
+/* new training design BEGIN */
+.form-add {
+	border: 1px solid #ccc;
+	padding: 20px 40px;
+	box-shadow: 3px 3px 10px #ccc;
+}
+
+form.form-horizontal .control-label {
+	text-align: left;
+}
+
+.color-red {
+	color: #f00;
+}
+
+.form-title {
+	font-size: 18pt;
+	font-weight: bold;
+	/* text-shadow: 0px 0px 1px #fff; */
+	margin-top: 10px;
+	border-top: 1px solid #ccc;
+	padding: 10px 50px;
+}
+/* new training design END */
+div a {
+	/* color: #d21; */
+	
+}
+
+.begin-div {
+	margin-top: 50px;
+}
+
+.page-path {
+	box-shadow: 0px 0px 2px #ccc;
+	padding: 2px 10px;
+	margin: 10px 125px 20px 25px;
+	border-radius: 3px;
+}
+
+.breadcrumb {
+	margin: 0px 125px 0px 25px;
+}
+
+/* Details page design BEGIN */
+.details h3, .details h2{
+	text-align: left;
+}
+
+.details h2.title {
+	padding: 15px 20px;
+	margin: 0px;
+  	background-color: #666;
+  	color: #fefefe;
+  	border-left: 10px solid #1db3c8;
+  	border-top: 1px solid #1db3c8;
+  	border-bottom: 1px solid #1db3c8;
+}
+
+.outline-table th {
+	text-align: center;
+}
+
+.details-div {
+	border: 1px dashed #ccc;
+  	box-shadow: 0px 0px 5px #888;
+  	padding: 50px 50px;
+}
+/* Details page design END */
