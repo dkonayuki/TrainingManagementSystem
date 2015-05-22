@@ -116,8 +116,19 @@ public class TrainingController {
 	
 	@RequestMapping(value = "trainings/{id}", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute TrainingForm trainingForm,
-			Errors errors, final Model model, RedirectAttributes ra, @PathVariable Integer id) {
+			BindingResult result, Errors errors, final Model model, RedirectAttributes ra, @PathVariable Integer id) {
+		
 		Training training = this.trainingService.findById(id);
+		
+		// validate trainingform for editing
+		TrainingValidator trainingValidator = new TrainingValidator();
+		trainingValidator.validate(trainingForm, result);
+		if (result.hasErrors() || errors.hasErrors()) {
+			//model.addAttribute("trainingForm", trainingForm);
+			model.addAttribute("training", training);
+			return "training/edit";
+		}
+		
 		Training tr = trainingForm.createTraining(accountRepository);
 		
 		training.copy(tr);
