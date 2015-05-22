@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	// WYSIWYG
+	$("#training-overview").wysihtml5();
+	
 	// minus button "thing"
 	$('.btn-add').each(function(){
 		$this = $(this);
