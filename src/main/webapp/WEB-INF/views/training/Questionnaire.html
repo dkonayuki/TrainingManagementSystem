@@ -10,23 +10,25 @@
 	
     <h2 th:text="'Questionnaire for [INSERT COURSE NAME]'"></h2>
     <div class="container text-center add-training">
-    <form class="form-add form-horizontal" method="POST" autocomplete="on">
+    <form th:action="@{/feedback/save}" class="form-add form-horizontal" method="POST" autocomplete="on" th:object="${sqForm}">
     <fieldset>
     	<div class="form-group">
     		<label for="Q1" class="col-lg-6 control-label">1. Do you think this course was helpful?<span
 					class="color-red">*</span></label>
-			<label class="radio-inline"><input type="radio" name="helpful"/>Yes</label>
-			<label class="radio-inline"><input type="radio" name="helpful"/>Maybe</label>
-			<label class="radio-inline"><input type="radio" name="helpful"/>No</label>
+		    <span class="radio-inline" th:each="type : *{yesNoTypeList}" >
+			  <input type="radio" th:field="*{helpful}" th:value="${type}" />
+			  <label style="font-weight:normal" th:for="${#ids.prev('helpful')}"
+                th:text="#{'yesNoType.'+${type}}">First type</label>
+            </span>
     	</div>
     	<div class="form-group">
     		<label for="Q2" class="col-lg-6 control-label">2. How much of the training did you understand?<span
 					class="color-red">*</span></label>
-			<label class="radio-inline"><input type="radio" name="percent"/>100%</label>
-			<label class="radio-inline"><input type="radio" name="percent"/>~70%</label>
-			<label class="radio-inline"><input type="radio" name="percent"/>~50%</label>
-			<label class="radio-inline"><input type="radio" name="percent"/>~30%</label>
-			<label class="radio-inline"><input type="radio" name="percent"/>0%</label>
+		    <span class="radio-inline" th:each="type : *{percentCompleteTypeList}" >
+			  <input type="radio" th:field="*{understand}" th:value="${type}" />
+			  <label style="font-weight:normal" th:for="${#ids.prev('understand')}"
+                th:text="#{'percentCompleteType.'+${type}}">First type</label>
+            </span>
     	</div>
     	<div class="form-group">
     		<label for="Q3" class="col-lg-12 control-label">3. How would you rate this course?<span
@@ -42,45 +44,41 @@
 			</tr>
 			<tr>
 			<th>Training Atmosphere</th>
-			<td><label for="vg"><input type="radio" name="TrnAtm" id="vg"/></label></td>
-			<td><label for="g"><input type="radio" name="TrnAtm" id="g"/></label></td>
-			<td><label for="ok"><input type="radio" name="TrnAtm" id="ok"/></label></td>
-			<td><label for="b"><input type="radio" name="TrnAtm" id="b"/></label></td>
-			<td><label for="vb"><input type="radio" name="TrnAtm" id="vb"/></label></td>
+			<td th:each="type : *{rateTypeList}">
+			  <input type="radio" th:field="*{atmosphere}" th:value="${type}" />
+            </td>
 			</tr>
 			<tr>
 			<th>Contents of Training Course</th>
-			<td><label for="vg"><input type="radio" name="Content" id="vg"/></label></td>
-			<td><label for="g"><input type="radio" name="Content" id="g"/></label></td>
-			<td><label for="ok"><input type="radio" name="Content" id="ok"/></label></td>
-			<td><label for="b"><input type="radio" name="Content" id="b"/></label></td>
-			<td><label for="vb"><input type="radio" name="Content" id="vb"/></label></td>
+			<td th:each="type : *{rateTypeList}">
+			  <input type="radio" th:field="*{trainingCourse}" th:value="${type}" />
+            </td>
 			</tr><tr>
 			<th class="last-row-cell">Curriculum Pace</th>
-			<td class="last-row-cell"><label for="vg"><input type="radio" name="CurPace" id="vg"/></label></td>
-			<td class="last-row-cell"><label for="g"><input type="radio" name="CurPace" id="g"/></label></td>
-			<td class="last-row-cell"><label for="ok"><input type="radio" name="CurPace" id="ok"/></label></td>
-			<td class="last-row-cell"><label for="b"><input type="radio" name="CurPace" id="b"/></label></td>
-			<td class="last-row-cell"><label for="vb"><input type="radio" name="CurPace" id="vb"/></label></td>
+			<td class="last-row-cell" th:each="type : *{rateTypeList}">
+			  <input type="radio" th:field="*{curriculumPace}" th:value="${type}" />
+            </td>
 			</tr>
 			</table>
     	</div>
     	<div class="form-group">
     		<label for="Q4" class="col-lg-12 control-label">4. Please tell us what you liked about this training.</label>
-			<textarea class ="form-control" placeholder=""></textarea>
+			<textarea class ="form-control" th:field="*{positive}" placeholder=""></textarea>
     	</div>
     	<div class="form-group">
     		<label for="Q5" class="col-lg-12 control-label">5. Please tell us how we can improve our trainings in the future.</label>
-			<textarea class ="form-control" placeholder=""></textarea>
+			<textarea class ="form-control" th:field="*{improvement}" placeholder=""></textarea>
     	</div>
     	<div class="form-group">
     		<label for="Q1" class="col-lg-6 control-label">6. Would you like to see a follow-up to this training?<span
 					class="color-red">*</span></label>
-			<label class="radio-inline"><input type="radio" name="follow"/>Yes</label>
-			<label class="radio-inline"><input type="radio" name="follow"/>No</label>
-			<label class="radio-inline"><input type="radio" name="follow"/>I don't know</label>
+			<span class="radio-inline" th:each="type : *{yesNoTypeList}" >
+			  <input type="radio" th:field="*{followUp}" th:value="${type}" />
+			  <label style="font-weight:normal" th:for="${#ids.prev('followUp')}"
+                th:text="#{'yesNoType.'+${type}}">First type</label>
+            </span>
     	</div>
-    	
+    	<input type="hidden" th:field="*{trainingId}" th:value="*{trainingId}"/>
     	<div class="form-group">
 			<div class="col-lg-12">
 				<button type="submit" class="btn btn-success btn-lg col-xs-12 col-xs-offset-0 col-sm-offset-5 col-sm-2">Submit</button>

@@ -1,5 +1,8 @@
 package com.rakuten.PenguinSoldiers.models.training;
 
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -35,7 +38,11 @@ public class StandardQuestionaire implements java.io.Serializable {
   
   private Long trainingId;
   private Long userId;
-
+  
+  @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+  private Timestamp completedOn;
+  
+  
   public Long getId() {
     return id;
   }

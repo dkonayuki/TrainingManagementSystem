@@ -1,5 +1,7 @@
 package com.rakuten.PenguinSoldiers.models.training;
 
+import java.sql.Timestamp;
+
 import com.rakuten.PenguinSoldiers.util.form.EnumPopulate;
 import com.rakuten.PenguinSoldiers.util.form.PercentCompleteType;
 import com.rakuten.PenguinSoldiers.util.form.RateType;
@@ -23,7 +25,7 @@ public class StandardQuestionaireForm {
   public RateType[] rateTypeList=EnumPopulate.populateRateType();
   public YesNoType[] yesNoTypeList=EnumPopulate.populateYesNoType();
   public PercentCompleteType[] percentCompleteTypeList=EnumPopulate.populatePercentCompleteType();
-
+  
   private Long trainingId;
 
   public StandardQuestionaireForm(){
