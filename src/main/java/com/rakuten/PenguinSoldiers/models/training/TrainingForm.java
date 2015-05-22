@@ -51,8 +51,8 @@ public class TrainingForm {
 	public TrainingForm() {
 		goals = new ArrayList<String>();
 		outlines = new ArrayList<String>();
-		goals.add("");
-		outlines.add("");
+		//goals.add("");
+		//outlines.add("");
 	}
 
 	public TrainingForm(Training training) {

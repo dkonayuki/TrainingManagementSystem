@@ -26,6 +26,9 @@ import com.rakuten.PenguinSoldiers.models.account.UserService;
 import com.rakuten.PenguinSoldiers.models.outline.Outline;
 import com.rakuten.PenguinSoldiers.models.training.TrainingForm;
 
+
+/** Class to validate TrainingForm submission (New AND Update) */
+/* TODO: need to sanitize input for every field (even not required ones) */
 public class TrainingValidator {
 
 	@Autowired
@@ -103,7 +106,15 @@ public class TrainingValidator {
 		// Outline validation
 		// make sure Training Date is not null, etc.
 		validateOutline(trainingForm.getOutlines(), errors);
-
+		
+		// Goal validation
+		List<String> goals = trainingForm.getGoals();
+		for(int i = 0; i < goals.size(); i++) {
+			String goal = goals.get(i);
+			if(goal == null || goal.equals("")) goals.remove(i);
+		}
+		trainingForm.setGoals(goals);
+		
 	}
 
 	public void validateOutline(List<String> outlines, Errors errors) {

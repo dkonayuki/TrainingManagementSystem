@@ -17,8 +17,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
-
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 @SuppressWarnings("serial")
 @Entity
@@ -219,7 +219,7 @@ public class Training implements java.io.Serializable {
 		JSONObject outlineJson;
 		for (int i = 0; i < outlinesJson.length(); i++) {
 			outlineJson = outlinesJson.getJSONObject(i);
-			outlines.add(outlineJson.toString());
+			outlines.add(URLEncoder.encode(outlineJson.toString()) );
 		}
 		return outlines;
 	}
