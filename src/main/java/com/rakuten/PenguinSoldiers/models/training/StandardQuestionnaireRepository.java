@@ -9,20 +9,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class StandardQuestionaireRepository {
+public class StandardQuestionnaireRepository {
 
   @PersistenceContext
   private EntityManager entityManager;
 
   @Transactional
-  public StandardQuestionaire save(StandardQuestionaire StandardQuestionaire) {
+  public StandardQuestionnaire save(StandardQuestionnaire StandardQuestionaire) {
     entityManager.persist(StandardQuestionaire);
     return StandardQuestionaire;
   }
 
-  public StandardQuestionaire completed(Long trainingId, Long userId) {
+  public StandardQuestionnaire completed(Long trainingId, Long userId) {
     try {
-      return entityManager.createNamedQuery(StandardQuestionaire.IS_COMPLETED, StandardQuestionaire.class)
+      return entityManager.createNamedQuery(StandardQuestionnaire.IS_COMPLETED, StandardQuestionnaire.class)
           .setParameter("trainingId", trainingId).setParameter("userId", userId)
           .getSingleResult();
     } catch (PersistenceException e) {
@@ -31,16 +31,18 @@ public class StandardQuestionaireRepository {
   }
   
     
-  public void update(StandardQuestionaire StandardQuestionaire) {
+  public void update(StandardQuestionnaire StandardQuestionaire) {
     entityManager.merge(StandardQuestionaire);
   }
 
-  public void delete(StandardQuestionaire StandardQuestionaire) {
+  public void delete(StandardQuestionnaire StandardQuestionaire) {
     entityManager.remove(entityManager.contains(StandardQuestionaire) ? StandardQuestionaire : entityManager.merge(StandardQuestionaire));
   }
 
-  public List<StandardQuestionaire> findAll() {
-    return entityManager.createQuery("from StandardQuestionaire", StandardQuestionaire.class).getResultList();
+  public List<StandardQuestionnaire> findAll() {
+    return entityManager.createQuery("from StandardQuestionaire", StandardQuestionnaire.class).getResultList();
   }
+  
+  
 
 }

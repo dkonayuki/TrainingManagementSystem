@@ -13,11 +13,11 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "standardQuestionaire")
+@Table(name = "standardQuestionnaire")
 @NamedQueries({
-  @NamedQuery(name = StandardQuestionaire.IS_COMPLETED, query = "select a from StandardQuestionaire a where a.userId=:userId and a.trainingId=:trainingId")
+  @NamedQuery(name = StandardQuestionnaire.IS_COMPLETED, query = "select a from StandardQuestionnaire a where a.userId=:userId and a.trainingId=:trainingId")
 })
-public class StandardQuestionaire implements java.io.Serializable {
+public class StandardQuestionnaire implements java.io.Serializable {
   
   public static final String IS_COMPLETED = "StandardQuestionaire.isCompleted";
   

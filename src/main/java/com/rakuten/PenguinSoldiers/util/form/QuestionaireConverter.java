@@ -1,12 +1,12 @@
 package com.rakuten.PenguinSoldiers.util.form;
 
-import com.rakuten.PenguinSoldiers.models.training.StandardQuestionaire;
-import com.rakuten.PenguinSoldiers.models.training.StandardQuestionaireForm;
+import com.rakuten.PenguinSoldiers.models.training.StandardQuestionnaire;
+import com.rakuten.PenguinSoldiers.models.training.StandardQuestionnaireForm;
 
 public class QuestionaireConverter {
   
-  public static StandardQuestionaire toStandardQuestionaire(StandardQuestionaireForm sqf){
-    StandardQuestionaire sq=new StandardQuestionaire();
+  public static StandardQuestionnaire toStandardQuestionaire(StandardQuestionnaireForm sqf){
+    StandardQuestionnaire sq=new StandardQuestionnaire();
 
     sq.setHelpful(sqf.getHelpful().toString());
     sq.setUnderstand(sqf.getUnderstand().toString());

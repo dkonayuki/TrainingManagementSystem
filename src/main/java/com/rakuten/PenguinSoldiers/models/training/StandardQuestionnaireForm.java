@@ -7,7 +7,7 @@ import com.rakuten.PenguinSoldiers.util.form.PercentCompleteType;
 import com.rakuten.PenguinSoldiers.util.form.RateType;
 import com.rakuten.PenguinSoldiers.util.form.YesNoType;
 
-public class StandardQuestionaireForm {
+public class StandardQuestionnaireForm {
   
   private YesNoType helpful;
   private PercentCompleteType understand;
@@ -27,8 +27,9 @@ public class StandardQuestionaireForm {
   public PercentCompleteType[] percentCompleteTypeList=EnumPopulate.populatePercentCompleteType();
   
   private Long trainingId;
-
-  public StandardQuestionaireForm(){
+  private String trainingName;
+  
+  public StandardQuestionnaireForm(){
     this.rateTypeList=EnumPopulate.populateRateType();
   }
   
@@ -129,6 +130,14 @@ public class StandardQuestionaireForm {
 
   public void setTrainingId(Long trainingId) {
     this.trainingId = trainingId;
+  }
+
+  public String getTrainingName() {
+    return trainingName;
+  }
+
+  public void setTrainingName(String trainingName) {
+    this.trainingName = trainingName;
   }
   
   

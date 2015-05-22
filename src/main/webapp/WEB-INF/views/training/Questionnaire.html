@@ -8,7 +8,7 @@
 	<div class="col-lg-9 container">
 		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
 	
-    <h2 th:text="'Questionnaire for [INSERT COURSE NAME]'"></h2>
+    <h2 th:text="'Questionnaire for '+${sqForm.getTrainingName()}"></h2>
     <div class="container text-center add-training">
     <form th:action="@{/feedback/save}" class="form-add form-horizontal" method="POST" autocomplete="on" th:object="${sqForm}">
     <fieldset>
