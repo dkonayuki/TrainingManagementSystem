@@ -38,7 +38,7 @@ public class TrainingValidator {
 		if (st != null && !st.isEmpty()) {
 			System.out.println("name is not null");
 		} else {
-			//System.out.println("name is null");
+			System.out.println("name is null");
 			errors.rejectValue("name", "name.notNull");
 		}
 
