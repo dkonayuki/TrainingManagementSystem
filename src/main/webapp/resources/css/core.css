@@ -20,7 +20,7 @@ body {
 
 
 div.details {
-	max-width: 800px;
+	max-width: 90%;
 	margin: 20px auto 20px;
 	border-bottom: 1px solid #ccc;	
 	
@@ -40,6 +40,7 @@ td.type {
 	background-color: #C1C1C1;
 }
 
+/*
 .panel {
 	min-height: 40px;
 	background-color: transparent;
@@ -57,6 +58,7 @@ td.type {
 	font-family: "Plantagenet Cherokee", Georgia, serif;
 	color: #8585FF;
 }
+*/
 
 ul.details {
 	list-style-type: none;

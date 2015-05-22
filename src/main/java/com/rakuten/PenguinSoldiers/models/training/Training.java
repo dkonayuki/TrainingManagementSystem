@@ -27,6 +27,7 @@ import java.net.URLDecoder;
 @NamedQuery(name = Training.FIND_ALL_TRAINING, query = "select a from Training a where a.name like :name order by a.due_date asc"),
 @NamedQuery(name = Training.FIND_ACTIVE_TRAINING, query = "select a from Training a where a.name like :name"),
 @NamedQuery(name = Training.FIND_BY_ID, query = "select a from Training a where a.id = :id"),
+@NamedQuery(name = Training.FIND_ALL_TRAINING_COUNT, query = "select count(*) from Training"),
 @NamedQuery(name = Training.FIND_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.name like :name and a.due_date > now() and a.id = tu.trainingId and tu.userId=:id order by a.due_date desc"),
 @NamedQuery(name = Training.FIND_PAST_REGISTERED_TRAINING, query = "select a from Training a, TrainingUser tu where a.id = tu.trainingId and a.name like :name and tu.userId=:id and a.due_date < now() order by a.due_date  desc"),
 @NamedQuery(name = Training.FIND_NOT_REGISTERED_TRAINING, query = "select a from Training a where a.name like :name and a.id not in ( select tu.trainingId from TrainingUser tu where tu.userId=:id) order by a.due_date  desc"),
@@ -36,11 +37,14 @@ public class Training implements java.io.Serializable {
 
 	public static final String FIND_BY_ID = "Training.findById";
 	public static final String FIND_ALL_TRAINING = "Training.findAllTraining";
+	public static final String FIND_ALL_TRAINING_COUNT = "Training.findAllTrainingCount";
 	public static final String FIND_ACTIVE_TRAINING = "Training.findActiveTraining";
 	public static final String FIND_REGISTERED_TRAINING = "Training.findRegisteredTraining";
 	public static final String FIND_PAST_REGISTERED_TRAINING = "Training.findPastRegisteredTraining";
 	public static final String FIND_NOT_REGISTERED_TRAINING = "Training.findNotRegisteredTraining";
 	public static final String FIND_BY_NAME = "Training.findByName";
+
+	public static final Integer PAGE_SIZE = 10;
 
 	@Id
 	@GeneratedValue
