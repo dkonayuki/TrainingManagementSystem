@@ -140,6 +140,7 @@ function queryTrainingList(toUrl){
 
 }
 
+<<<<<<< HEAD
 function reloadTrainingHomePage(url){
 	var query = $("#training_form input").val();
 	var filter= $("#training_form_filter").val();
@@ -147,6 +148,12 @@ function reloadTrainingHomePage(url){
 	if(url!=null){
 		toUrl=url;
 	}
+=======
+function reloadTrainingHomePage(){
+	var query = $("#training_form input").val();
+	var filter= $("#training_form_filter").val();
+	var toUrl="./?filter="+filter+"&name=" + query;
+>>>>>>> refs/remotes/origin/develop
 	queryTrainingList(toUrl);
 }
 

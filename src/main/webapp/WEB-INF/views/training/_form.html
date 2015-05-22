@@ -1,7 +1,5 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="training-form" class="text-center">
-
-
-
 	<fieldset>
 		<div class="form-group">
 			<label for="Name" class="col-lg-2 control-label">Name <span
@@ -38,6 +36,15 @@
 						</button>
 					</span>
 				</div>
+				<div th:if="${#lists.isEmpty(trainingForm.goals)}"
+					class="entry input-group ">
+					<input class="form-control form-goal" name="goals" type="text"
+						placeholder="Goal" /> <span class="input-group-btn">
+						<button class="btn btn-success btn-add" type="button">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</span>
+				</div>
 			</div>
 		</div>
 
@@ -54,8 +61,9 @@
 					<tr class="entry-row" th:each="outline : ${trainingForm.outlines}">
 						<td>
 							<div class='input-group date date_selector'>
-								<input type='text' name="outline-date" class="form-control outline-date"
-									placeholder="Training date" /> <span class="input-group-addon"> <span
+								<input type='text' name="outline-date"
+									class="form-control outline-date" placeholder="Training date" />
+								<span class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>
 							</div>
@@ -72,10 +80,32 @@
 						<td><input type="hidden" name="outlines"
 							class="outline-input" th:value="${outline}" /></td>
 					</tr>
+					<tr class="entry-row"
+						th:if="${#lists.isEmpty(trainingForm.outlines)}">
+						<td>
+							<div class='input-group date date_selector'>
+								<input type='text' name="outline-date"
+									class="form-control outline-date" placeholder="Training date" />
+								<span class="input-group-addon"> <span
+									class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</td>
+						<td><div class="">
+								<input type="text" class="form-control outline-text"
+									placeholder="Agenda for this day" name="outline-text" />
+							</div></td>
+						<td><span class="input-group-btn">
+								<button class="btn btn-success btn-add-outline" type="button">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+						</span></td>
+						<td><input type="hidden" name="outlines"
+							class="outline-input" /></td>
+					</tr>
 				</table>
-				<span class="help-block"
-					th:if="${#fields.hasErrors('outlines')}" th:errors="*{outlines}">Outline date
-					can't be left empty</span>
+				<span class="help-block" th:if="${#fields.hasErrors('outlines')}"
+					th:errors="*{outlines}">Outline date can't be left empty</span>
 			</div>
 		</div>
 
@@ -88,28 +118,27 @@
 		</div>
 
 		<div class="form-group">
-			<label for="Date" class="col-lg-4 control-label">Beginning
-				date <span class="color-red">*</span></label>
+			<label for="Date" class="col-lg-2 control-label">Beginning
+				date <span class="color-red">*</span>
+			</label>
 			<div class='col-lg-4 input-group date' id='id_date'>
 				<input type='text' class="form-control" th:field="*{date}"
 					placeholder="Starting date" /> <span class="input-group-addon">
 					<span class="glyphicon glyphicon-calendar"></span>
 				</span>
 			</div>
-			<span class="help-block"
-					th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Beginning Date
-					can't be left empty</span>
-			<label for="Target" class="col-lg-4 control-label"
-				style="text-align: left;">Due date <span class="color-red">*</span></label>
+			<span class="help-block" th:if="${#fields.hasErrors('date')}"
+				th:errors="*{date}">Beginning Date can't be left empty</span> <label
+				for="Target" class="col-lg-2 control-label"
+				style="text-align: right;">Due date <span class="color-red">*</span></label>
 			<div class='col-lg-4 input-group date' id='id_duedate'>
 				<input type='text' class="form-control" th:field="*{dueDate}"
 					placeholder="Deadline" /> <span class="input-group-addon">
 					<span class="glyphicon glyphicon-calendar"></span>
 				</span>
 			</div>
-			<span class="help-block"
-					th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}">Due Date
-					can't be left empty</span>
+			<span class="help-block" th:if="${#fields.hasErrors('dueDate')}"
+				th:errors="*{dueDate}">Due Date can't be left empty</span>
 		</div>
 
 		<div class="form-group">
@@ -128,10 +157,10 @@
 			<div class="col-lg-10">
 				<input type="number" min="1" step="1" class="form-control"
 					placeholder="Number of Participants"
-					th:field="*{participantNumber}" />
-					<span class="help-block"
-					th:if="${#fields.hasErrors('participantNumber')}" th:errors="*{participantNumber}">Participant number
-					can't be left empty</span>
+					th:field="*{participantNumber}" /> <span class="help-block"
+					th:if="${#fields.hasErrors('participantNumber')}"
+					th:errors="*{participantNumber}">Participant number can't be
+					left empty</span>
 			</div>
 		</div>
 
@@ -142,8 +171,7 @@
 				class="color-red">*</span></label>
 			<div class="col-lg-10">
 				<input type="text" class="form-control" placeholder="Venue"
-					th:field="*{venue}" />
-					<span class="help-block"
+					th:field="*{venue}" /> <span class="help-block"
 					th:if="${#fields.hasErrors('venue')}" th:errors="*{venue}">Venue
 					can't be left empty</span>
 			</div>
@@ -171,154 +199,11 @@
 
 
 	</fieldset>
-
-	<script type="text/javascript">
-		// decode hidden input outline into (date, content)inputs
-		$(document).ready(function() {
-			$("#training-overview").wysihtml5();
-			
-			$this = $('#trainingForm');
-			$this.find('.outline-input').each(
-				function() {
-
-					$t2 = $(this);
-					$input_date = $t2.parents('tr').find('input.outline-date:first');
-					$input_text = $t2.parents('tr').find('input.outline-text:first');
-					str = $t2.val();
-					console.log(str);
-					if(!str) return;
-					var mjson = jQuery.parseJSON(str);
-					$input_date.val(mjson["outline-date"]);
-					$input_text.val(mjson["outline-text"]);
-			});
-		});
+	<script type="text/javascript"
+		src="../../../resources/js/trainingForm.js"
+		th:src="@{/resources/js/trainingForm.js}">
 		
-		// function to serialize input to JSON array
-		$.fn.serializeObject = function() {
-			var o = {};
-			var a = this.serializeArray();
-			$.each(a, function() {
-				if (o[this.name] !== undefined) {
-					if (!o[this.name].push) {
-						o[this.name] = [ o[this.name] ];
-					}
-					o[this.name].push(this.value || '');
-				} else {
-					o[this.name] = this.value || '';
-				}
-			});
-			return o;
-		};
-
-		$(function() {
-
-			// Date time pickers
-			$('#id_date').datetimepicker({
-				format : "D/MM/YYYY, HH:mm"
-			});
-			$('#id_duedate').datetimepicker({
-				format : "D/MM/YYYY, HH:mm"
-			});
-
-			$('.date_selector').datetimepicker({
-				format : "D/MM/YYYY, HH:mm"
-			});
-			// Multiselect
-			/*			$('#venue').multiselect({
-			 buttonWidth : '400px',
-			 dropRight : true
-			 });
-			 */
-
-			// add more button
-			$(document).on('click', '.btn-add',function(e) {
-								e.preventDefault();
-
-								var controlForm = $('.add-training form:first .goal-div div:first'), currentEntry = $(
-										this).parents('.entry:first'), newEntry = $(
-										currentEntry.clone()).appendTo(
-										controlForm);
-
-								newEntry.find('input').val('');
-								controlForm
-										.find('.entry:not(:last) .btn-add')
-										.removeClass('btn-add')
-										.addClass('btn-remove')
-										.removeClass('btn-success')
-										.addClass('btn-danger')
-										.html(
-												'<span class="glyphicon glyphicon-minus"></span>');
-							}).on('click', '.btn-remove', function(e) {
-						$(this).parents('.entry:first').remove();
-						e.preventDefault();
-						return false;
-					});
-
-			// add more outline button
-			$(document)
-					.on(
-							'click',
-							'.btn-add-outline',
-							function(e) {
-								e.preventDefault();
-
-								var controlForm = $('.outline-table:first'), currentEntry = $(
-										this).parents('.entry-row:first'), newEntry = $(
-										currentEntry.clone()).appendTo(
-										controlForm);
-
-								//								rowCount = controlForm.find('tr').length;
-								//								console.log(rowCount);
-								//								$td = newEntry.find('td:first');
-								//								console.log($td.text());
-								//									$td.text(rowCount - 1) ;
-								newEntry.find('input').val('');
-								newEntry.find('.date_selector').datetimepicker(
-										{
-											format : "D/MM/YYYY, HH:mm"
-										});
-								controlForm
-										.find(
-												'.entry-row:not(:last) .btn-add-outline')
-										.removeClass('btn-add-outline')
-										.addClass('btn-remove-outline')
-										.removeClass('btn-success')
-										.addClass('btn-danger')
-										.html(
-												'<span class="glyphicon glyphicon-minus"></span>');
-							}).on('click', '.btn-remove-outline', function(e) {
-						$(this).parents('.entry-row:first').remove();
-						e.preventDefault();
-						return false;
-					});
-
-			// handle form submit and serialize fields
-
-			$('#trainingForm').on(
-					'submit',
-					function(e) {
-						// e.preventDefault();
-						$this = $(this);
-						$this.find('.outline-input').each(
-								function() {
-									$t2 = $(this);
-									$inputs = $t2.parents('tr').find('input')
-											.not($t2);
-									enc = encodeURIComponent(JSON
-											.stringify($inputs
-													.serializeObject()));
-									$t2.val(enc);
-									//val(encodeURIComponent($('table.outline-table')));
-								});
-
-						$this.find('.outline-text').each(function() {
-							// This urlencodes value of outlines
-							this.value = encodeURIComponent(this.value);
-						});
-
-						// console.log($(this).serialize());
-					});
-		});
 	</script>
 
 </div>
+</html>

@@ -22,6 +22,14 @@ div.form-group {
 	/*	overflow: hidden; */
 }
 
+.input-group[class*="col-"] {
+	float:left;
+}
+
+#id_date, #id_duedate {
+	padding: 5px 15px;
+}
+
 .logo-name {
 	color: #efefef;
 }
