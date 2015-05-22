@@ -2,6 +2,8 @@ package com.rakuten.PenguinSoldiers.config;
 
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
+
+
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,5 +23,7 @@ class ApplicationConfig {
 		ppc.setLocation(new ClassPathResource("/persistence.properties"));
 		return ppc;
 	}
+	
+	
 	
 }

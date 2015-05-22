@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title th:text="#{view.index.title}">Welcome!</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+<head th:replace="fragments/head :: head">
 </head>
 <body>
-<div th:replace="fragments/header :: header">&nbsp;</div>
-<div class="container">
-    <!-- /* Handle the flash message */-->
-    <th:block th:if="${message != null}">
-        <!-- /* The message code is returned from the @Controller */ -->
-        <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
-    </th:block>
-    <p>
-        Welcome to the Spring MVC Quickstart application!
-    </p>
-</div>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="container">
+		<!-- /* Handle the flash message */-->
+		<th:block th:if="${message != null}">
+			<!-- /* The message code is returned from the @Controller */ -->
+			<div
+				th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+		</th:block>
+	</div>
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
+
+	<div class="col-lg-9 container begin-div">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
+
+		<div class="container">
+		
+		    <form id="" method="get" action="#">
+		    <!--  
+			<ul class="nav nav-tabs">
+				<li id="training_tab_out" th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_OUT)}"><a
+					href="?filter=out">Available training</a></li>
+				<li id="training_tab_in" th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_IN)}"
+					class=""><a href="?filter=in" onclick="queryTrainingList('./?filter=in');updateTrainingTab('training_tab_in')">Your training</a></li>
+				<li id="training_tab_past" th:class="${hpc.showActiveTrainingTab(hpc.TRAINING_TAB_PAST)}">
+				    <a href="?filter=past">Past training</a>
+					<input th:value="${'training_tab_out'}" type="hidden" class="" name="activeTrainingTab" id="activeTrainingTab"></input>
+			    </li>
+			</ul>
+			-->
+			</form>
+			
+		<form id="training_form" method="get" action="#">
+			<input type="text" class="" name="name" id="name" size="21" maxlength="120" onkeyup="reloadTrainingHomePage()"></input>
+			<a class="training-delete-btn" href="#" ><span class="glyphicon glyphicon-search"></span></a>
+			<input th:value="${hpc.getTrainingTab()}" type="hidden" class="" name="filter" id="training_form_filter" size="21" maxlength=""></input>
+		    </form>
+		    
+			<div id="training_list">
+			  <div th:replace="home/_training_list :: training-list(${trainings})">
+			  </div>
+			  <div th:if="${trainings==null or trainings.size()==0}" class="">No
+				Training Found.</div>
+			</div>
+			
+		</div>
+	</div>
 </body>
 </html>

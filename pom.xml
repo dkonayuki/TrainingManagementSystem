@@ -71,6 +71,10 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
         <!-- Avoid: javax.validation.ValidationException: HV000183: Unable to load 'javax.el.ExpressionFactory' -->
         <dependency>
             <groupId>javax.el</groupId>
@@ -120,6 +124,11 @@
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
         </dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20141113</version>
+		</dependency>
         <!-- Utilities -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -168,7 +177,37 @@
             <version>5.1.35</version>
         </dependency>
     </dependencies>
+	<profiles>
+		<profile>
+			<id>develop</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<!-- This profile will automatically be active for all builds unless another profile in the same POM is activated -->
+			</activation>
+			<properties>
+				<db.username>leal</db.username>
+				<db.password>leal</db.password>
+				<db.connectionURL>jdbc:mysql://localhost</db.connectionURL>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<!-- Activate by passing "-P production" to maven at build time -->
+			<properties>
+				<db.username>leal</db.username>
+				<db.password>leal</db.password>
+				<db.connectionURL>jdbc:mysql://10.0.4.7:3301</db.connectionURL>
+			</properties>
+		</profile>
+	</profiles>
     <build>
+		<resources>
+			<resource>
+				<!-- Allows for properties replacement in the presistance.xml file -->
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
