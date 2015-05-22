@@ -65,10 +65,10 @@ $(function() {
 		format : "D/MM/YYYY, HH:mm"
 	});
 	// Multiselect
-	$('#venue').multiselect({
-		buttonWidth : '400px',
-		dropRight : true
-	});
+	//$('#venue').multiselect({
+	//	buttonWidth : '400px',
+	//	dropRight : true
+	//});
 
 	// add more button
 	$(document).on('click',
