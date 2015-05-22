@@ -12,7 +12,7 @@
 		<tr th:each="training : ${trainings}">
 					<td><a href="" th:href="@{/trainings/{id}(id=${training.id})}"
 						th:text="${training.name}">Add Programs</a></td>
-					<td th:text="${training.getOverview(100)}">Overview</td>
+					<td th:text="${T(com.rakuten.PenguinSoldiers.util.ViewUtil).html2text(training.getOverview(100))}">Overview</td>
 					<td th:text="${#calendars.format(training.due_date,'MMMM dd, yyyy')}">date</td>
 					<td th:text="${training.status}">status</td>
 					<td th:if="${pageContent.isAdmin()||pageContent.isManager()}">
