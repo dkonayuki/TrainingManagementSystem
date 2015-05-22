@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -31,8 +32,10 @@ import com.rakuten.PenguinSoldiers.models.target.Target;
 import com.rakuten.PenguinSoldiers.models.training.Training;
 import com.rakuten.PenguinSoldiers.models.training.TrainingForm;
 import com.rakuten.PenguinSoldiers.models.training.TrainingService;
+import com.rakuten.PenguinSoldiers.models.training.TrainingValidator;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
 import com.rakuten.PenguinSoldiers.util.ControllerUtil;
+import com.rakuten.PenguinSoldiers.util.PageData;
 
 @Controller
 public class TrainingController {
@@ -48,7 +51,8 @@ public class TrainingController {
 
 	@Autowired
 	private UserService userService;
-
+	
+	
 	@RequestMapping(value = "trainings", method = RequestMethod.GET)
 	public String index(@RequestParam(value = "name", required = false) String name, Principal principal, Model model) {
 		// Here we are returning a collection of Training objects
@@ -56,15 +60,33 @@ public class TrainingController {
 		//List<Training> trainings = trainingService.findActiveTraining();
 		List<Training> trainings;
 		if (name == null) {
-			trainings = trainingService.findAll();
+			trainings = trainingService.findAll(1, Training.PAGE_SIZE);
 		} else {
-			trainings = trainingService.findByName(name);
+			trainings = trainingService.findByName(name, 1, Training.PAGE_SIZE);
 		}
+		model.addAttribute("pagination", new PageData(1, trainingService.findAllCount(), Training.PAGE_SIZE));
 		model.addAttribute("trainings", trainings);
 
 		return "training/index";
 	}
 	
+	@RequestMapping(value = "trainings/page/{pagenum:[0-9]+}", method = RequestMethod.GET)
+	public String index(@RequestParam(value = "name", required = false) String name, Principal principal, Model model, @PathVariable(value="pagenum") Integer pageNum) {
+		// Here we are returning a collection of Training objects
+		
+		//List<Training> trainings = trainingService.findActiveTraining();
+		List<Training> trainings;
+		if (name == null) {
+			trainings = trainingService.findAll(pageNum, Training.PAGE_SIZE);
+		} else {
+			trainings = trainingService.findByName(name, pageNum, Training.PAGE_SIZE);
+		}
+		model.addAttribute("pagination", new PageData(pageNum, trainingService.findAllCount(), Training.PAGE_SIZE));
+		model.addAttribute("trainings", trainings);
+
+		return "training/index";
+	}
+
 	@RequestMapping(value = "trainings", method = {RequestMethod.GET, RequestMethod.HEAD},     
 	    headers = "x-requested-with=XMLHttpRequest")
 	public String search(@RequestParam(value = "name") String name, Model model) {
@@ -120,9 +142,11 @@ public class TrainingController {
 		return "redirect:trainings";
 	}
 
+	/*
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm,
-			Errors errors, final Model model, RedirectAttributes ra) {
+			Errors errors, final Model model, RedirectAttributes ra) {		
+		
 		if (errors.hasErrors()) {
 			if(trainingForm.getGoals().size() < 1) 
 				trainingForm.getGoals().add("");
@@ -130,6 +154,28 @@ public class TrainingController {
 				trainingForm.getOutlines().add("");
 			model.addAttribute("trainingForm", trainingForm);
 			// ra.addFlashAttribute("trainingForm", trainingForm);
+			return "training/new";
+		}
+
+		System.out.println(trainingForm.toString());
+
+		// create new training program item
+		Training tr = trainingForm.createTraining(accountRepository);
+		if (tr == null) {
+			model.addAttribute("trainingForm", trainingForm);
+			return "training/new";
+		}
+		
+		trainingService.save(tr);
+		return "redirect:/trainings/" + tr.getId();
+	}*/
+	
+	@RequestMapping(value = "trainings", method = RequestMethod.POST)
+	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm, BindingResult result, final Model model, Errors errors) {		
+		
+		TrainingValidator trainingValidator = new TrainingValidator();
+		trainingValidator.validate(trainingForm, result);
+		if (result.hasErrors() || errors.hasErrors()) {
 			return "training/new";
 		}
 

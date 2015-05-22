@@ -237,17 +237,27 @@ div a {
 }
 
 /* Details page design BEGIN */
-.details h3, .details h2 {
+.details h3, .details h2{
 	text-align: left;
 }
 
-.details h3 small, .details h2 small {
-	color: #ff4334;
+.details h2.title {
+	padding: 15px 20px;
+	margin: 0px;
+  	background-color: #666;
+  	color: #fefefe;
+  	border-left: 10px solid #1db3c8;
+  	border-top: 1px solid #1db3c8;
+  	border-bottom: 1px solid #1db3c8;
 }
 
 .outline-table th {
 	text-align: center;
 }
 
-.details-div {}
+.details-div {
+	border: 1px dashed #ccc;
+  	box-shadow: 0px 0px 5px #888;
+  	padding: 50px 50px;
+}
 /* Details page design END */

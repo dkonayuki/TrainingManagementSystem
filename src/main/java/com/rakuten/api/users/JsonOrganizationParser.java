@@ -22,7 +22,8 @@ import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 @Transactional
 public class JsonOrganizationParser {
   
-  private String url="http://rogin.cloudapp.net/api/organizations.json";
+//  private String url="http://rogin.cloudapp.net/api/organizations.json";
+  private String url="http://10.0.0.5/api/organizations.json";
   
   
   private String managerLabel="manager";
@@ -87,7 +88,7 @@ public class JsonOrganizationParser {
         //get members info from the same department
         members=parseMembers(parser);
         for(i=0;i<members.size();i++){
-          System.out.println(managerId+" "+members.get(i));
+//          System.out.println(managerId+" "+members.get(i));
         }
         RakutenManager rm=new RakutenManager();
         rm.setUsername(managerId);
@@ -95,7 +96,7 @@ public class JsonOrganizationParser {
 //        setManagers(managerId, members, ur);
 //        break;
         ret.add(rm);
-        System.out.println("--------------------------------------------------");
+//        System.out.println("--------------------------------------------------");
         members=new LinkedList<String>();
         managerId="";
       }
