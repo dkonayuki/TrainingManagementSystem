@@ -2,6 +2,7 @@ package com.rakuten.PenguinSoldiers.config;
 
 import javax.sql.DataSource;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
-import com.rakuten.PenguinSoldiers.controllers.account.SigninAuthFailHandler;
 import com.rakuten.PenguinSoldiers.models.account.UserService;
 
 @Configuration
