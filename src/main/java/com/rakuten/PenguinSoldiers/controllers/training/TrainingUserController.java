@@ -3,6 +3,8 @@ package com.rakuten.PenguinSoldiers.controllers.training;
 import java.security.Principal;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import ch.qos.logback.classic.turbo.TurboFilter;
 
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
@@ -84,7 +88,20 @@ public class TrainingUserController {
     RegisterUserForm ruf=new RegisterUserForm();
     ruf.setTrainingId(regUserForm.getTrainingId());
     model.addAttribute("regEmployeeForm", ruf);
+    
     return "manager/unRegEmployee";
+  }
+  
+  
+  @RequestMapping(value = "manager/completed", method = RequestMethod.GET)
+  public String showCompletedQuestionnaire(@RequestParam("id") String id, Model model){
+    
+    long trainingId=Long.parseLong(id);
+    long userId=ControllerUtil.getUserAccount(accountRepository).getId();
+    List<Account> completed=trainingUserRepository.findCompletedQuestionnaire(trainingId, userId); 
+    model.addAttribute("completed", completed);
+    model.addAttribute("training", trainingRepository.findById(Integer.parseInt(id)));
+    return "/manager/completedQuestionnaire";
   }
   
   private boolean removeUser(RegisterUserForm ruf,Account a){

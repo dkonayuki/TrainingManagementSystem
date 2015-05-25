@@ -44,6 +44,16 @@ public class TrainingUserRepository {
     }
   }
   
+  public List<Account> findCompletedQuestionnaire(long  trainingId, long  managerId){
+    try {
+      return entityManager.createNamedQuery(TrainingUser.FIND_COMPLETED_QUESTIONNAIRE, Account.class)
+          .setParameter("managerId", managerId)
+          .setParameter("trainingId", trainingId).getResultList();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
+  
   public List<Account> findNotRegisteredUser(long trainingId, long managerId){
     try {
       return entityManager.createNamedQuery(TrainingUser.FIND_NOT_REGISTERED_EMPLOYEE, Account.class)
@@ -96,6 +106,9 @@ public class TrainingUserRepository {
       return null;
     }
   }
+  
+  
+  
   
 
 }

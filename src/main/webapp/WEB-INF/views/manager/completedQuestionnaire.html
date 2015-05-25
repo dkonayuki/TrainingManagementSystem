@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<div th:replace="fragments/header :: header">Header</div>
+	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
+
+	<div class="col-lg-9 container begin-div">
+		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
+
+		<div class="container" align="left">
+			<u>
+				<h2 th:text="'Completed Questionnaire for '+ ${training.getName()}">
+					Manage trainings</h2>
+			</u>
+		</div>
+
+        <table class="table">
+			<tr>
+			  <td>
+				<div class="row" >
+                  <div th:each="in: ${completed}" th:text="${in.getName()}" class="col-sm-3" style="background-color:lavender;"></div>
+                </div>
+              </td>
+			</tr>
+		</table>
+
+
+	</div>
+</body>
+</html>
