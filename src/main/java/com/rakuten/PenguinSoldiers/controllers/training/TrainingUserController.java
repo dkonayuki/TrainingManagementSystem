@@ -104,14 +104,18 @@ public class TrainingUserController {
   
   @RequestMapping(value = "manager/completed", method = RequestMethod.GET)
   public String showCompletedQuestionnaire(@RequestParam("id") String id, Model model){
-    
-    long trainingId=Long.parseLong(id);
-    long userId=ControllerUtil.getUserAccount(accountRepository).getId();
-//    sqr.employeeCompleted(trainingId, userId);
-    List<Account> completed=trainingUserRepository.findCompletedQuestionnaire(trainingId, userId); 
-    model.addAttribute("completed", completed);
-    model.addAttribute("training", trainingRepository.findById(Integer.parseInt(id)));
-    model.addAttribute("qlpc", QuestionnaireListPageContentBuilder.build(sqr, trainingId, userId));
+    try{
+      long trainingId=Long.parseLong(id);
+      long userId=ControllerUtil.getUserAccount(accountRepository).getId();
+//      sqr.employeeCompleted(trainingId, userId);
+      List<Account> completed=trainingUserRepository.findCompletedQuestionnaire(trainingId, userId); 
+      model.addAttribute("completed", completed);
+      model.addAttribute("training", trainingRepository.findById(Integer.parseInt(id)));
+      model.addAttribute("qlpc", QuestionnaireListPageContentBuilder.build(sqr, trainingId, userId));
+      
+    }catch(Exception e){
+      e.printStackTrace();
+    }
     return "/manager/completedQuestionnaire";
   }
   

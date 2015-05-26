@@ -42,7 +42,7 @@ public class StandardQuestionnaireRepository {
   
   public List<Object[]> employeeCompleted(Long trainingId, Long userId) {
     try {
-      return entityManager.createNativeQuery("select a.name, sq.id from Training_User tu, Account a, StandardQuestionnaire sq where sq.trainingId=tu.trainingId and sq.userId=a.id and tu.trainingId=:trainingId and  a.id=tu.userId and a.id in (select acc.id from Account acc, Hierarchy h where h.managerId=:managerId and acc.id=h.employeeId)")
+      return entityManager.createNativeQuery("select a.name, sq.id from training_user tu, account a, standardQuestionnaire sq where sq.trainingId=tu.trainingId and sq.userId=a.id and tu.trainingId=:trainingId and  a.id=tu.userId and a.id in (select acc.id from Account acc, Hierarchy h where h.managerId=:managerId and acc.id=h.employeeId)")
           .setParameter("trainingId", trainingId).setParameter("managerId", userId).getResultList();
     } catch(Exception e){
       e.printStackTrace();
