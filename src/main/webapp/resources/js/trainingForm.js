@@ -2,18 +2,28 @@ $(document).ready(function() {
 	// WYSIWYG
 	$("#training-overview").wysihtml5();
 	
-	// minus button "thing"
+	// minus button "thing" (goal part)
 	$('.btn-add').each(function(){
 		$this = $(this);
 		$this.removeClass('btn-add').addClass('btn-remove');
 		$this.removeClass('btn-success').addClass('btn-danger');
 		$this.find('.glyphicon-plus').removeClass('glyphicon-plus').addClass('glyphicon-minus');
 	});
-	
 	$('.btn-remove:last').removeClass('btn-danger').addClass('btn-success');
 	$($('.btn-remove:last')).find('.glyphicon-minus').addClass('glyphicon-plus').removeClass('glyphicon-minus');
 	$('.btn-remove:last').removeClass('btn-remove').addClass('btn-add');
-	console.log($($('.btn-remove:last')).find('.glyphicon-minus'));
+	
+	// minus button "thing" (outline part)
+	$('.btn-add-outline').each(function(){
+		$this = $(this);
+		$this.removeClass('btn-add-outline').addClass('btn-remove-outline');
+		$this.removeClass('btn-success').addClass('btn-danger');
+		$this.find('.glyphicon-plus').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+	});
+	$('.btn-remove-outline:last').removeClass('btn-danger').addClass('btn-success');
+	$($('.btn-remove-outline:last')).find('.glyphicon-minus').addClass('glyphicon-plus').removeClass('glyphicon-minus');
+	$('.btn-remove-outline:last').removeClass('btn-remove-outline').addClass('btn-add-outline');
+	
 	
 	// decode hidden input outline into (date, content)inputs
 	$this = $('#trainingForm');
@@ -65,10 +75,10 @@ $(function() {
 		format : "D/MM/YYYY, HH:mm"
 	});
 	// Multiselect
-	$('#venue').multiselect({
-		buttonWidth : '400px',
-		dropRight : true
-	});
+	//$('#venue').multiselect({
+	//	buttonWidth : '400px',
+	//	dropRight : true
+	//});
 
 	// add more button
 	$(document).on('click',
