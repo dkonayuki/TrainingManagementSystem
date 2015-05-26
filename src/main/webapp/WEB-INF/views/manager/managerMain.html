@@ -26,8 +26,8 @@
 			</tr>
 			<tr>
 			  <td>
-				<div class="row" >
-                  <div th:each="in: ${tumc.in}" th:text="${in.getName()}" class="col-sm-3" style="background-color:lavender;"></div>
+				<div class="row list-group" >
+                  <div th:each="in: ${tumc.in}" th:text="${in.getName()}" class="col-sm-3 list-group-item list-group-item-plain" ></div>
                 </div>
               </td>
 			</tr>
