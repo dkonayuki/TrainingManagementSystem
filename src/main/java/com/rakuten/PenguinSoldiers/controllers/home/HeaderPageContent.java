@@ -1,5 +1,7 @@
 package com.rakuten.PenguinSoldiers.controllers.home;
 
+import java.util.HashMap;
+
 public class HeaderPageContent {
 	
 		private boolean isAdmin = false, isManager = false;
@@ -13,8 +15,8 @@ public class HeaderPageContent {
 		public static String REGISTERED_LABEL = "own";
 		
 		/* navigation labels */
-		public static final String AVAIL_TRAINING_LBL = "filter_in";
-		public static final String REGIS_TRAINING_LBL = "filter_out";
+		public static final String AVAIL_TRAINING_LBL = "filter_out";
+		public static final String REGIS_TRAINING_LBL = "filter_in";
 		public static final String ADM_NEW_TRAINING_LBL = "admin_new";
 		public static final String ADM_ADD_TRAINING_LBL = "admin_add";
 		public static final String MGR_APP_TRAINING_LBL = "manager_apply";
@@ -22,6 +24,17 @@ public class HeaderPageContent {
 		private String activeLabel = "";
 		
 		private String accountName;
+
+		public static HashMap<String, String> maP;
+		
+		public HeaderPageContent() {
+			maP = new HashMap<String, String>();
+			maP.put("filter=out", AVAIL_TRAINING_LBL);
+			maP.put("filter=in", REGIS_TRAINING_LBL);
+			maP.put("/trainings/new", ADM_NEW_TRAINING_LBL);
+			maP.put("/admin/addAdminPage", ADM_ADD_TRAINING_LBL);
+			maP.put("/manager/manage", MGR_APP_TRAINING_LBL);
+		}
 		
 		public String getAccountName() {
 			return accountName;

@@ -1,5 +1,7 @@
 package com.rakuten.PenguinSoldiers.controllers.home;
 
+import java.util.HashMap;
+
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
 import com.rakuten.PenguinSoldiers.models.admin.AdminRepository;
@@ -22,22 +24,31 @@ public class HeaderPageContentBuilder {
 			hpc.setAccountName(a.getName());
 		}
 		String headerLabel = HeaderPageContentBuilder
-				.convertServletNameToHeaderLabel(servletName);
+				.convertServletNameToHeaderLabel(servletName,
+						HeaderPageContent.maP);
 		hpc.setActiveLabel(headerLabel);
 
 		return hpc;
 	}
 
-	public static String convertServletNameToHeaderLabel(String servletName) {
-		if (servletName.equals("/trainings"))
-			return HeaderPageContent.TRAINING_LABEL;
-		else if (servletName.startsWith("/account/wantChangePass")
-				|| servletName.startsWith("/account/changePass"))
-			return HeaderPageContent.ACCOUNT_LABEL;
-		else if (servletName.startsWith("/admin")
-				|| servletName.startsWith("/manage")
-				|| servletName.startsWith("/trainings/new"))
-			return HeaderPageContent.MODE_LABEL;
+	public static String convertServletNameToHeaderLabel(String servletName,
+			HashMap<String, String> map) {
+		// for each key in HashMap if(servletNmae.startWith(key)) return value;
+		/*
+		 * if (servletName.equals("/trainings")) return
+		 * HeaderPageContent.TRAINING_LABEL; else if
+		 * (servletName.startsWith("/account/wantChangePass") ||
+		 * servletName.startsWith("/account/changePass")) return
+		 * HeaderPageContent.ACCOUNT_LABEL; else if
+		 * (servletName.startsWith("/admin") ||
+		 * servletName.startsWith("/manage") ||
+		 * servletName.startsWith("/trainings/new")) return
+		 * HeaderPageContent.MODE_LABEL;
+		 */
+		for (String key : map.keySet()) {
+			if(servletName.contains(key)) {
+				return map.get(key);}
+		}
 		return HeaderPageContent.HOME_LABEL;
 	}
 }

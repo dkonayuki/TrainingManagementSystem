@@ -46,8 +46,8 @@
 						<!-- <select multiple="multiple" class="form-control" id="regAccount" th:field="*{out}" >
               <option th:each="list : ${tumc.getOut()}" th:text="${list.getName()}" th:value="${list.getId()}" value="1">1</option>
             </select> -->
-						<select class="selectpicker" data-live-search="true"
-							multiple="multiple" name="out">
+						<select class="selectpicker col-lg-7" data-live-search="true"
+							multiple="multiple" name="out" data-style="btn-inverse">
 							<option th:each="list : ${tumc.getOut()}"
 								th:text="${list.getName()}" th:value="${list.getId()}" value="1">1</option>
 						</select> <input type="hidden" class="form-control" id="trainingId"
@@ -57,7 +57,7 @@
 
 					<div class="form-group">
 						<div class="col-lg-offset-2 col-lg-10">
-							<button type="submit" class="btn btn-default">Add</button>
+							<button type="submit" class="btn btn-success" >Add</button>
 						</div>
 					</div>
 				</fieldset>

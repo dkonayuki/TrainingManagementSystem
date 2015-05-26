@@ -118,6 +118,13 @@ public class TrainingController {
 	public String update(@Valid @ModelAttribute TrainingForm trainingForm,
 			BindingResult result, Errors errors, final Model model, RedirectAttributes ra, @PathVariable Integer id) {
 		
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Account a = accountRepository.findByUsername(userDetails.getUsername());
+		if(!adminRepository.isAdmin(a.getId())) {
+			return "redirect:/";
+		}
+		
 		Training training = this.trainingService.findById(id);
 		
 		// validate trainingform for editing
@@ -140,6 +147,14 @@ public class TrainingController {
 	
 	@RequestMapping(value = "trainings/new", method = RequestMethod.GET)
 	public String addTrainingPrograms(Model model) {
+		
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Account a = accountRepository.findByUsername(userDetails.getUsername());
+		if(!adminRepository.isAdmin(a.getId())) {
+			return "redirect:/";
+		}
+		
 		model.addAttribute("trainingForm", new TrainingForm());
 		return "training/new";
 	}
@@ -183,6 +198,12 @@ public class TrainingController {
 	
 	@RequestMapping(value = "trainings", method = RequestMethod.POST)
 	public String addAction(@Valid @ModelAttribute TrainingForm trainingForm, BindingResult result, final Model model, Errors errors) {		
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Account a = accountRepository.findByUsername(userDetails.getUsername());
+		if(!adminRepository.isAdmin(a.getId())) {
+			return "redirect:/";
+		}
 		
 		TrainingValidator trainingValidator = new TrainingValidator();
 		trainingValidator.validate(trainingForm, result);

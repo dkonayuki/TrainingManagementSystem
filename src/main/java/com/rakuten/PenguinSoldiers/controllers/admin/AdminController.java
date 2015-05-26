@@ -1,6 +1,5 @@
 package com.rakuten.PenguinSoldiers.controllers.admin;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,55 +20,68 @@ import java.lang.String;
 
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private AdminRepository adminRepository;
-	
+
 	@Autowired
 	private AccountRepository accountRepository;
-	
+
 	@Autowired
 	private TrainingService trainingService;
-	
-	public void init(Model model){
-	  AdminControllerPageContent acpc=new AdminControllerPageContent();
-	  acpc.setAdminList(accountRepository.listAdmins());
-	  model.addAttribute("acpc",acpc);
+
+	public void init(Model model) {
+		AdminControllerPageContent acpc = new AdminControllerPageContent();
+		acpc.setAdminList(accountRepository.listAdmins());
+		model.addAttribute("acpc", acpc);
 	}
-	
-	@RequestMapping(value = "admin/addAdmin", method = RequestMethod.GET)
-  public String addAdmin(@RequestParam("newAdminId") String newAdminId, Model model){
-    
-    UserDetails userDetails =
-        (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    
-    
-    Account a=accountRepository.findByUsername(userDetails.getUsername());//change to username
-    //check if user is admin
-    if(adminRepository.isAdmin(a.getId())){
-      //check if new admin is eligible
-      Account newAdmin=accountRepository.findByUsername(newAdminId);
-      if(newAdmin==null){
-        
-      }else{
-        Admin admin=new Admin();
-        admin.setUserId(newAdmin.getId());
-        admin.setAddedBy(a.getId());
-        admin.setAddedOn(DateTimeUtil.getNow());
-        adminRepository.addAdmin(admin);
-      }
-    }
-    init(model);
-    return "admin/addAdminPage";
-  }
-	@RequestMapping(value = "admin/addAdminPage", method = RequestMethod.GET)
-	public String addAdminPage(Model model) {
-	  init(model);
+
+	@RequestMapping(value = "admin/addAdmin", method = RequestMethod.POST)
+	public String addAdmin(@RequestParam("newAdminId") String newAdminId,
+			Model model) {
+
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+
+		Account a = accountRepository.findByUsername(userDetails.getUsername());// change
+																				// to
+																				// username
+		// check if user is admin
+		if (adminRepository.isAdmin(a.getId())) {
+			// check if new admin is eligible
+			Account newAdmin = accountRepository.findByUsername(newAdminId);
+			if (newAdmin == null) {
+
+			} else {
+				Admin admin = new Admin();
+				admin.setUserId(newAdmin.getId());
+				admin.setAddedBy(a.getId());
+				admin.setAddedOn(DateTimeUtil.getNow());
+				adminRepository.addAdmin(admin);
+			}
+		} else {
+			return "redirect:/";
+		}
+		init(model);
 		return "admin/addAdminPage";
 	}
+
+	@RequestMapping(value = "admin/addAdminPage", method = RequestMethod.GET)
+	public String addAdminPage(Model model) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Account a = accountRepository.findByUsername(userDetails.getUsername());
+		if(!adminRepository.isAdmin(a.getId())) {
+			return "redirect:/";
+		}
+		
+		init(model);
+		return "admin/addAdminPage";
+	}
+
 	@RequestMapping(value = "admin", method = RequestMethod.GET)
 	public String admin(Model model) {
-		
+
 		model.addAttribute("trainings", trainingService.findAll());
 		return "admin/adminMain";
 	}

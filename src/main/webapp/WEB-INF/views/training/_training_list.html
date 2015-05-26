@@ -16,13 +16,13 @@
 			<td th:text="${training.overview}">1</td>
 			<td th:text="${training.due_date}">1</td>
 			<td th:text="${training.status}">1</td>
-			<td><a href="#"
-				th:href="@{/trainings/{id}/edit(id=${training.id})}"><span
-					class="glyphicon glyphicon-pencil"></span></a> <a
-				class="training-delete-btn" href="#"><span
-					class="glyphicon glyphicon-remove"></span></a> <a href="#"
-				th:href="@{/manager/manage(id=${training.id})}"><span
-					class="glyphicon glyphicon-plus"></span></a></td>
+			<td>
+			<a href="#" th:href="@{/trainings/{id}/edit(id=${training.id})}" th:if="${pageContent.isAdmin()}">
+				<span class="glyphicon glyphicon-pencil"></span></a> 
+			<a class="training-delete-btn" href="#" th:if="${pageContent.isAdmin()}">
+				<span class="glyphicon glyphicon-remove"></span></a> 
+			<a href="#" th:href="@{/manager/manage(id=${training.id})}" th:if="${pageContent.isManager()}">
+				<span class="glyphicon glyphicon-plus"></span></a></td>
 		</tr>
 	</table>
 	

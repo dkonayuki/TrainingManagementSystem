@@ -7,14 +7,14 @@
 	    <div class="left-nav"  >
 			<span class="left-nav-title">User Dashboard</span>
 			<ul class="nav nav-pills nav-stacked nav-inverted left-nav-ul">
-				<li class="${pageContent.showActiveLabel(pageContent.AVAIL_TRAINING_LBL)}">
+				<li th:class="${pageContent.showActiveLabel(pageContent.AVAIL_TRAINING_LBL)}">
 				  <a href="/trainings/new" th:href="@{/?filter=out}">
-				    <i class="icon-chevron-right"></i> + Available Training
+				    <i class="icon-chevron-right"></i> Available Training
 				  </a>
 				</li>
-				<li class="${pageContent.showActiveLabel(pageContent.REGIS_TRAINING_LBL)}">
+				<li th:class="${pageContent.showActiveLabel(pageContent.REGIS_TRAINING_LBL)}">
 				  <a href="/admin/addAdmin" th:href="@{/?filter=in}">
-				    <i class="icon-chevron-right"></i> + Registered Training
+				    <i class="icon-chevron-right"></i> Registered Training
 			      </a>
 		      </li>
 			</ul>
@@ -22,18 +22,18 @@
 		<div th:if="${pageContent.isAdmin()}" class="left-nav" style="margin-top: 40px;">
 			<span class="left-nav-title">Admin Dashboard</span>
 			<ul class="nav nav-pills nav-stacked nav-inverted left-nav-ul">
-				<li class="${pageContent.showActiveLabel(pageContent.ADM_NEW_TRAINING_LBL)}"><a href="/trainings/new"
+				<li th:class="${pageContent.showActiveLabel(pageContent.ADM_NEW_TRAINING_LBL)}"><a href="/trainings/new"
 					th:href="@{/trainings/new}"><i class="icon-chevron-right"></i> +
 						New Training</a></li>
-				<li class="${pageContent.showActiveLabel(pageContent.ADM_ADD_TRAINING_LBL)}"><a href="/admin/addAdmin"
+				<li th:class="${pageContent.showActiveLabel(pageContent.ADM_ADD_TRAINING_LBL)}"><a href="/admin/addAdmin"
 					th:href="@{/admin/addAdminPage}"><i class="icon-chevron-right"></i>
-						+ Admin member</a></li>
+						+ Add Admin</a></li>
 			</ul>
 		</div>
 		<div th:if="${pageContent.isManager()}" class=" left-nav" style="margin-top: 40px;">
 			<span class="left-nav-title">Manager Dashboard</span>
 			<ul class="nav nav-pills nav-stacked nav-inverted left-nav-ul">
-				<li class="${pageContent.showActiveLabel(pageContent.MGR_APP_TRAINING_LBL)}"><a href="/trainings/new" th:href="@{/?filter=out}"><i
+				<li th:class="${pageContent.showActiveLabel(pageContent.MGR_APP_TRAINING_LBL)}"><a href="/trainings/new" th:href="@{/?filter=out}"><i
 						class="icon-chevron-right"></i> Apply trainings </a></li>
 						<!-- 
 				<li class=""><a href="/admin/addAdmin" th:href="@{#}"><i
