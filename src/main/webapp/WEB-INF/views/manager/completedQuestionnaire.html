@@ -20,8 +20,8 @@
 			<tr>
 			  <td>
 				<div class="row" >
-				 <div th:each="in: ${qlpc.getList()}" class="col-sm-3" style="background-color:lavender;">
-				  <a  th:text="${in.getUserName()}" href="#" th:onclick="'showModal('+${in.getSqId()}+')'" onclick="showModal(2);" ><!-- data-toggle="modal" data-target="#myModal" > -->
+				 <div th:each="in: ${qlpc.getList()}" class="col-sm-3 list-group" >
+				  <a  th:text="${in.getUserName()}" class="list-group-item" href="#" th:onclick="'showModal('+${in.getSqId()}+')'" onclick="showModal(2);" ><!-- data-toggle="modal" data-target="#myModal" > -->
                   </a>
                   </div>
                 </div>

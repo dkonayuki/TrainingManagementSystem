@@ -14,9 +14,9 @@
  -->
 			<legend>Add New Admin Member</legend>
 			<div class="container add-trainings form-add">
-			<div class="row">
+			<div class="row list-group">
 				<div th:each="admin : ${acpc.admins}" th:text="${admin.name}"
-					class="col-lg-7" style="background-color: lavender;"></div>
+					class="col-lg-3 list-group-item" style="background-color: lavender;"></div>
 			</div>
 
 			<form th:action="@{/admin/addAdmin}">
