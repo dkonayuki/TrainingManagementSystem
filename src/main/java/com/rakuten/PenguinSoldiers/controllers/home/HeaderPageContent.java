@@ -12,6 +12,13 @@ public class HeaderPageContent {
 		public static String AVAILABLE_LABEL = "available";
 		public static String REGISTERED_LABEL = "own";
 		
+		/* navigation labels */
+		public static final String AVAIL_TRAINING_LBL = "filter_in";
+		public static final String REGIS_TRAINING_LBL = "filter_out";
+		public static final String ADM_NEW_TRAINING_LBL = "admin_new";
+		public static final String ADM_ADD_TRAINING_LBL = "admin_add";
+		public static final String MGR_APP_TRAINING_LBL = "manager_apply";
+		
 		private String activeLabel = "";
 		
 		private String accountName;
