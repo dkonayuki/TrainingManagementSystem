@@ -1,18 +1,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="training-form" class="text-center">
 
-<div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" >Questionnaire Content</h4>
-        </div>
+  <div class="modal-header" style="border-bottom:0px"> 
+    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+    <h4 class="modal-title" >Questionnaire Content</h4>
+  </div>
+  
+  
+  
 <div class="modal-body">
-<label>Helpful</label><p th:text="${sq.getHelpful()}"></p>
-<label>Understand</label><p th:text="${sq.getUnderstand()}"></p>
-<label>Atmosphere</label><p th:text="${sq.getAtmosphere()}"></p>
-<label>Training Course</label><p th:text="${sq.getTrainingCourse()}"></p>
-<label>Curriculum Pace</label><p th:text="${sq.getCurriculumPace()}"></p>
-<label>Liked</label><p th:text="${sq.getPositive()}"></p>
-<label>Improvements</label><p th:text="${sq.getImprovement()}"></p>
+<div class="row list-group">
+  <div class="col-lg-6 list-group-item">
+    <label>Helpful</label><p th:text="${sq.getHelpful()}"></p>
+  </div>
+  <div class="col-lg-6 list-group-item">
+    <label>Understand</label><p th:text="${sq.getUnderstand()}"></p>
+  </div>
+  <div class="col-lg-6 list-group-item">
+    <label>Atmosphere</label><p th:text="${sq.getAtmosphere()}"></p>
+  </div>
+  <div class="col-lg-6 list-group-item">
+    <label>Training Course</label><p th:text="${sq.getTrainingCourse()}"></p>
+  </div>
+  <div class="col-lg-6 list-group-item">
+    <label>Curriculum Pace</label><p th:text="${sq.getCurriculumPace()}"></p>
+  </div>
+  <div class="col-lg-6 list-group-item">
+    <label>Follow Up?</label><p th:text="${sq.getFollowUp()}"></p>
+  </div>
+  <div class="col-lg-12 list-group-item">
+    <label>Liked</label><p th:text="${sq.getPositive()}"></p>
+  </div>
+  <div class="col-lg-12 list-group-item">
+    <label>Improvements</label><p th:text="${sq.getImprovement()}"></p>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
 
 </div>
 
