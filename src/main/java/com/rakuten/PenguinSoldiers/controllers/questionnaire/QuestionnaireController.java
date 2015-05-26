@@ -47,6 +47,8 @@ public class QuestionnaireController {
     if(!isRegistered||isCompleted){
       if(isCompleted)
         MessageHelper.addInfoAttribute(ra, "feedback.completed");
+      if(!isRegistered)
+        MessageHelper.addInfoAttribute(ra, "feedback.not_registered");
       return "redirect:/";
     }
     
@@ -68,6 +70,8 @@ public class QuestionnaireController {
     if(!isRegistered||isCompleted){
       if(isCompleted)
         MessageHelper.addInfoAttribute(ra, "feedback.completed");
+      if(!isRegistered)
+        MessageHelper.addInfoAttribute(ra, "feedback.not_registered");
       return "redirect:/";
     }
     
@@ -77,5 +81,15 @@ public class QuestionnaireController {
     
     MessageHelper.addInfoAttribute(ra, "feedback.success");
     return "redirect:/";
+  }
+  
+  @RequestMapping(value = "feedback/view", method = RequestMethod.GET,     
+      headers = "x-requested-with=XMLHttpRequest")
+  public String show(@RequestParam("qId") String qId,Principal principal, Model model, RedirectAttributes ra) {
+    
+    StandardQuestionnaire sq=sqr.findById(new Long(qId));
+    
+    model.addAttribute("sq", sq);
+    return "/training/_show_q";
   }
 }

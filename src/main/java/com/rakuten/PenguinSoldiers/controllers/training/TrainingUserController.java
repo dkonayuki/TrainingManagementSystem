@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.qos.logback.classic.turbo.TurboFilter;
 
+import com.rakuten.PenguinSoldiers.controllers.questionnaire.QuestionnaireController;
 import com.rakuten.PenguinSoldiers.models.account.Account;
 import com.rakuten.PenguinSoldiers.models.account.AccountRepository;
+import com.rakuten.PenguinSoldiers.models.questionnaire.QuestionnaireListPageContentBuilder;
+import com.rakuten.PenguinSoldiers.models.questionnaire.StandardQuestionnairePageContentBuilder;
 import com.rakuten.PenguinSoldiers.models.training.RegisterUserForm;
+import com.rakuten.PenguinSoldiers.models.training.StandardQuestionnaireRepository;
 import com.rakuten.PenguinSoldiers.models.training.TrainingRepository;
 import com.rakuten.PenguinSoldiers.models.training.TrainingUser;
 import com.rakuten.PenguinSoldiers.models.training.TrainingUserRepository;
@@ -36,6 +40,11 @@ public class TrainingUserController {
   
   @Autowired
   private AccountRepository accountRepository;
+  
+  @Autowired
+  private StandardQuestionnaireRepository sqr;
+
+
 
 
   @RequestMapping(value = "/manager/manage", method = RequestMethod.GET)
@@ -98,10 +107,21 @@ public class TrainingUserController {
     
     long trainingId=Long.parseLong(id);
     long userId=ControllerUtil.getUserAccount(accountRepository).getId();
+//    sqr.employeeCompleted(trainingId, userId);
     List<Account> completed=trainingUserRepository.findCompletedQuestionnaire(trainingId, userId); 
     model.addAttribute("completed", completed);
     model.addAttribute("training", trainingRepository.findById(Integer.parseInt(id)));
+    model.addAttribute("qlpc", QuestionnaireListPageContentBuilder.build(sqr, trainingId, userId));
     return "/manager/completedQuestionnaire";
+  }
+  
+  @RequestMapping(value = "manager/feedback/view", method = {RequestMethod.GET, RequestMethod.HEAD},     
+      headers = "x-requested-with=XMLHttpRequest")
+  public String search(@RequestParam(value = "id", required = false, defaultValue = "-1") String id, Model model) {
+    
+    model.addAttribute("sq", StandardQuestionnairePageContentBuilder.build(sqr.findById(new Long(id))));
+    
+    return "training/_show_q";
   }
   
   private boolean removeUser(RegisterUserForm ruf,Account a){
