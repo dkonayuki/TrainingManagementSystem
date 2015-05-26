@@ -110,7 +110,9 @@ public class StandardQuestionnairePageContent {
   
   public String convertYesNo(String s){
     if(s.equals("YES"))
-      return "Yes.";
-    return "No.";
+      return "Yes please.";
+    else if(s.equals("MAYBE"))
+      return "Not Sure.";
+    return "No thank you.";
   }
 }
