@@ -59,6 +59,8 @@ public class AdminController {
 				admin.setAddedOn(DateTimeUtil.getNow());
 				adminRepository.addAdmin(admin);
 			}
+		} else {
+			return "redirect:/";
 		}
 		init(model);
 		return "admin/addAdminPage";
@@ -66,6 +68,13 @@ public class AdminController {
 
 	@RequestMapping(value = "admin/addAdminPage", method = RequestMethod.GET)
 	public String addAdminPage(Model model) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Account a = accountRepository.findByUsername(userDetails.getUsername());
+		if(!adminRepository.isAdmin(a.getId())) {
+			return "redirect:/";
+		}
+		
 		init(model);
 		return "admin/addAdminPage";
 	}
