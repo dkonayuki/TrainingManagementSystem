@@ -46,6 +46,8 @@ public class TrainingUserRepository {
   
   public List<Account> findCompletedQuestionnaire(long  trainingId, long  managerId){
     try {
+      
+      
       return entityManager.createNamedQuery(TrainingUser.FIND_COMPLETED_QUESTIONNAIRE, Account.class)
           .setParameter("managerId", managerId)
           .setParameter("trainingId", trainingId).getResultList();

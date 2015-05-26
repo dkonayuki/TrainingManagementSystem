@@ -19,6 +19,16 @@ public class StandardQuestionnaireRepository {
     entityManager.persist(StandardQuestionaire);
     return StandardQuestionaire;
   }
+  
+  public StandardQuestionnaire findById(Long id) {
+    try {
+      return entityManager.createNamedQuery(StandardQuestionnaire.FIND_BY_ID, StandardQuestionnaire.class)
+          .setParameter("id", id)
+          .getSingleResult();
+    } catch (PersistenceException e) {
+      return null;
+    }
+  }
 
   public StandardQuestionnaire completed(Long trainingId, Long userId) {
     try {
@@ -26,6 +36,16 @@ public class StandardQuestionnaireRepository {
           .setParameter("trainingId", trainingId).setParameter("userId", userId)
           .getSingleResult();
     } catch (PersistenceException e) {
+      return null;
+    }
+  }
+  
+  public List<Object[]> employeeCompleted(Long trainingId, Long userId) {
+    try {
+      return entityManager.createNativeQuery("select a.name, sq.id from Training_User tu, Account a, StandardQuestionnaire sq where sq.trainingId=tu.trainingId and sq.userId=a.id and tu.trainingId=:trainingId and  a.id=tu.userId and a.id in (select acc.id from Account acc, Hierarchy h where h.managerId=:managerId and acc.id=h.employeeId)")
+          .setParameter("trainingId", trainingId).setParameter("managerId", userId).getResultList();
+    } catch(Exception e){
+      e.printStackTrace();
       return null;
     }
   }

@@ -137,7 +137,6 @@ function queryTrainingList(toUrl){
 	});
 	
 	window.history.replaceState({}, "Trainings", toUrl);
-
 }
 
 function reloadTrainingHomePage(){
@@ -171,3 +170,25 @@ function deleteTraining(id){
 	return false;
 }
 
+
+
+//function used in questionnaire
+
+function showModal(id){
+	var toUrl="./feedback/view?id="+id;
+	$.ajax({
+		type: "GET",
+		url: toUrl,
+		success: function(data) {
+			//update the page fragment
+            //use a different file otherwise will refresh the entire html body of the page
+			$("#questionnaire_details").html(data);
+			$("#myModal").modal();
+		},
+		error: function(XHR, message, errorThrown) {
+			console.log(errorThrown);
+		}
+	});
+	
+	//window.history.replaceState({}, "sq", toUrl);
+}

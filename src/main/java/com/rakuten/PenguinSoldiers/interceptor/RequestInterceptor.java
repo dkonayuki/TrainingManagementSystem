@@ -42,11 +42,12 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
 		UserDetails ud = ControllerUtil.getUserDetails();
 		if (ud != null)
 			username = ud.getUsername();
-		modelAndView.addObject("pageContent", HeaderPageContentBuilder.build(
-				accountRepository, adminRepository, username,
-				request.getServletPath()));
 
-		// System.out.println("---After Method Execution---postHandle()");
+		String param = request.getParameter("filter");
+		String path = request.getServletPath()
+				+ ((param != null) ? ("?filter=" + param) : "");
+		modelAndView.addObject("pageContent", HeaderPageContentBuilder.build(
+				accountRepository, adminRepository, username, path));
 	}
 
 }
