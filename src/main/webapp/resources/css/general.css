@@ -142,7 +142,7 @@ table.roundtable {
 }
 
 table.roundtable th {
-	color: #efefef;
+	color: #fefefe;
 	padding: 8px 15px;
 	background: #e45335;
 	font-weight: bold;
@@ -184,17 +184,18 @@ div.all-content {
 .left-nav-ul {
 	border: 1px solid #e45335;
 	box-shadow: 1px 1px 4px #ccc;
-	border-radius: 0px 0px 5px 5px;
+/*	border-radius: 0px 0px 5px 5px; */
 	border-top: 2px solid #efefef;
+	background-color: #fefefe;
 }
 
 .left-nav-title {
 	font-weight: bold;
-	padding: 5px 20px 4px;
+	padding: 15px 20px 14px;
 	display: block;
 	background-color: #e45335;
-	color: #eee;
-	border-radius: 5px 5px 0px 0px;
+	color: #fefefe;
+/*	border-radius: 5px 5px 0px 0px; */
 	box-shadow: 3px 3px 10px #ccc;
 }
 
@@ -234,7 +235,7 @@ div a {
 }
 
 .page-path {
-	box-shadow: 0px 0px 2px #ccc;
+	/*box-shadow: 0px 0px 2px #ccc; */
 	padding: 2px 10px;
 	margin: 10px 125px 20px 25px;
 	border-radius: 3px;
@@ -252,11 +253,12 @@ div a {
 .details h2.title {
 	padding: 15px 20px;
 	margin: 0px;
-  	background-color: #666;
-  	color: #fefefe;
-  	border-left: 10px solid #1db3c8;
-  	border-top: 1px solid #1db3c8;
-  	border-bottom: 1px solid #1db3c8;
+  	background-color: #f5f5f5;
+  	color: #2e2e2e;
+  	border-left: 10px solid #a8a8a8;
+  	border-top: 1px solid #a8a8a8;
+  	border-bottom: 1px solid #a8a8a8;
+  	border-right: 1px solid #a8a8a8;
 }
 
 .outline-table th {
@@ -267,5 +269,9 @@ div a {
 	border: 1px dashed #ccc;
   	box-shadow: 0px 0px 5px #888;
   	padding: 50px 50px;
+}
+
+.panel-default>.panel-heading {
+	background-color: #e8e8e8;
 }
 /* Details page design END */

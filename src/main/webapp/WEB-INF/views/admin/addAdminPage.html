@@ -5,11 +5,11 @@
 <body>
 	<div th:replace="fragments/header :: header">Header</div>
 	<div th:replace="fragments/leftNav :: leftNav">LeftNav</div>
-<div class="col-lg-9 begin-div">
+	<div class="col-lg-9 begin-div">
 		<div th:replace="fragments/pagePath :: pagePath">pagePath</div>
 
-<div class="container text-center add-training">
-<!--  
+		<div class="container text-center">
+			<!--  
 <div th:text="${acpc.generate()}">1</div>
  -->
  
@@ -37,13 +37,11 @@
 			<div class="col-lg-offset-2 col-lg-10">
 				<button type="submit" class="btn btn-success btn-lg"
 					style="padding: 8px 30px;" >Add</button>
-			</div>
 		</div>
-        
-    </fieldset>
+</div>
+</fieldset>
 </form>
 </div>
 </div>
-
 </body>
 </html>
