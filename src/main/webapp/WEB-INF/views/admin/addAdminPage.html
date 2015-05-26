@@ -14,11 +14,31 @@
  -->
 			<legend>Add New Admin Member</legend>
 			<div class="container add-trainings form-add">
-				<div class="row list-group">
-					<div th:each="admin : ${acpc.admins}" th:text="${admin.name}"
-						class="col-lg-3 list-group-item" style="background-color: #ada;"></div>
-				</div>
+			<div class="row list-group">
+				<div th:each="admin : ${acpc.admins}" th:text="${admin.name}"
+					class="col-lg-3 list-group-item" style="background-color: #ada;"></div>
 			</div>
+
+			<form th:action="@{/admin/addAdmin}">
+				<fieldset>
+					<div class="form-group">
+						<label for="New Admin" class="col-lg-2 control-label">New
+							Admin Username</label>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" id="newAdminId"
+								placeholder="" name="newAdminId" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-offset-2 col-lg-10">
+							<button type="submit" class="btn btn-success btn-lg"
+								style="padding: 8px 30px;">Add</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
 		</div>
+	</div>
+	</div>
 </body>
 </html>

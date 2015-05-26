@@ -9,12 +9,12 @@
 			<ul class="nav nav-pills nav-stacked nav-inverted left-nav-ul">
 				<li th:class="${pageContent.showActiveLabel(pageContent.AVAIL_TRAINING_LBL)}">
 				  <a href="/trainings/new" th:href="@{/?filter=out}">
-				    <i class="icon-chevron-right"></i> + Available Training
+				    <i class="icon-chevron-right"></i> Available Training
 				  </a>
 				</li>
 				<li th:class="${pageContent.showActiveLabel(pageContent.REGIS_TRAINING_LBL)}">
 				  <a href="/admin/addAdmin" th:href="@{/?filter=in}">
-				    <i class="icon-chevron-right"></i> + Registered Training
+				    <i class="icon-chevron-right"></i> Registered Training
 			      </a>
 		      </li>
 			</ul>
@@ -27,7 +27,7 @@
 						New Training</a></li>
 				<li th:class="${pageContent.showActiveLabel(pageContent.ADM_ADD_TRAINING_LBL)}"><a href="/admin/addAdmin"
 					th:href="@{/admin/addAdminPage}"><i class="icon-chevron-right"></i>
-						+ Admin member</a></li>
+						+ Add Admin</a></li>
 			</ul>
 		</div>
 		<div th:if="${pageContent.isManager()}" class=" left-nav" style="margin-top: 40px;">
