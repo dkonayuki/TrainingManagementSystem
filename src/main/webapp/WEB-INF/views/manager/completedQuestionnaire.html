@@ -19,11 +19,14 @@
         <table class="table">
 			<tr>
 			  <td>
-				<div class="row" >
+				<div class="row" th:if="${qlpc!=null}">
 				 <div th:each="in: ${qlpc.getList()}" class="col-sm-3 list-group" >
 				  <a  th:text="${in.getUserName()}" class="list-group-item" href="#" th:onclick="'showModal('+${in.getSqId()}+')'" onclick="showModal(2);" ><!-- data-toggle="modal" data-target="#myModal" > -->
                   </a>
                   </div>
+                </div>
+                <div class="row" th:if="${qlpc==null or qlpc.getList()==null }">
+                  No one has submitted a questionnaire.
                 </div>
               </td>
 			</tr>
