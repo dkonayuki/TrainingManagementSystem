@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="training-form" class="text-center">
 
-</body>
+<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Questionnaire Content</h4>
+        </div>
+<div class="modal-body">
+<label>Helpful</label><p th:text="${sq.getHelpful()}"></p>
+<label>Understand</label><p th:text="${sq.getUnderstand()}"></p>
+<label>Atmosphere</label><p th:text="${sq.getAtmosphere()}"></p>
+<label>Training Course</label><p th:text="${sq.getTrainingCourse()}"></p>
+<label>Curriculum Pace</label><p th:text="${sq.getCurriculumPace()}"></p>
+<label>Liked</label><p th:text="${sq.getPositive()}"></p>
+<label>Improvements</label><p th:text="${sq.getImprovement()}"></p>
+
+</div>
+
+</div>
 </html>

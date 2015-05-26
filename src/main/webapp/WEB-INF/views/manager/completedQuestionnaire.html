@@ -20,12 +20,35 @@
 			<tr>
 			  <td>
 				<div class="row" >
-                  <div th:each="in: ${completed}" th:text="${in.getName()}" class="col-sm-3" style="background-color:lavender;"></div>
+				 <div th:each="in: ${qlpc.getList()}" class="col-sm-3" style="background-color:lavender;">
+				  <a  th:text="${in.getUserName()}" href="#" th:onclick="'showModal('+${in.getSqId()}+')'" onclick="showModal(2);" ><!-- data-toggle="modal" data-target="#myModal" > -->
+                  </a>
+                  </div>
                 </div>
               </td>
 			</tr>
 		</table>
 
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" id="questionnaire_details">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 	</div>
 </body>

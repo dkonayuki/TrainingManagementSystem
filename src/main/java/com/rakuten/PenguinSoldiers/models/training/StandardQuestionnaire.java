@@ -15,11 +15,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "standardQuestionnaire")
 @NamedQueries({
-  @NamedQuery(name = StandardQuestionnaire.IS_COMPLETED, query = "select a from StandardQuestionnaire a where a.userId=:userId and a.trainingId=:trainingId")
+  @NamedQuery(name = StandardQuestionnaire.FIND_BY_ID, query = "select a from StandardQuestionnaire a where a.id=:id"),
+  @NamedQuery(name = StandardQuestionnaire.IS_COMPLETED, query = "select a from StandardQuestionnaire a where a.userId=:userId and a.trainingId=:trainingId"),
+  @NamedQuery(name = StandardQuestionnaire.FIND_COMPLETED_QUESTIONNAIRE, query = "select a.name, sq.id from TrainingUser tu, Account a, StandardQuestionnaire sq where sq.trainingId=tu.trainingId and sq.userId=a.id and tu.trainingId=:trainingId and  a.id=tu.userId and a.id in (select acc.id from Account acc, Hierarchy h where h.managerId=:managerId and acc.id=h.employeeId)")
 })
 public class StandardQuestionnaire implements java.io.Serializable {
   
+  public static final String FIND_BY_ID= "StandardQuestionaire.findById";
   public static final String IS_COMPLETED = "StandardQuestionaire.isCompleted";
+  public static final String FIND_COMPLETED_QUESTIONNAIRE = "StandardQuestionaire.findCompletedQuestionnaire";
   
   @Id
   @GeneratedValue
