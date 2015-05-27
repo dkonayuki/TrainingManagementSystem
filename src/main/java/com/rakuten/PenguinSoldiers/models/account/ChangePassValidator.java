@@ -46,9 +46,9 @@ public class ChangePassValidator {
 		    		  {
 						  if(changePassForm.getNewPass() != null && !changePassForm.getNewPass().isEmpty() && changePassForm.getNewPass().length()!=0)
 						  {
-						  System.out.println("valid new password");
-						  account.setPassword(passwordEncoder.encode(changePassForm.getNewPass()));
-		    			  accountRepository.update(account);
+							  System.out.println("valid new password");
+						      account.setPassword(passwordEncoder.encode(changePassForm.getNewPass()));
+		    			      accountRepository.update(account);
 						  }
 						  else
 						  {
