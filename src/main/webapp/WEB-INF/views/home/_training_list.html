@@ -5,6 +5,7 @@
 			<th>Training Name</th>
 			<th>Details</th>
 			<th>Date</th>
+			<th>Available seats</th>
 			<th>Status</th>
 			<th th:if="${pageContent.isAdmin()||pageContent.isManager()}"></th>
 		</tr>
@@ -15,8 +16,9 @@
 						class="training-delete-btn" title="Fill questionnaire"
 						href="#" th:href="@{/feedback/form(tId=${training.id})}" style="padding-left: 30px;"><span
 							class="glyphicon glyphicon-paperclip"></span></a></td>
-					<td th:text="${T(com.rakuten.PenguinSoldiers.util.ViewUtil).html2text(training.getOverview(100))}">Overview</td>
+					<td th:text="${T(com.rakuten.PenguinSoldiers.util.ViewUtil).html2text(training.getOverview(60))}">Overview</td>
 					<td th:text="${#calendars.format(training.due_date,'MMMM dd, yyyy')}">date</td>
+					<td th:text="${training.max_participants}"></td>
 					<td th:text="${training.status}">status</td>
 					<td th:if="${pageContent.isAdmin()||pageContent.isManager()}">
 						
