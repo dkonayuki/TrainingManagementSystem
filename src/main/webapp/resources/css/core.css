@@ -99,3 +99,8 @@ div.list-group-item-plain{
 	background-color: #FDC18F; 
 	border:1px solid #E29351
 }
+
+
+span.help-block-error{
+	color: red;
+}
