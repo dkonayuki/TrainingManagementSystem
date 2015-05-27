@@ -16,7 +16,7 @@
             <label for="oldPass" class="col-lg-2 control-label">Old Password</label>
             <div class="col-lg-10">
                 <input type="password" class="form-control" id="oldPass" placeholder="Old Password" th:field="*{oldPass}" />
-                <span class="help-block" th:if="${#fields.hasErrors('oldPass')}" th:errors="*{oldPass}">No such email</span>
+                <span class="help-block help-block-error" th:if="${#fields.hasErrors('oldPass')}" th:errors="*{oldPass}">No such email</span>
             </div>
 
         </div>
@@ -24,7 +24,7 @@
             <label for="newPass" class="col-lg-2 control-label">New Password</label>
             <div class="col-lg-10">
                 <input type="password" class="form-control" id="newPass" placeholder="New Password" th:field="*{newPass}" />
-                <span class="help-block" th:if="${#fields.hasErrors('newPass')}" th:errors="*{newPass}">No such email</span>
+                <span class="help-block help-block-error" th:if="${#fields.hasErrors('newPass')}" th:errors="*{newPass}">No such email</span>
             </div>
 
         </div>
@@ -32,7 +32,7 @@
             <label for="cNewPass" class="col-lg-2 control-label">Confirm New Password</label>
             <div class="col-lg-10">
                 <input type="password" class="form-control" id="cNewPass" placeholder="Confirm New Password" th:field="*{cNewPass}"  />
-                <span class="help-block" th:if="${#fields.hasErrors('cNewPass')}" th:errors="*{cNewPass}">No such email</span>
+                <span class="help-block help-block-error" th:if="${#fields.hasErrors('cNewPass')}" th:errors="*{cNewPass}">No such email</span>
             </div>
 
         </div>
