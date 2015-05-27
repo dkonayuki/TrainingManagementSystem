@@ -146,7 +146,7 @@ $(function() {
 				});
 				$this.find('.outline-text').each(function() {
 					// This urlencodes value of outlines
-					this.value = encodeURIComponent(this.value);
+					//this.value = encodeURIComponent(this.value);
 				});
 			});
 });
