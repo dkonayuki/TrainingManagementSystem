@@ -21,38 +21,36 @@
         <legend>Please Sign In</legend>
         <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">Username</label>
-            <div class="col-lg-10">
+            <div class="col-lg-offset-1 col-lg-9">
                 <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username" />
             </div>
         </div>
         <div class="form-group">
             <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-            <div class="col-lg-10">
+            <div class="col-lg-offset-1 col-lg-9">
                 <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" />
             </div>
         </div>
         <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
+            <div class="col-lg-offset-3 col-lg-4">
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="_spring_security_remember_me" /> Remember me
                     </label>
                 </div>
             </div>
+            <div class="col-lg-offset-1 col-lg-4">
+               <p><a href="forgotPassword" th:href="@{/forgotPassword}">Forgot password?</a></p>
+            </div>
         </div>
         <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
+            <div class="col-lg-offset-5 col-lg-7">
                 <button type="submit" class="btn btn-success btn-lg">Sign in</button>
             </div>
         </div>
         <!-- 
 
          -->
-               <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <p><a href="forgotPassword" th:href="@{/forgotPassword}">Forgot password?</a></p>
-            </div>
-        </div>
         
         <div th:replace="fragments/footer :: footer">&copy; 2015
 			PenguinSoldiers</div>
