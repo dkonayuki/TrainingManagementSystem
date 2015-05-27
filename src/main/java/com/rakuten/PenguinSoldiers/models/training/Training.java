@@ -10,6 +10,7 @@ import com.rakuten.PenguinSoldiers.models.outline.Outline;
 import com.rakuten.PenguinSoldiers.models.premise.Premise;
 import com.rakuten.PenguinSoldiers.models.target.Target;
 import com.rakuten.PenguinSoldiers.models.venue.Venue;
+import com.rakuten.PenguinSoldiers.util.ViewUtil;
 
 import org.json.*;
 
@@ -105,7 +106,8 @@ public class Training implements java.io.Serializable {
 
 	public Training(String name, String overview, String participantNum) {
 		this.name = name;
-		this.overview = overview;
+		this.overview = ViewUtil.stripXSS(overview);
+		System.out.println("overview:" + overview);
 
 		if (participantNum.isEmpty()) {
 			this.max_participants = 0;
